@@ -5,6 +5,9 @@ import java.math.BigDecimal;
 import edu.asselvi.model.intf.ICalculaImpostos;
 
 /**
+ * Definições de um terreno e métodos auxiliares para calculo
+ * de informações referentes ao mesmo
+ * 
  * @author Marcelo
  *
  */
