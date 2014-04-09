@@ -13,6 +13,11 @@ import edu.asselvi.model.intf.ICalculaImpostos;
  */
 public class Terreno implements ICalculaImpostos {
 	
+	private Integer id;
+	private String descricao;
+	private BigDecimal valorVenda;
+	private Endereco endereco;
+
 	public BigDecimal getValorImpostos() {
 		// TODO Auto-generated method stub
 		return null;
