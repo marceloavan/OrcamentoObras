@@ -7,7 +7,6 @@ package edu.asselvi.model;
  * @author Marcelo
  *
  */
-
 public class UnidadeFederativa {
 	
 	private String sigla;
