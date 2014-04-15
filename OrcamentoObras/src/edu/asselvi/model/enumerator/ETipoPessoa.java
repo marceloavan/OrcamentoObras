@@ -4,7 +4,7 @@ package edu.asselvi.model.enumerator;
  * Define o tipo de pessoa juntamente com o tamanho máximo que o documento 
  * identificador poderá conter
  * 
- * @author Marcelo Avancini
+ * @author Marcelo
  *
  */
 public enum ETipoPessoa {
@@ -12,17 +12,19 @@ public enum ETipoPessoa {
 	/**
 	 * Tipo pessoa física nacional
 	 */
-	FISICA(11),	
+	FISICA(11, 'F'),	
 	/**
 	 * Tipo pessoa juridica nacional
 	 */
-	JURIDICA(14);
+	JURIDICA(14, 'J');
 
-	private Integer lengthDocumento;
+	private final Integer lengthDocumento;
+	private final Character sigla;
 	
-	private ETipoPessoa(Integer lengthDocumento) {
+	private ETipoPessoa(Integer lengthDocumento, Character sigla) {
 		this.lengthDocumento = lengthDocumento;
-	}	
+		this.sigla = sigla;
+	}
 	
 	/**
 	 * Tamanho máximo do documento da pessoa em questão definido 
@@ -32,5 +34,9 @@ public enum ETipoPessoa {
 	 */
 	public Integer getLengthDocumento() {
 		return lengthDocumento;
+	}
+	
+	public Character getSigla() {
+		return sigla;
 	}
 }

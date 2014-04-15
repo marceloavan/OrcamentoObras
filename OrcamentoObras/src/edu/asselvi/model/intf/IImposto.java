@@ -9,7 +9,6 @@ import java.math.BigDecimal;
  * @author Marcelo
  *
  */
-
 public interface IImposto {
 
 	public String getSigla();
