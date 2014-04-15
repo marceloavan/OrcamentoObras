@@ -1,6 +1,7 @@
 package edu.asselvi.model;
 
 import edu.asselvi.model.enumerator.ETipoPessoa;
+import edu.asselvi.model.exception.DocumentoForaDoPadraoException;
 
 /**
  * Contém atributos e fornece métodos especificos para qualquer {@link ETipoPessoa}
@@ -27,10 +28,10 @@ public abstract class AbstractPessoa {
 		return tipoPessoa;
 	}
 	
-	private void validaDocumento() throws Exception {
+	private void validaDocumento() throws DocumentoForaDoPadraoException {
 		if (tipoPessoa.getLengthDocumento() != documento.toString().length()) {
-			// TODO criar exceção especifica para essa situação -- alterar o throws :D
-			throw new Exception("O tamanho do documento está em desacordo");
+			String message = String.format("O tamanho do documento está em desacordo. Tipo: %s. Tamanho esperado: %d.", tipoPessoa.getNomenclatura(), tipoPessoa.getLengthDocumento());
+			throw new DocumentoForaDoPadraoException(message);
 		}
 	}
 }

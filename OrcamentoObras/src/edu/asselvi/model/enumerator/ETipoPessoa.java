@@ -12,18 +12,20 @@ public enum ETipoPessoa {
 	/**
 	 * Tipo pessoa física nacional
 	 */
-	FISICA(11, 'F'),	
+	FISICA(11, 'F', "Pessoa física"),	
 	/**
 	 * Tipo pessoa juridica nacional
 	 */
-	JURIDICA(14, 'J');
+	JURIDICA(14, 'J', "Pessoa jurídica");
 
 	private final Integer lengthDocumento;
 	private final Character sigla;
+	private final String nomenclatura;
 	
-	private ETipoPessoa(Integer lengthDocumento, Character sigla) {
+	private ETipoPessoa(Integer lengthDocumento, Character sigla, String nomenclatura) {
 		this.lengthDocumento = lengthDocumento;
 		this.sigla = sigla;
+		this.nomenclatura = nomenclatura;
 	}
 	
 	/**
@@ -38,5 +40,9 @@ public enum ETipoPessoa {
 	
 	public Character getSigla() {
 		return sigla;
+	}
+	
+	public String getNomenclatura() {
+		return nomenclatura;
 	}
 }
