@@ -2,6 +2,8 @@ package edu.asselvi.model.intf;
 
 import java.math.BigDecimal;
 
+import edu.asselvi.model.abst.AbstractPessoa;
+
 /**
  * Define métodos básicos para qualquer orçamento
  * 
@@ -24,4 +26,11 @@ public interface IOrcamento {
 	 */
 	public BigDecimal getValorVendaPrevisoes();
 	
+	
+	/**
+	 * Retorna o cliente interessado pela compra do imovel
+	 * 
+	 * @return cliente - Qualquer Pessoa
+	 */
+	public AbstractPessoa getCliente();
 }
