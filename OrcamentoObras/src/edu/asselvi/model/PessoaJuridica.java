@@ -1,5 +1,6 @@
 package edu.asselvi.model;
 
+import edu.asselvi.model.abst.AbstractPessoa;
 import edu.asselvi.model.enumerator.ETipoPessoa;
 
 /**
@@ -10,7 +11,33 @@ import edu.asselvi.model.enumerator.ETipoPessoa;
  */
 public final class PessoaJuridica extends AbstractPessoa {
 
-	public PessoaJuridica(Long documento) throws Exception {
-		super(documento, ETipoPessoa.JURIDICA);
+	private String razaoSocial;
+	private String nomeFantasia;
+	
+	public PessoaJuridica(Long documento, Endereco endereco, String razaoSocial, String nomeFantasia) throws Exception {
+		super(documento, ETipoPessoa.JURIDICA, endereco);
+		this.razaoSocial = razaoSocial;
+		this.nomeFantasia = nomeFantasia;
+	}
+
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
+	}
+	
+	@Override
+	public String toString() {
+		return getRazaoSocial();
 	}
 }

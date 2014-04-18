@@ -1,5 +1,6 @@
-package edu.asselvi.model;
+package edu.asselvi.model.abst;
 
+import edu.asselvi.model.Endereco;
 import edu.asselvi.model.enumerator.ETipoPessoa;
 import edu.asselvi.model.exception.DocumentoForaDoPadraoException;
 
@@ -11,12 +12,14 @@ import edu.asselvi.model.exception.DocumentoForaDoPadraoException;
  */
 public abstract class AbstractPessoa {
 
-	protected Long documento;
-	protected ETipoPessoa tipoPessoa;
+	private Long documento;
+	private ETipoPessoa tipoPessoa;
+	private Endereco endereco;
 	
-	public AbstractPessoa(Long documento, ETipoPessoa tipoPessoa) throws Exception {
+	public AbstractPessoa(Long documento, ETipoPessoa tipoPessoa, Endereco endereco) throws Exception {
 		this.tipoPessoa = tipoPessoa;
 		this.documento = documento;
+		this.endereco = endereco;
 		validaDocumento();
 	}
 
@@ -28,6 +31,14 @@ public abstract class AbstractPessoa {
 		return tipoPessoa;
 	}
 	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	private void validaDocumento() throws DocumentoForaDoPadraoException {
 		if (tipoPessoa.getLengthDocumento() != documento.toString().length()) {
 			String message = String.format("O tamanho do documento está em desacordo. Tipo: %s. Tamanho esperado: %d.", tipoPessoa.getNomenclatura(), tipoPessoa.getLengthDocumento());
