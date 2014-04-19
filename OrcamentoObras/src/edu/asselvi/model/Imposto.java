@@ -7,7 +7,7 @@ import edu.asselvi.model.intf.IImposto;
 /**
  * Imposto padrão sem regra especifica definida
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class Imposto implements IImposto {

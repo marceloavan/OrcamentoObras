@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Interface responsável por definir os métodos de calculo de imposto sobre terreno
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public interface ICalculaImpostos {

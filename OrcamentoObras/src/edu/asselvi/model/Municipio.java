@@ -4,7 +4,7 @@ package edu.asselvi.model;
  * Representa cada <b>Municipio</b> brasileiro
  * considerando regras do IBGE
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class Municipio {

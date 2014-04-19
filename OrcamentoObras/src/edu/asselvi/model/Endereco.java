@@ -4,7 +4,7 @@ package edu.asselvi.model;
  * Representa o endereço de qualquer objeto seja relevante
  * ser localizado
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class Endereco {

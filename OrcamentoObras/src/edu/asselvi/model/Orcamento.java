@@ -1,6 +1,7 @@
 package edu.asselvi.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import edu.asselvi.model.abst.AbstractPessoa;
 import edu.asselvi.model.intf.IOrcamento;
@@ -12,7 +13,7 @@ import edu.asselvi.model.intf.IOrcamento;
  * armazenar os gastos e gerar valores de venda de acordo com regras definidas pela intf
  * principal.
  *
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class Orcamento implements IOrcamento {
@@ -24,8 +25,10 @@ public class Orcamento implements IOrcamento {
 	private CustoUnitarioBasico cub;
 	private Terreno terreno;
 	private AbstractPessoa cliente;
-	
+
 	private Double metragemConstrucao;
+	private List<Previsao> previsaoList;
+	private Double percetualLucro;
 	
 	public Orcamento(Integer id, String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) {
 		this.id = id;
@@ -92,15 +95,43 @@ public class Orcamento implements IOrcamento {
 		this.metragemConstrucao = metragemConstrucao;
 	}
 	
+	public List<Previsao> getPrevisaoList() {
+		return previsaoList;
+	}
+
+	public void setPrevisaoList(List<Previsao> previsaoList) {
+		this.previsaoList = previsaoList;
+	}
+	
+	public Double getPercetualLucro() {
+		return percetualLucro;
+	}
+
+	public void setPercetualLucro(Double percetualLucro) {
+		this.percetualLucro = percetualLucro;
+	}
+
+	/**
+	 * Retorna o valor total que representam as previsões de gasto
+	 * 
+	 * @return totalPrevisao - somatório do valor das previsões
+	 */
+	public BigDecimal getTotalPrevisao() {
+		BigDecimal totalPrevisao = new BigDecimal(0);
+		for (Previsao previsao : getPrevisaoList()) {
+			totalPrevisao.add(previsao.getValor());
+		}
+		return totalPrevisao;
+	}
+	
 	@Override
 	public BigDecimal getValorVendaCub() {
 		return getCub().getValorMetroQuadrado().multiply(new BigDecimal(getMetragemConstrucao()));
 	}
 
 	@Override
-	public BigDecimal getValorVendaPrevisoes() {
-		// TODO aplicar previsões para depois rever esse método...
-		return null;
+	public BigDecimal getValorVendaPrevisao() {
+		return getTotalPrevisao().multiply(new BigDecimal(getPercetualLucro() / 100));
 	}
 
 	@Override

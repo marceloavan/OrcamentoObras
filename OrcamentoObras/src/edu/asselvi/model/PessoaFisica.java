@@ -6,7 +6,7 @@ import edu.asselvi.model.enumerator.ETipoPessoa;
 /**
  * Possui funções especificas para Pessoa Fisica
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public final class PessoaFisica extends AbstractPessoa {

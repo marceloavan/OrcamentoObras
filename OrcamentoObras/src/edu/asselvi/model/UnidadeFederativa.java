@@ -4,7 +4,7 @@ package edu.asselvi.model;
  * Representa cada <b>Unidade Federativa</b> brasileira
  * considerando regras do IBGE
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class UnidadeFederativa {

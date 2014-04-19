@@ -24,7 +24,7 @@ public interface IOrcamento {
 	 * 
 	 * @return Valor de venda segundo previsões
 	 */
-	public BigDecimal getValorVendaPrevisoes();
+	public BigDecimal getValorVendaPrevisao();
 	
 	
 	/**

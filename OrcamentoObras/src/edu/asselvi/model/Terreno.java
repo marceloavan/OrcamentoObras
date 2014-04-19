@@ -8,7 +8,7 @@ import edu.asselvi.model.intf.ICalculaImpostos;
  * Definições de um terreno e métodos auxiliares para calculo
  * de informações referentes ao mesmo
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class Terreno implements ICalculaImpostos {

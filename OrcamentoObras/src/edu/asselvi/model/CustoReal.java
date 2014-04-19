@@ -8,7 +8,6 @@ import java.math.BigDecimal;
  * @author Leandro Rebelo
  * 
  */
-
 public class CustoReal {
 
 	private Integer id;
