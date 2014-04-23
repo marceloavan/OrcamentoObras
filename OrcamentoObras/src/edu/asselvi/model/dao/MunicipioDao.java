@@ -27,7 +27,7 @@ public class MunicipioDao extends AbstractDao<Municipio> {
 			stmt.execute();
 
 		} catch (SQLException e) {
-			// TODO Criar exceção para Contato nao cadastrado
+			// TODO Criar exceção para Municipio nao cadastrado
 		} finally {
 			try {
 				stmt.close();
