@@ -33,4 +33,9 @@ public class CustoReal {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
+
+	@Override
+	public String toString() {
+		return String.format("Custo Real do Orçamento - valor: %s", valor);
+	}
 }

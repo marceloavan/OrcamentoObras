@@ -44,4 +44,9 @@ public class Previsao {
 		this.valor = valor;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Valor da Previsão do Orçamento: %s ", valor);
+	}
+
 }
