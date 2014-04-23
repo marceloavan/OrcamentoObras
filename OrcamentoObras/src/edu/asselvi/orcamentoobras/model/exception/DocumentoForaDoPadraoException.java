@@ -1,4 +1,4 @@
-package edu.asselvi.model.exception;
+package edu.asselvi.orcamentoobras.model.exception;
 
 public class DocumentoForaDoPadraoException extends Exception {
 

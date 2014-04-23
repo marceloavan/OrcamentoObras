@@ -1,4 +1,4 @@
-package edu.asselvi.model.intf;
+package edu.asselvi.orcamentoobras.model.intf;
 
 import java.math.BigDecimal;
 

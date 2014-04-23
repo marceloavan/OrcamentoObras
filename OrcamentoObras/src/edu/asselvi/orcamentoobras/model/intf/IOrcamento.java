@@ -1,8 +1,8 @@
-package edu.asselvi.model.intf;
+package edu.asselvi.orcamentoobras.model.intf;
 
 import java.math.BigDecimal;
 
-import edu.asselvi.model.abst.AbstractPessoa;
+import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 
 /**
  * Define métodos básicos para qualquer orçamento

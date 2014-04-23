@@ -1,4 +1,4 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 /**
  * Definição de um produto

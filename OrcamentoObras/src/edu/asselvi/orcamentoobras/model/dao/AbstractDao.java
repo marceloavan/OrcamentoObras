@@ -1,8 +1,8 @@
-package edu.asselvi.model.dao;
+package edu.asselvi.orcamentoobras.model.dao;
 
 import java.sql.Connection;
 
-import edu.asselvi.model.dao.conector.ConectorBancoFactory;
+import edu.asselvi.orcamentoobras.model.dao.conector.ConectorBancoFactory;
 
 public abstract class AbstractDao<T> {
 

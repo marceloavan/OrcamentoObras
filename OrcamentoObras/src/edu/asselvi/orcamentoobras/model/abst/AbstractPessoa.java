@@ -1,8 +1,8 @@
-package edu.asselvi.model.abst;
+package edu.asselvi.orcamentoobras.model.abst;
 
-import edu.asselvi.model.Endereco;
-import edu.asselvi.model.enumerator.ETipoPessoa;
-import edu.asselvi.model.exception.DocumentoForaDoPadraoException;
+import edu.asselvi.orcamentoobras.model.Endereco;
+import edu.asselvi.orcamentoobras.model.enumerator.ETipoPessoa;
+import edu.asselvi.orcamentoobras.model.exception.DocumentoForaDoPadraoException;
 
 /**
  * Contém atributos e fornece métodos especificos para qualquer {@link ETipoPessoa}

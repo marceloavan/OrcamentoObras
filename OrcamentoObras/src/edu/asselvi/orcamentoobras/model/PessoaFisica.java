@@ -1,7 +1,7 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
-import edu.asselvi.model.abst.AbstractPessoa;
-import edu.asselvi.model.enumerator.ETipoPessoa;
+import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
+import edu.asselvi.orcamentoobras.model.enumerator.ETipoPessoa;
 
 /**
  * Possui funções especificas para Pessoa Fisica

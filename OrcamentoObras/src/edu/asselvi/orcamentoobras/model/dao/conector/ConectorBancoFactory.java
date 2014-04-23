@@ -1,4 +1,4 @@
-package edu.asselvi.model.dao.conector;
+package edu.asselvi.orcamentoobras.model.dao.conector;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
