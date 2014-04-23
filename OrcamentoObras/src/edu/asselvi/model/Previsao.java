@@ -46,7 +46,7 @@ public class Previsao {
 
 	@Override
 	public String toString() {
-		return String.format("Valor da Previsão do Orçamento: %s ", valor);
+		return String.format("Valor da Previsão do Orçamento: %s ", getValor());
 	}
 
 }
