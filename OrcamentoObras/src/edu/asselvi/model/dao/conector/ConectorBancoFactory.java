@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 /**
  * Classe responsável por gerar os conectores para banco de dados
- * MySQL
  * 
  * @author Marcelo
  *
