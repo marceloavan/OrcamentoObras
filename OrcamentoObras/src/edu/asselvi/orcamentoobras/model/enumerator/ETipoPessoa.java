@@ -1,4 +1,4 @@
-package edu.asselvi.model.enumerator;
+package edu.asselvi.orcamentoobras.model.enumerator;
 
 /**
  * Define o tipo de pessoa juntamente com o tamanho máximo que o documento 

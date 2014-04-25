@@ -1,10 +1,10 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import edu.asselvi.model.abst.AbstractPessoa;
-import edu.asselvi.model.intf.IOrcamento;
+import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
+import edu.asselvi.orcamentoobras.model.intf.IOrcamento;
 
 /**
  * Implementação padrão inicial de orçamentos

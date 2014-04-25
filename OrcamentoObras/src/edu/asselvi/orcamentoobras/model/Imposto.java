@@ -1,8 +1,8 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 import java.math.BigDecimal;
 
-import edu.asselvi.model.intf.IImposto;
+import edu.asselvi.orcamentoobras.model.intf.IImposto;
 
 /**
  * Imposto padrão sem regra especifica definida

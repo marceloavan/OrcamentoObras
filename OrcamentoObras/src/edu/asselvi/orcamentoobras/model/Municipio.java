@@ -1,4 +1,4 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 /**
  * Representa cada <b>Municipio</b> brasileiro

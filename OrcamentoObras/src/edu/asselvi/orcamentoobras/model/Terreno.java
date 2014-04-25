@@ -1,8 +1,8 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 import java.math.BigDecimal;
 
-import edu.asselvi.model.intf.ICalculaImpostos;
+import edu.asselvi.orcamentoobras.model.intf.ICalculaImpostos;
 
 /**
  * Definições de um terreno e métodos auxiliares para calculo

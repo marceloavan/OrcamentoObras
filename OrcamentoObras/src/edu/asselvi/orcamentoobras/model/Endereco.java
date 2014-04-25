@@ -1,4 +1,4 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 /**
  * Representa o endereço de qualquer objeto seja relevante

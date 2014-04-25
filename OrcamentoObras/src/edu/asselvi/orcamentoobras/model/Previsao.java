@@ -1,4 +1,4 @@
-package edu.asselvi.model;
+package edu.asselvi.orcamentoobras.model;
 
 import java.math.BigDecimal;
 import java.util.List;

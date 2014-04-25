@@ -1,11 +1,11 @@
-package edu.asselvi.model.dao;
+package edu.asselvi.orcamentoobras.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import edu.asselvi.model.Municipio;
+import edu.asselvi.orcamentoobras.model.Municipio;
 
 public class MunicipioDao extends AbstractDao<Municipio> {
 
