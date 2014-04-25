@@ -1,11 +1,12 @@
-package edu.asselvi.model.dao;
+package edu.asselvi.orcamentoobras.model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.model.Previsao;
+import edu.asselvi.orcamentoobras.model.Previsao;
+
 
 public class PrevisaoDao extends AbstractDao<Previsao>{
 
