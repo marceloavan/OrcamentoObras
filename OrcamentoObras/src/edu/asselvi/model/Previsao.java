@@ -1,6 +1,7 @@
 package edu.asselvi.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * Representa o valor da previsão do orçamento
@@ -13,6 +14,7 @@ public class Previsao {
 	private Integer id;
 	private String descricao;
 	private BigDecimal valor;
+	private List<CustoReal> custoRealLista;
 
 	public Previsao(Integer id, String descricao, BigDecimal valor) {
 		this.id = id;
@@ -44,9 +46,20 @@ public class Previsao {
 		this.valor = valor;
 	}
 
+	public List<CustoReal> getCustoRealLista() {
+		return custoRealLista;
+	}
+
+	public void setCustoRealLista(List<CustoReal> custoRealLista) {
+		this.custoRealLista = custoRealLista;
+	}
+	
+	public void adicionaCustoReal(CustoReal custoReal) {
+		custoRealLista.add(custoReal);
+	}
+
 	@Override
 	public String toString() {
 		return String.format("Valor da Previsão do Orçamento: %s ", getValor());
 	}
-
 }
