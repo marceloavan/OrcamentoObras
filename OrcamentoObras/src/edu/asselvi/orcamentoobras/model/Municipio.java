@@ -9,14 +9,14 @@ package edu.asselvi.orcamentoobras.model;
  */
 public class Municipio {
 	
-	private String descricao;
 	private Long codigo;
+	private String descricao;
 	private UnidadeFederativa uf;
 	
 	
 	public Municipio(String descricao, Long codigo, UnidadeFederativa uf) {
-		this.descricao = descricao;
 		this.codigo = codigo;
+		this.descricao = descricao;
 		this.uf = uf;
 	}
 

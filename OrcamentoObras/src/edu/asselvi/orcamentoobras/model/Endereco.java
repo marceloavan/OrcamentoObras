@@ -8,19 +8,29 @@ package edu.asselvi.orcamentoobras.model;
  *
  */
 public class Endereco {
-
+	
+	private Integer id;
 	private String logradouro;
 	private Integer numero;
 	private String bairro;
 	private Municipio municipio;
 	private Long cep;
 	
-	public Endereco(String logradouro, Integer numero, String bairro, Municipio municipio, Long cep) {
+	public Endereco(Integer id, String logradouro, Integer numero, String bairro, Municipio municipio, Long cep) {
+		this.id = id;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.bairro = bairro;
 		this.municipio = municipio;
 		this.cep = cep;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getLogradouro() {
