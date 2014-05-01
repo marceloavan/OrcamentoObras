@@ -9,12 +9,12 @@ package edu.asselvi.orcamentoobras.model;
  */
 public class Municipio {
 	
-	private Long codigo;
+	private Integer codigo;
 	private String descricao;
 	private UnidadeFederativa uf;
 	
 	
-	public Municipio(Long codigo, String descricao, UnidadeFederativa uf) {
+	public Municipio(Integer codigo, String descricao, UnidadeFederativa uf) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.uf = uf;
@@ -28,11 +28,11 @@ public class Municipio {
 		this.descricao = descricao;
 	}
 	
-	public Long getCodigo() {
+	public Integer getCodigo() {
 		return codigo;
 	}
 	
-	public void setCodigo(Long codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 	

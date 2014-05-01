@@ -7,25 +7,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
-public class UnidadeFederativaDao extends AbstractDao<UnidadeFederativa> {
+public class UnidadeFederativaDao extends AbstractDao<UnidadeFederativa> implements IUnidadeFederativaDao {
 
+	@Deprecated
 	@Override
 	public void inserir(UnidadeFederativa param) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		throw new SQLException("Não será necessário inserir UF, todas estão mapeadas");
 	}
 
+	@Deprecated
 	@Override
 	public void atualizar(UnidadeFederativa param) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		throw new SQLException("Não será necessário atualizar UF, todas estão mapeadas");
 	}
 
+	@Deprecated
 	@Override
 	public void remover(UnidadeFederativa param) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		throw new SQLException("Não será necessário remover UF, todas estão mapeadas");
 	}
 
 	@Override
@@ -56,6 +57,7 @@ public class UnidadeFederativaDao extends AbstractDao<UnidadeFederativa> {
 		}
 	}
 	
+	@Override
 	public UnidadeFederativa getPeloCodigo(Integer codigoUf) throws SQLException {
 		
 		String sql = "SELECT * FROM UNIDADE_FEDERATIVA WHERE COD_UF = ?";
@@ -66,7 +68,6 @@ public class UnidadeFederativaDao extends AbstractDao<UnidadeFederativa> {
 			
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, codigoUf);
-			
 			rs = stmt.executeQuery();
 			
 			UnidadeFederativa uf = null;

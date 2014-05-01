@@ -9,9 +9,11 @@ import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.Municipio;
 import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 
-public class MunicipioDao extends AbstractDao<Municipio> {
+public class MunicipioDao extends AbstractDao<Municipio> implements IMunicipioDao {
 	
+	@Deprecated
 	@Override
 	public void inserir(Municipio param) throws SQLException {
 		
@@ -34,21 +36,23 @@ public class MunicipioDao extends AbstractDao<Municipio> {
 	        if (linhasAfetadas == 0) {
 	            throw new SQLException("Falha ao criar registro");
 	        }
-
+	        
 		} finally {
 			if (stmt != null) stmt.close();
 			getConexao().close();
 		}
 	}
 
+	@Deprecated
 	@Override
 	public void atualizar(Municipio param) throws SQLException {
-		// TODO Auto-generated method stub
+		throw new SQLException("Não será necessário atualizar Municipio, todos estão mapeadas");
 	}
 
+	@Deprecated
 	@Override
 	public void remover(Municipio param) throws SQLException {
-		// TODO Auto-generated method stub
+		throw new SQLException("Não será necessário remover Municipio, todos estão mapeadas");
 	}
 
 	@Deprecated
@@ -68,7 +72,7 @@ public class MunicipioDao extends AbstractDao<Municipio> {
 			rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				Long codigoMunicipio = rs.getLong("COD_MUNICIPIO");
+				Integer codigoMunicipio = rs.getInt("COD_MUNICIPIO");
 				String descricao = rs.getString("DESCRICAO");
 				Integer codigoUf = rs.getInt("COD_UF");
 				UnidadeFederativa uf = getDaoFactory().getUnidadeFederativaDao().getPeloCodigo(codigoUf);
@@ -79,5 +83,57 @@ public class MunicipioDao extends AbstractDao<Municipio> {
 			finalizarConexaoes(stmt, rs);
 		}
 		return municipioLista;
+	}
+
+	@Override
+	public List<Municipio> getTodosDaUf(UnidadeFederativa uf) throws SQLException {
+		
+		List<Municipio> municipioLista = new ArrayList<Municipio>();
+
+		String sql = "SELECT * FROM MUNICIPIO WHERE COD_UF = ?";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				Integer codigoMunicipio = rs.getInt("COD_MUNICIPIO");
+				String descricao = rs.getString("DESCRICAO");
+				municipioLista.add(new Municipio(codigoMunicipio, descricao, uf));
+			}
+			
+		} finally {
+			finalizarConexaoes(stmt, rs);
+		}
+		return municipioLista;
+	}
+
+	@Override
+	public Municipio getPeloCodigo(Integer codigoMunicipio) throws SQLException {
+		String sql = "SELECT * FROM MUNICIPIO WHERE COD_MUNICIOIO = ?";
+
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, codigoMunicipio);
+			rs = stmt.executeQuery();
+			
+			Municipio municipio = null;
+			if (rs.next()) {
+				Integer codigo = codigoMunicipio;
+				String descricao = rs.getString("DESCRICAO");
+				Integer codigoUf = rs.getInt("COD_UF");
+				UnidadeFederativa uf = getDaoFactory().getUnidadeFederativaDao().getPeloCodigo(codigoUf);
+				municipio = new Municipio(codigo, descricao, uf);
+			}
+			return municipio;
+			
+		} finally {
+			finalizarConexaoes(stmt, rs);
+		}
 	}
 }

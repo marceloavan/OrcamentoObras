@@ -6,9 +6,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.Previsao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
 
 
-public class PrevisaoDao extends AbstractDao<Previsao>{
+public class PrevisaoDao extends AbstractDao<Previsao> implements IPrevisaoDao{
 
 	@Override
 	public void inserir(Previsao param) throws SQLException {
@@ -57,6 +58,12 @@ public class PrevisaoDao extends AbstractDao<Previsao>{
 
 	@Override
 	public List<Previsao> getTodos() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Previsao getPeloId(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
