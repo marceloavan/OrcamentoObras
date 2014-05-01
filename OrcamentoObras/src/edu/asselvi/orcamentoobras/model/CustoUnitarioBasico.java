@@ -46,6 +46,6 @@ public class CustoUnitarioBasico {
 	
 	@Override
 	public String toString() {
-		return String.format("Valor do CUB - mês/ano $d/$d - valor: %s", mes, ano, valorMetroQuadrado);
+		return String.format("Valor do CUB - mês/ano %d/%d - valor: %s", mes, ano, valorMetroQuadrado);
 	}
 }
