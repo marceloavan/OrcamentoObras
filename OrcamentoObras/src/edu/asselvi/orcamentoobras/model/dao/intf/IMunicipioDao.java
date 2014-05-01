@@ -14,6 +14,12 @@ import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
  */
 public interface IMunicipioDao {
 
+	public void inserir(Municipio municipio) throws SQLException;
+	
+	public void atualizar(Municipio municipio) throws SQLException;
+	
+	public void remover(Municipio municipio) throws SQLException;
+	
 	/**
 	 * Deverá retornar todos os {@link Municipio}s associados a uma {@link UnidadeFederativa} 
 	 * 

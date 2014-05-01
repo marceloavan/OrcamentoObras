@@ -21,12 +21,11 @@ import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
  */
 public abstract class AbstractDao<T> {
 
-	private Connection conn;
+	private ConectorBancoFactory cbf;
 	private DaoFactory daoFactory;
 	
 	public AbstractDao() {
-		ConectorBancoFactory cbf = new ConectorBancoFactory();
-		conn = cbf.getConexao();
+		cbf = new ConectorBancoFactory();
 		daoFactory = DaoFactory.getInstance();
 	}
 	
@@ -36,7 +35,7 @@ public abstract class AbstractDao<T> {
 	 * @return {@link Connection}
 	 */
 	public Connection getConexao() {
-		return conn;
+		return cbf.getConexao();
 	}
 	
 	/**

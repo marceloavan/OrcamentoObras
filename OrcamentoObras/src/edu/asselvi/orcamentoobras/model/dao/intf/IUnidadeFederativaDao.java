@@ -12,6 +12,12 @@ import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
  */
 public interface IUnidadeFederativaDao {
 
+	public void inserir(UnidadeFederativa uf) throws SQLException;
+	
+	public void atualizar(UnidadeFederativa uf) throws SQLException;
+	
+	public void remover(UnidadeFederativa uf) throws SQLException;
+	
 	/**
 	 * Retorna {@link UnidadeFederativa} pelo código que a representa
 	 * 

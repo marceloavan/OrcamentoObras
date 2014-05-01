@@ -3,7 +3,6 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class MunicipioDao extends AbstractDao<Municipio> implements IMunicipioDa
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
 		try {
-			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stmt = getConexao().prepareStatement(sql);
 			stmt.setLong(1, param.getCodigo());
 			stmt.setString(2, param.getDescricao());
 			stmt.setInt(3, param.getUf().getCodigo());
@@ -112,7 +111,7 @@ public class MunicipioDao extends AbstractDao<Municipio> implements IMunicipioDa
 
 	@Override
 	public Municipio getPeloCodigo(Integer codigoMunicipio) throws SQLException {
-		String sql = "SELECT * FROM MUNICIPIO WHERE COD_MUNICIOIO = ?";
+		String sql = "SELECT * FROM MUNICIPIO WHERE COD_MUNICIPIO = ?";
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;

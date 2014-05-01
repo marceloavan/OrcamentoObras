@@ -1,7 +1,9 @@
 package edu.asselvi.orcamentoobras.model.dao.factory;
 
+import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
@@ -29,5 +31,10 @@ public class DaoFactory implements IDaoFactory {
 	@Override
 	public IMunicipioDao getMunicipioDao() {
 		return new MunicipioDao();
+	}
+
+	@Override
+	public IEnderecoDao getEnderecoDao() {
+		return new EnderecoDao();
 	}
 }

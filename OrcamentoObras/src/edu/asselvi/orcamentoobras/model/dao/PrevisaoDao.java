@@ -3,6 +3,7 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.Previsao;
@@ -23,7 +24,7 @@ public class PrevisaoDao extends AbstractDao<Previsao> implements IPrevisaoDao{
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = getConexao().prepareStatement(sql);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, param.getDescricao());
 			stmt.setDouble(2, param.getValor().doubleValue());
 			

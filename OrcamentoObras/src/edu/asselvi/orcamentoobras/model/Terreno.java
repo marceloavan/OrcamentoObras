@@ -36,10 +36,10 @@ public class Terreno implements ICalculaImpostos {
 
 	public BigDecimal getValorImpostos() {
 		BigDecimal valorImpostos = new BigDecimal(0);
-		valorImpostos.add(valorITBI);
-		valorImpostos.add(valorFRJ);
-		valorImpostos.add(valorEscritura);
-		valorImpostos.add(valorRegistro);
+		valorImpostos = valorImpostos.add(valorITBI);
+		valorImpostos = valorImpostos.add(valorFRJ);
+		valorImpostos = valorImpostos.add(valorEscritura);
+		valorImpostos = valorImpostos.add(valorRegistro);
 		return valorImpostos;
 	}
 

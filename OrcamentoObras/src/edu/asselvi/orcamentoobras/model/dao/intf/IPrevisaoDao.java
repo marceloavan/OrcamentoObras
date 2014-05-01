@@ -1,5 +1,7 @@
 package edu.asselvi.orcamentoobras.model.dao.intf;
 
+import java.sql.SQLException;
+
 import edu.asselvi.orcamentoobras.model.Previsao;
 
 /**
@@ -9,6 +11,12 @@ import edu.asselvi.orcamentoobras.model.Previsao;
  *
  */
 public interface IPrevisaoDao {
+	
+	public void inserir(Previsao previsao) throws SQLException;
+	
+	public void atualizar(Previsao previsao) throws SQLException;
+	
+	public void remover(Previsao previsao) throws SQLException;
 	
 	/**
 	 * Retorna a {@link Previsao} pelo Id da Mesma

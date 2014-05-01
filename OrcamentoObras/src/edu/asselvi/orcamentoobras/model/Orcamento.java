@@ -119,7 +119,7 @@ public class Orcamento implements IOrcamento {
 	public BigDecimal getTotalPrevisao() {
 		BigDecimal totalPrevisao = new BigDecimal(0);
 		for (Previsao previsao : getPrevisaoList()) {
-			totalPrevisao.add(previsao.getValor());
+			totalPrevisao = totalPrevisao.add(previsao.getValor());
 		}
 		return totalPrevisao;
 	}
