@@ -1,12 +1,19 @@
 package edu.asselvi.orcamentoobras.model.dao.factory;
 
-import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
-import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
+/**
+ * Define os DAOs obrigatórios que qualquer DaoFactory
+ * deverá retornar.
+ * 
+ * @author Marcelo
+ *
+ */
 public interface IDaoFactory {
 
-	UnidadeFederativaDao getUnidadeFederativaDao();
+	IUnidadeFederativaDao getUnidadeFederativaDao();
 	
-	MunicipioDao getMunicipioDao();
+	IMunicipioDao getMunicipioDao();
 	
 }
