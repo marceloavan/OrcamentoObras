@@ -14,7 +14,7 @@ public class Municipio {
 	private UnidadeFederativa uf;
 	
 	
-	public Municipio(String descricao, Long codigo, UnidadeFederativa uf) {
+	public Municipio(Long codigo, String descricao, UnidadeFederativa uf) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 		this.uf = uf;
