@@ -6,8 +6,10 @@ import java.sql.SQLException;
 
 /**
  * Classe responsável por gerar os conectores para banco de dados
+ * Caso seja necessário incluir outro DB, essa classe deverá ser
+ * refatorada
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public class ConectorBancoFactory {
@@ -20,15 +22,14 @@ public class ConectorBancoFactory {
 	        e.printStackTrace();
 	    } 
 		
-		String url = "";
-		String user = "";
-		String passwd = "";
+		String url = "jdbc:mysql://localhost:3306/orcamento_obras";
+		String user = "marcelo";
+		String passwd = "marcelo";
 		
 		try {
 			return DriverManager.getConnection(url, user, passwd);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
 }
