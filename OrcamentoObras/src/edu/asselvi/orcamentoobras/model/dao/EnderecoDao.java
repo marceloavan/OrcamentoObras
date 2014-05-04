@@ -4,13 +4,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.Endereco;
 import edu.asselvi.orcamentoobras.model.Municipio;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 
-public class EnderecoDao extends AbstractDao<Endereco> implements IEnderecoDao {
+public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 
 	@Override
 	public void inserir(Endereco param) throws SQLException {
@@ -106,8 +107,35 @@ public class EnderecoDao extends AbstractDao<Endereco> implements IEnderecoDao {
 
 	@Override
 	public List<Endereco> getTodos() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Endereco> enderecoLista = new ArrayList<Endereco>();
+		
+		String sql = "SELECT * FROM ENDERECO";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			stmt = getConexao().prepareStatement(sql);
+
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Integer id = rs.getInt("COD_ENDERECO");
+				String logradouro = rs.getString("LOGRADOURO");
+				Integer numero = rs.getInt("NUMERO");
+				String bairro = rs.getString("BAIRRO");
+				Long cep = rs.getLong("CEP");
+				Integer codigoMunicipio = rs.getInt("MUNICIPIO");
+				Municipio municipio = getDaoFactory().getMunicipioDao().getPeloCodigo(codigoMunicipio);
+				
+				Endereco endereco = new Endereco(logradouro, numero, bairro, municipio, cep);
+				endereco.setId(id);
+				enderecoLista.add(endereco);
+			}
+			
+		} finally {
+			finalizarConexaoes(stmt, rs);
+		}
+		return enderecoLista;
 	}
 
 	@Override
@@ -138,7 +166,6 @@ public class EnderecoDao extends AbstractDao<Endereco> implements IEnderecoDao {
 		} finally {
 			finalizarConexaoes(stmt, rs);
 		}
-		
 		return endereco;
 	}
 }

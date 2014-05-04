@@ -10,7 +10,7 @@ import edu.asselvi.orcamentoobras.model.Municipio;
 import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 
-public class MunicipioDao extends AbstractDao<Municipio> implements IMunicipioDao {
+public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 	
 	@Deprecated
 	@Override

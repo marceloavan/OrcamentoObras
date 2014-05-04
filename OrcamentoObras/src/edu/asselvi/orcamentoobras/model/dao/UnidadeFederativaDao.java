@@ -9,7 +9,7 @@ import java.util.List;
 import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
-public class UnidadeFederativaDao extends AbstractDao<UnidadeFederativa> implements IUnidadeFederativaDao {
+public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederativaDao {
 
 	@Deprecated
 	@Override

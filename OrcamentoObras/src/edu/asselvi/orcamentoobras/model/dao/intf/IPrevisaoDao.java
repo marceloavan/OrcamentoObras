@@ -10,20 +10,14 @@ import edu.asselvi.orcamentoobras.model.Previsao;
  * @author Marcelo Avancini
  *
  */
-public interface IPrevisaoDao {
-	
-	public void inserir(Previsao previsao) throws SQLException;
-	
-	public void atualizar(Previsao previsao) throws SQLException;
-	
-	public void remover(Previsao previsao) throws SQLException;
-	
+public interface IPrevisaoDao extends IDao<Previsao> {
+ 
 	/**
 	 * Retorna a {@link Previsao} pelo Id da Mesma
 	 * 
 	 * @param id
 	 * @return {@link Previsao}
 	 */
-	public Previsao getPeloId(Integer id);
+	public Previsao getPeloId(Integer id) throws SQLException;
 	
 }

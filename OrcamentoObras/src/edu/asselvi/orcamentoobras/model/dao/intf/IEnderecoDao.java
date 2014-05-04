@@ -10,13 +10,7 @@ import edu.asselvi.orcamentoobras.model.Endereco;
  * @author Marcelo Avancini
  *
  */
-public interface IEnderecoDao {
-
-	public void inserir(Endereco endereco) throws SQLException;
-	
-	public void atualizar(Endereco endereco) throws SQLException;
-	
-	public void remover(Endereco endereco) throws SQLException;
+public interface IEnderecoDao extends IDao<Endereco> {
 	
 	/**
 	 * Retorna {@link Endereco} considerando o identificador do mesmo

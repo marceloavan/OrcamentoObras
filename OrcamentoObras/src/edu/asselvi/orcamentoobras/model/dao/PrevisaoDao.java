@@ -10,7 +10,7 @@ import edu.asselvi.orcamentoobras.model.Previsao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
 
 
-public class PrevisaoDao extends AbstractDao<Previsao> implements IPrevisaoDao{
+public class PrevisaoDao extends AbstractDao implements IPrevisaoDao{
 
 	@Override
 	public void inserir(Previsao param) throws SQLException {

@@ -10,13 +10,7 @@ import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
  * @author Marcelo Avancini
  *
  */
-public interface IUnidadeFederativaDao {
-
-	public void inserir(UnidadeFederativa uf) throws SQLException;
-	
-	public void atualizar(UnidadeFederativa uf) throws SQLException;
-	
-	public void remover(UnidadeFederativa uf) throws SQLException;
+public interface IUnidadeFederativaDao extends IDao<UnidadeFederativa> {
 	
 	/**
 	 * Retorna {@link UnidadeFederativa} pelo código que a representa
