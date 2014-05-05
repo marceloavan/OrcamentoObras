@@ -79,7 +79,7 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 			}
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 		return municipioLista;
 	}
@@ -104,7 +104,7 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 			}
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 		return municipioLista;
 	}
@@ -132,7 +132,7 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 			return municipio;
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 	}
 }

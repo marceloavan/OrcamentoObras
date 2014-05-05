@@ -81,7 +81,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 	        }
 			
 		} finally {
-			finalizarConexaoes(stmt, null);
+			finalizarConexoes(stmt, null);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 	        }
 			
 		} finally {
-			finalizarConexaoes(stmt, null);
+			finalizarConexoes(stmt, null);
 		}
 	}
 
@@ -133,13 +133,13 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 			}
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 		return enderecoLista;
 	}
 
 	@Override
-	public Endereco getPeloId(Integer id) throws SQLException {
+	public Endereco getPeloCodigo(Integer codigo) throws SQLException {
 		
 		Endereco endereco = null;
 		String sql = "SELECT * FROM ENDERECO WHERE COD_ENDERECO = ?";
@@ -148,7 +148,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 		ResultSet rs = null;
 		try {
 			stmt = getConexao().prepareStatement(sql);
-			stmt.setInt(1, id);
+			stmt.setInt(1, codigo);
 			
 			rs = stmt.executeQuery();
 			if (rs.next()) {
@@ -160,11 +160,11 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 				Municipio municipio = getDaoFactory().getMunicipioDao().getPeloCodigo(codigoMunicipio);
 				
 				endereco = new Endereco(logradouro, numero, bairro, municipio, cep);
-				endereco.setId(id);
+				endereco.setId(codigo);
 			}
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 		return endereco;
 	}

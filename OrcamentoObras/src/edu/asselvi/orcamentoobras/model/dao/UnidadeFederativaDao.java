@@ -53,7 +53,7 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 			return unidadeFederativaLista;
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 	}
 	
@@ -81,7 +81,7 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 			return uf;
 			
 		} finally {
-			finalizarConexaoes(stmt, rs);
+			finalizarConexoes(stmt, rs);
 		}
 	}
 }

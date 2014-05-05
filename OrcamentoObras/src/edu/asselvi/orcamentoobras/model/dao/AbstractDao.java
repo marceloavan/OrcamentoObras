@@ -46,7 +46,15 @@ public abstract class AbstractDao {
 		return daoFactory;
 	}
 
-	public void finalizarConexaoes(PreparedStatement stmt, ResultSet rs) throws SQLException {
+	/**
+	 * Finaliza as conexões abertas com o DB, caso não exista
+	 * algum dos parametros, envie <b>null</b>
+	 * 
+	 * @param stmt
+	 * @param rs
+	 * @throws SQLException
+	 */
+	public void finalizarConexoes(PreparedStatement stmt, ResultSet rs) throws SQLException {
 		if (stmt != null) stmt.close();
 		if (rs != null) rs.close();
 		getConexao().close();

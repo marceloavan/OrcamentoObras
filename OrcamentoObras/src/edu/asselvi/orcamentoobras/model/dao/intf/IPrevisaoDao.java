@@ -18,6 +18,6 @@ public interface IPrevisaoDao extends IDao<Previsao> {
 	 * @param id
 	 * @return {@link Previsao}
 	 */
-	public Previsao getPeloId(Integer id) throws SQLException;
+	public Previsao getPeloCodigo(Integer codigo) throws SQLException;
 	
 }

@@ -13,10 +13,10 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
  */
 public interface IDaoFactory {
 
-	IUnidadeFederativaDao getUnidadeFederativaDao();
+	public IUnidadeFederativaDao getUnidadeFederativaDao();
 	
-	IMunicipioDao getMunicipioDao();
+	public IMunicipioDao getMunicipioDao();
 	
-	IEnderecoDao getEnderecoDao();
+	public IEnderecoDao getEnderecoDao();
 	
 }

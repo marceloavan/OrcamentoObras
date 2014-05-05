@@ -64,7 +64,7 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao{
 	}
 
 	@Override
-	public Previsao getPeloId(Integer id) {
+	public Previsao getPeloCodigo(Integer codigo) {
 		// TODO Auto-generated method stub
 		return null;
 	}

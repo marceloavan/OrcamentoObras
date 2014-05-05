@@ -19,6 +19,6 @@ public interface IEnderecoDao extends IDao<Endereco> {
 	 * @return {@link Endereco}
 	 * @throws SQLException 
 	 */
-	public Endereco getPeloId(Integer id) throws SQLException;
+	public Endereco getPeloCodigo(Integer codigo) throws SQLException;
 	
 }
