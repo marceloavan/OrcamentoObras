@@ -17,11 +17,11 @@ public class Endereco {
 	private Long cep;
 	
 	public Endereco(String logradouro, Integer numero, String bairro, Municipio municipio, Long cep) {
-		this.logradouro = logradouro;
-		this.numero = numero;
-		this.bairro = bairro;
-		this.municipio = municipio;
-		this.cep = cep;
+		setLogradouro(logradouro);
+		setNumero(numero);
+		setBairro(bairro);
+		setMunicipio(municipio);
+		setCep(cep);
 	}
 
 	public Integer getId() {

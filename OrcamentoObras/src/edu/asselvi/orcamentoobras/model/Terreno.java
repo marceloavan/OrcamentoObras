@@ -25,14 +25,12 @@ public class Terreno implements ICalculaImpostos {
 	private BigDecimal valorEscritura;
 	private BigDecimal valorRegistro;
 	
-	public Terreno(Integer id, String descricao, BigDecimal valorVenda,	Endereco endereco, Double metragem) {
-		this.id = id;
-		this.descricao = descricao;
-		this.valorVenda = valorVenda;
-		this.endereco = endereco;
-		this.metragem = metragem;
+	public Terreno(String descricao, BigDecimal valorVenda,	Endereco endereco, Double metragem) {
+		setDescricao(descricao);
+		setValorVenda(valorVenda);
+		setEndereco(endereco);
+		setMetragem(metragem);
 	}
-
 
 	public BigDecimal getValorImpostos() {
 		BigDecimal valorImpostos = new BigDecimal(0);

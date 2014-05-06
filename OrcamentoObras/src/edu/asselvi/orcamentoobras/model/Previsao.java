@@ -16,10 +16,10 @@ public class Previsao {
 	private BigDecimal valor;
 	private List<CustoReal> custoRealLista;
 
-	public Previsao(Integer id, String descricao, BigDecimal valor) {
-		this.id = id;
-		this.descricao = descricao;
-		this.valor = valor;
+	public Previsao(String descricao, BigDecimal valor, List<CustoReal> custoRealLista) {
+		setDescricao(descricao);
+		setValor(valor);
+		setCustoRealLista(custoRealLista);
 	}
 
 	public Integer getId() {

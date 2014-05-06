@@ -14,9 +14,9 @@ public class UnidadeFederativa {
 	private Integer codigo;
 	
 	public UnidadeFederativa(String sigla, String descricao, Integer codigo) {
-		this.sigla = sigla;
-		this.descricao = descricao;
-		this.codigo = codigo;
+		setSigla(sigla);
+		setDescricao(descricao);
+		setCodigo(codigo);
 	}
 
 	public String getSigla() {

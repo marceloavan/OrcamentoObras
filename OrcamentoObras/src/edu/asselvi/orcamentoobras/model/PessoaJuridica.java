@@ -16,8 +16,8 @@ public final class PessoaJuridica extends AbstractPessoa {
 	
 	public PessoaJuridica(Long documento, Endereco endereco, String razaoSocial, String nomeFantasia) throws Exception {
 		super(documento, ETipoPessoa.JURIDICA, endereco);
-		this.razaoSocial = razaoSocial;
-		this.nomeFantasia = nomeFantasia;
+		setRazaoSocial(razaoSocial);
+		setNomeFantasia(nomeFantasia);
 	}
 
 	public String getRazaoSocial() {

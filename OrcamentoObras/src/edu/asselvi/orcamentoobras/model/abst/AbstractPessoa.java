@@ -17,16 +17,15 @@ public abstract class AbstractPessoa {
 	private Endereco endereco;
 	
 	public AbstractPessoa(Long documento, ETipoPessoa tipoPessoa, Endereco endereco) throws Exception {
-		this.tipoPessoa = tipoPessoa;
 		this.documento = documento;
-		this.endereco = endereco;
+		setEndereco(endereco);
 		validaDocumento();
 	}
 
 	public Long getDocumento() {
 		return documento;
 	}
-
+	
 	public ETipoPessoa getTipoPessoa() {
 		return tipoPessoa;
 	}
@@ -39,6 +38,12 @@ public abstract class AbstractPessoa {
 		this.endereco = endereco;
 	}
 
+	/**
+	 * Valida o documento informado de acordo com o {@link ETipoPessoa}, já que o mesmo
+	 * possui o length do documento para cada tipo existente
+	 * 
+	 * @throws DocumentoForaDoPadraoException
+	 */
 	private void validaDocumento() throws DocumentoForaDoPadraoException {
 		if (tipoPessoa.getLengthDocumento() != documento.toString().length()) {
 			String message = String.format("O tamanho do documento está em desacordo. Tipo: %s. Tamanho esperado: %d.", tipoPessoa.getNomenclatura(), tipoPessoa.getLengthDocumento());

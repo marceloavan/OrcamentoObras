@@ -30,13 +30,12 @@ public class Orcamento implements IOrcamento {
 	private List<Previsao> previsaoList;
 	private Double percetualLucro;
 	
-	public Orcamento(Integer id, String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) {
-		this.id = id;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.cub = cub;
-		this.terreno = terreno;
-		this.metragemConstrucao = metragemConstrucao;
+	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws Exception {
+		setNome(nome);
+		setDescricao(descricao);
+		setCub(cub);
+		setTerreno(terreno);
+		setMetragemConstrucao(metragemConstrucao);
 	}
 
 	public Integer getId() {

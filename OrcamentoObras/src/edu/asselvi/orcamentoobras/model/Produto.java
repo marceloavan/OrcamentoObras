@@ -6,23 +6,22 @@ package edu.asselvi.orcamentoobras.model;
  * @author Leandro Rebelo
  * 
  */
-
 public class Produto {
 
-	private Integer id;
+	private Integer codigo;
 	private String descricao;
 
-	public Produto(Integer id, String descricao) {
-		this.id = id;
-		this.descricao = descricao;
+	public Produto(Integer codigo, String descricao) {
+		setCodigo(codigo);
+		setDescricao(descricao);
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -35,6 +34,6 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "\n\tCódigo: " + getId() + "\n\tDescrição: " + getDescricao();
+		return getCodigo() + " - " + getDescricao();
 	}
 }

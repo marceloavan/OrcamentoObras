@@ -15,9 +15,9 @@ public class Municipio {
 	
 	
 	public Municipio(Integer codigo, String descricao, UnidadeFederativa uf) {
-		this.codigo = codigo;
-		this.descricao = descricao;
-		this.uf = uf;
+		setCodigo(codigo);
+		setDescricao(descricao);
+		setUf(uf);
 	}
 
 	public String getDescricao() {

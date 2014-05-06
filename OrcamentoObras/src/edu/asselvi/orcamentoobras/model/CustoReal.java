@@ -14,10 +14,9 @@ public class CustoReal {
 	private BigDecimal valor;
 	private Produto produto;
 
-	public CustoReal(Integer id, BigDecimal valor, Produto produto) {
-		this.id = id;
-		this.valor = valor;
-		this.produto = produto;
+	public CustoReal(BigDecimal valor, Produto produto) {
+		setValor(valor);
+		setProduto(produto);;
 	}
 
 	public Integer getId() {

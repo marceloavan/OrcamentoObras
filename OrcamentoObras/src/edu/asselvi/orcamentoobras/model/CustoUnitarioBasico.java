@@ -15,9 +15,9 @@ public class CustoUnitarioBasico {
 	private Integer ano;
 	
 	public CustoUnitarioBasico(BigDecimal valorMetroQuadrado, Integer mes, Integer ano) {
-		this.valorMetroQuadrado = valorMetroQuadrado;
-		this.mes = mes;
-		this.ano = ano;
+		setValorMetroQuadrado(valorMetroQuadrado);
+		setMes(mes);
+		setAno(ano);
 	}
 
 	public BigDecimal getValorMetroQuadrado() {
