@@ -34,6 +34,13 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 			if (linhasAfetadas == 0) {
 				throw new SQLException("Falha ao criar registro");
 			}
+
+			rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				param.setId(rs.getInt(1));
+			} else {
+				throw new SQLException("Não foi possivel buscar a chave gerada");
+			}
 		} finally {
 			if (stmt != null)
 				stmt.close();
@@ -133,7 +140,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 			rs = stmt.executeQuery();
 
-			while (rs.next()) {
+			if (rs.next()) {
 				Integer id = rs.getInt("COD_PRODUTO");
 				String descricao = rs.getString("DESCRICAO");
 
