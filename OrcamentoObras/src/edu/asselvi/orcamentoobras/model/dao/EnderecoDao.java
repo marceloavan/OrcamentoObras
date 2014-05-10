@@ -77,7 +77,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 			
 			int linhasAfetadas = stmt.executeUpdate();
 	        if (linhasAfetadas == 0) {
-	            throw new SQLException("Falha ao remover registro");
+	            throw new SQLException("Falha ao atualizar registro");
 	        }
 			
 		} finally {
