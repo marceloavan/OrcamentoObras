@@ -37,7 +37,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 			rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
-				param.setId(rs.getInt(1));
+				param.setCodigo(rs.getInt(1));
 			} else {
 				throw new SQLException("Não foi possivel buscar a chave gerada");
 			}
@@ -64,7 +64,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 		try {
 			stmt.getConnection().prepareStatement(sql);
 			stmt.setString(1, param.getDescricao());
-			stmt.setInt(2, param.getId());
+			stmt.setInt(2, param.getCodigo());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
@@ -85,7 +85,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 		try {
 			stmt = getConexao().prepareStatement(sql);
-			stmt.setInt(1, param.getId());
+			stmt.setInt(1, param.getCodigo());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
@@ -115,7 +115,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 				String descricao = rs.getString("DESCRICAO");
 
 				Produto produto = new Produto(id, descricao);
-				produto.setId(id);
+				produto.setCodigo(id);
 				produtoLista.add(produto);
 			}
 
@@ -145,7 +145,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 				String descricao = rs.getString("DESCRICAO");
 
 				produto = new Produto(id, descricao);
-				produto.setId(id);
+				produto.setCodigo(id);
 			}
 		} finally {
 			finalizarConexoes(stmt, rs);

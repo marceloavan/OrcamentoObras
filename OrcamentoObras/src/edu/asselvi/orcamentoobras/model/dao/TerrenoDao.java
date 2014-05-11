@@ -88,7 +88,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 			stmt.setBigDecimal(6, param.getValorEscritura());
 			stmt.setBigDecimal(7, param.getValorRegistro());
 			stmt.setInt(8, param.getEndereco().getId());
-			stmt.setInt(9, param.getId());
+			stmt.setInt(9, param.getCodigo());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
@@ -109,7 +109,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 		try {
 			stmt = getConexao().prepareStatement(sql);
-			stmt.setInt(1, param.getId());
+			stmt.setInt(1, param.getCodigo());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
@@ -134,7 +134,6 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-				Integer id = rs.getInt("COD_TERRENO");
 				String descricao = rs.getString("DESCRICAO");
 				Double metragem = rs.getDouble("METRAGEM");
 				BigDecimal valorVenda = rs.getBigDecimal("VALOR_VENDA");
@@ -146,8 +145,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 				Endereco endereco = getDaoFactory().getEnderecoDao()
 						.getPeloCodigo(codigoEndereco);
 
-				Terreno terreno = new Terreno(id, descricao, valorVenda,
-						endereco, metragem);
+				Terreno terreno = new Terreno(descricao, valorVenda, endereco, metragem);
 				terreno.setValorITBI(valorITBI);
 				terreno.setValorFRJ(valorFRJ);
 				terreno.setValorEscritura(valorEscritura);
@@ -176,7 +174,6 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				Integer id = rs.getInt("COD_TERRENO");
 				String descricao = rs.getString("DESCRICAO");
 				Double metragem = rs.getDouble("METRAGEM");
 				BigDecimal valorVenda = rs.getBigDecimal("VALOR_VENDA");
@@ -185,11 +182,10 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 				BigDecimal valorEscritura = rs.getBigDecimal("VALOR_ESCRITURA");
 				BigDecimal valorRegistro = rs.getBigDecimal("VALOR_REGISTRO");
 				Integer codigoEndereco = rs.getInt("ENDERECO");
-				Endereco endereco = getDaoFactory().getEnderecoDao()
-						.getPeloCodigo(codigoEndereco);
+				Endereco endereco = getDaoFactory().getEnderecoDao().getPeloCodigo(codigoEndereco);
 
-				terreno = new Terreno(id, descricao, valorVenda, endereco,
-						metragem);
+				terreno = new Terreno(descricao, valorVenda, endereco, metragem);
+				terreno.setCodigo(codigo);
 				terreno.setValorITBI(valorITBI);
 				terreno.setValorFRJ(valorFRJ);
 				terreno.setValorEscritura(valorEscritura);
