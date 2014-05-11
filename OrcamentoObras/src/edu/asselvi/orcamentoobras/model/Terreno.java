@@ -13,7 +13,7 @@ import edu.asselvi.orcamentoobras.model.intf.ICalculaImpostos;
  */
 public class Terreno implements ICalculaImpostos {
 	
-	private Integer id;
+	private Integer codigo;
 	private String descricao;
 	private BigDecimal valorVenda;
 	private Endereco endereco;
@@ -45,8 +45,12 @@ public class Terreno implements ICalculaImpostos {
 		return getValorVenda().add(getValorImpostos());
 	}
 
-	public Integer getId() {
-		return id;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
+	}
+	
+	public Integer getCodigo() {
+		return codigo;
 	}
 
 	public BigDecimal getValorVenda() {
