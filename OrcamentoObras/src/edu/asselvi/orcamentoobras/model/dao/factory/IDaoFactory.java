@@ -2,6 +2,10 @@ package edu.asselvi.orcamentoobras.model.dao.factory;
 
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.ITerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
 /**
@@ -18,5 +22,13 @@ public interface IDaoFactory {
 	public IMunicipioDao getMunicipioDao();
 	
 	public IEnderecoDao getEnderecoDao();
+	
+	public IProdutoDao getProdutoDao();
+	
+	public ITerrenoDao getTerrenoDao();
+	
+	public IPessoaFisicaDao getPessoaFisicaDao();
+	
+	public IPessoaJuridicaDao getPessoaJuridicaDao();
 	
 }
