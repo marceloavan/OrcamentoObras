@@ -12,22 +12,18 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
 
 public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
-	private PreparedStatement stmt;
-
 	@Override
 	public void inserir(Produto param) throws SQLException {
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO PRODUTO");
 		sb.append(" (DESCRICAO)");
-		sb.append("VALUES (?)");
+		sb.append(" VALUES (?)");
 
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
-			stmt = getConexao().prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, param.getDescricao());
 
 			int linhasAfetadas = stmt.executeUpdate();
@@ -48,21 +44,19 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 				rs.close();
 			getConexao().close();
 		}
-
 	}
 
 	@Override
 	public void atualizar(Produto param) throws SQLException {
 		StringBuilder sb = new StringBuilder();
 		sb.append("UPDATE PRODUTO");
-		sb.append("SET DESCRICAO = ?");
-		sb.append("WHERE COD_PRODUTO = ?");
+		sb.append(" SET DESCRICAO = ?");
+		sb.append(" WHERE COD_PRODUTO = ?");
 
 		String sql = sb.toString();
-
-		stmt = null;
+		PreparedStatement stmt = null;
 		try {
-			stmt.getConnection().prepareStatement(sql);
+			stmt = getConexao().prepareStatement(sql);
 			stmt.setString(1, param.getDescricao());
 			stmt.setInt(2, param.getCodigo());
 
@@ -72,7 +66,6 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 			}
 		} finally {
 			finalizarConexoes(stmt, null);
-
 		}
 	}
 
@@ -82,7 +75,6 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 		String sql = "DELETE FROM PRODUTOS WHERE COD_PRODUTO = ?";
 
 		PreparedStatement stmt = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, param.getCodigo());
@@ -105,7 +97,6 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 
@@ -133,7 +124,6 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, codigo);
@@ -152,5 +142,4 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 		}
 		return produto;
 	}
-
 }

@@ -24,10 +24,8 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
-			stmt = getConexao().prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, param.getDescricao());
 			stmt.setBigDecimal(2, param.getValorVenda());
 			stmt.setDouble(3, param.getMetragem());
@@ -76,9 +74,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		String sql = sb.toString();
 
 		PreparedStatement stmt = null;
-
 		try {
-
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setString(1, param.getDescricao());
 			stmt.setBigDecimal(2, param.getValorVenda());
@@ -106,7 +102,6 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		String sql = "DELETE FROM TERRENO WHERE COD_TERRENO = ?";
 
 		PreparedStatement stmt = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, param.getCodigo());
@@ -128,7 +123,6 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 
@@ -142,8 +136,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 				BigDecimal valorEscritura = rs.getBigDecimal("VALOR_ESCRITURA");
 				BigDecimal valorRegistro = rs.getBigDecimal("VALOR_REGISTRO");
 				Integer codigoEndereco = rs.getInt("ENDERECO");
-				Endereco endereco = getDaoFactory().getEnderecoDao()
-						.getPeloCodigo(codigoEndereco);
+				Endereco endereco = getDaoFactory().getEnderecoDao().getPeloCodigo(codigoEndereco);
 
 				Terreno terreno = new Terreno(descricao, valorVenda, endereco, metragem);
 				terreno.setValorITBI(valorITBI);
@@ -167,7 +160,6 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, codigo);
@@ -197,5 +189,4 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		}
 		return terreno;
 	}
-
 }
