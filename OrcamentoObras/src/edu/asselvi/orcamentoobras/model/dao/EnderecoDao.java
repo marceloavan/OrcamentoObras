@@ -64,7 +64,6 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 		sb.append(" WHERE COD_ENDERECO = ?");
 		
 		String sql = sb.toString();
-		
 		PreparedStatement stmt = null;
 		try {
 			stmt = getConexao().prepareStatement(sql);
@@ -116,7 +115,6 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 		
 		try {
 			stmt = getConexao().prepareStatement(sql);
-
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Integer id = rs.getInt("COD_ENDERECO");
