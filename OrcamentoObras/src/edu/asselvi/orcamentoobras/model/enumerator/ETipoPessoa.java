@@ -45,4 +45,13 @@ public enum ETipoPessoa {
 	public String getNomenclatura() {
 		return nomenclatura;
 	}
+	
+	public static ETipoPessoa getPelaSigla(char sigla) {
+		switch (sigla) {
+			case 'F' : return FISICA;
+			case 'J' : return JURIDICA;
+		}
+		
+		return null;
+	}
 }
