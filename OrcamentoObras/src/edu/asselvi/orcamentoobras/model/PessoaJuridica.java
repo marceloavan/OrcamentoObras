@@ -14,7 +14,7 @@ public final class PessoaJuridica extends AbstractPessoa {
 	private String razaoSocial;
 	private String nomeFantasia;
 	
-	public PessoaJuridica(Long documento, Endereco endereco, String razaoSocial, String nomeFantasia) throws Exception {
+	public PessoaJuridica(String documento, Endereco endereco, String razaoSocial, String nomeFantasia) throws Exception {
 		super(documento, ETipoPessoa.JURIDICA, endereco);
 		setRazaoSocial(razaoSocial);
 		setNomeFantasia(nomeFantasia);

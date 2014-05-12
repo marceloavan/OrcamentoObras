@@ -12,17 +12,27 @@ import edu.asselvi.orcamentoobras.model.exception.DocumentoForaDoPadraoException
  */
 public abstract class AbstractPessoa {
 
-	private Long documento;
+	private Integer id;
+	private String documento;
 	private ETipoPessoa tipoPessoa;
 	private Endereco endereco;
 	
-	public AbstractPessoa(Long documento, ETipoPessoa tipoPessoa, Endereco endereco) throws Exception {
+	public AbstractPessoa(String documento, ETipoPessoa tipoPessoa, Endereco endereco) throws Exception {
 		this.documento = documento;
+		this.tipoPessoa = tipoPessoa;
 		setEndereco(endereco);
 		validaDocumento();
 	}
 
-	public Long getDocumento() {
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getDocumento() {
 		return documento;
 	}
 	
