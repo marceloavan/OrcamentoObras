@@ -3,7 +3,6 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,27 +15,22 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 	public void inserir(Produto param) throws SQLException {
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO PRODUTO");
-		sb.append(" (DESCRICAO)");
-		sb.append(" VALUES (?)");
+		sb.append(" (COD_PRODUTO, DESCRICAO)");
+		sb.append(" VALUES (?, ?)");
 
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, param.getDescricao());
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, param.getCodigo());
+			stmt.setString(2, param.getDescricao());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
 				throw new SQLException("Falha ao criar registro");
 			}
 
-			rs = stmt.getGeneratedKeys();
-			if (rs.next()) {
-				param.setCodigo(rs.getInt(1));
-			} else {
-				throw new SQLException("Não foi possivel buscar a chave gerada");
-			}
 		} finally {
 			if (stmt != null)
 				stmt.close();
