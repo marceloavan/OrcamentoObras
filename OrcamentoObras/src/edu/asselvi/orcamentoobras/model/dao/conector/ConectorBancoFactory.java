@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
+
 /**
  * Classe responsável por gerar os conectores para banco de dados
  * Caso seja necessário incluir outro DB, essa classe deverá ser
@@ -22,9 +24,9 @@ public class ConectorBancoFactory {
 	        e.printStackTrace();
 	    } 
 		
-		String url = "jdbc:mysql://localhost:3306/orcamento_obras";
-		String user = "marcelo";
-		String passwd = "marcelo";
+		String url = PropertiesLocator.getPropValue("db.url");
+		String user = PropertiesLocator.getPropValue("db.user");
+		String passwd = PropertiesLocator.getPropValue("db.passwd");
 		
 		try {
 			return DriverManager.getConnection(url, user, passwd);
