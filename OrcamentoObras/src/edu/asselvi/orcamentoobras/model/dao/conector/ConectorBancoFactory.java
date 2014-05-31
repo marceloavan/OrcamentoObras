@@ -16,6 +16,16 @@ import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
  */
 public class ConectorBancoFactory {
 
+	private String url;
+	private String user;
+	private String passwd;
+	private boolean parametersLoaded;
+	
+	/**
+	 * Retorna conexão de acordo com o configuração no <b>user.dir/properties/config.properties</b>
+	 * 
+	 * @return
+	 */
 	public Connection getConexao() {
 		
 		try {
@@ -24,14 +34,29 @@ public class ConectorBancoFactory {
 	        e.printStackTrace();
 	    } 
 		
-		String url = PropertiesLocator.getPropValue("db.url");
-		String user = PropertiesLocator.getPropValue("db.user");
-		String passwd = PropertiesLocator.getPropValue("db.passwd");
+		if (!parametersLoaded) {
+			loadParameters();
+		}
 		
 		try {
 			return DriverManager.getConnection(url, user, passwd);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	/**
+	 * Carrega os parametros necessários para a conexão
+	 */
+	private void loadParameters() {
+		String host = PropertiesLocator.getPropValue("db.host");
+		String port = PropertiesLocator.getPropValue("db.port");
+		String base = PropertiesLocator.getPropValue("db.base");
+		
+		url = "jdbc:mysql://" + host + ":" + port + "/" + base; 
+		user = PropertiesLocator.getPropValue("db.user");
+		passwd = PropertiesLocator.getPropValue("db.passwd");
+		
+		parametersLoaded = true;
 	}
 }

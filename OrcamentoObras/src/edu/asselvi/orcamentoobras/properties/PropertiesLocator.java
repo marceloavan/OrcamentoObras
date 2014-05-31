@@ -23,14 +23,19 @@ public class PropertiesLocator {
 		}
 	}
 	
+	public static void setPropValue(String key, String value) {
+		loadPropFile();
+		properties.setProperty(key, value);
+	}
+	
 	private static void loadPropFile() {
 		if (properties == null) {
 			String pathProp = System.getProperty("user.dir") + "\\properties\\" + propFileName + ".properties";
 			File file = new File(pathProp);
-			Properties prop = new Properties();
+			properties = new Properties();
 			try {
 				InputStream in = new FileInputStream(file);
-				prop.load(in);
+				properties.load(in);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
