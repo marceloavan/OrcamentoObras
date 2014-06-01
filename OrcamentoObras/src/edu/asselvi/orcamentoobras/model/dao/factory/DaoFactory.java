@@ -7,6 +7,7 @@ import edu.asselvi.orcamentoobras.model.dao.PessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.ProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.TerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.UsuarioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
@@ -14,6 +15,7 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.ITerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
 
 
 public class DaoFactory implements IDaoFactory {
@@ -64,5 +66,10 @@ public class DaoFactory implements IDaoFactory {
 	@Override
 	public IPessoaJuridicaDao getPessoaJuridicaDao() {
 		return new PessoaJuridicaDao();
+	}
+
+	@Override
+	public IUsuarioDao getUsuarioDao() {
+		return new UsuarioDao();
 	}
 }

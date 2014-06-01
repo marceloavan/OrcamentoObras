@@ -7,6 +7,7 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.ITerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
 
 /**
  * Define os DAOs obrigatórios que qualquer DaoFactory
@@ -30,5 +31,7 @@ public interface IDaoFactory {
 	public IPessoaFisicaDao getPessoaFisicaDao();
 	
 	public IPessoaJuridicaDao getPessoaJuridicaDao();
+	
+	public IUsuarioDao getUsuarioDao();
 	
 }
