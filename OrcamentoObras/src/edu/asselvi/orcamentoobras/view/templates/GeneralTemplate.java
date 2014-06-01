@@ -39,6 +39,8 @@ public abstract class GeneralTemplate extends JFrame {
 		// Bloqueia a edição de tamanho
 		setResizable(false);
 		
+		setTitle("OrcaObras - Gestão de orçamentos em obras");
+		
 		setVisible(true);
 	}
 	
@@ -72,6 +74,9 @@ public abstract class GeneralTemplate extends JFrame {
 		}
 	}
 	
+	/**
+	 * Método que adiciona os actions presentes em cada tela 
+	 */
 	protected abstract void addActions();
 	
 }
