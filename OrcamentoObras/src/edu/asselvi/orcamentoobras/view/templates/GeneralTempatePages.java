@@ -8,8 +8,7 @@ import javax.swing.JPanel;
 import edu.asselvi.orcamentoobras.view.components.GeneralMenu;
 import edu.asselvi.orcamentoobras.view.components.GeneralPanel;
 
-public class GeneralTempatePages extends GeneralTemplate {
-
+public abstract class GeneralTempatePages extends GeneralTemplate {
 
 	/**
 	 * 
@@ -20,10 +19,13 @@ public class GeneralTempatePages extends GeneralTemplate {
 	
 	public GeneralTempatePages() {
 		super();
-		JPanel generalPanel = new GeneralPanel(new Color(192, 192, 192), title);
+		JPanel generalPanel = new GeneralPanel(Color.LIGHT_GRAY, title);
+		generalPanel.setSize(1000, 120);
+		generalPanel.setLocation(183, 0);
 		getContentPane().add(generalPanel);
 		
 		JMenuBar generalMenu = new GeneralMenu();
 		getContentPane().add(generalMenu);
+		setExtendedState(GeneralTempatePages.MAXIMIZED_BOTH);
 	}
 }

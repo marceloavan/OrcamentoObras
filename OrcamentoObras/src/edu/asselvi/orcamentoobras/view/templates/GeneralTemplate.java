@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class GeneralTemplate extends JFrame {
+public abstract class GeneralTemplate extends JFrame {
 
 	/**
 	 * 
@@ -25,15 +25,19 @@ public class GeneralTemplate extends JFrame {
 		setFixedSize();
 		
 		JScrollPane scrollPane = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,	JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setLayout(null);
 		setContentPane(scrollPane);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//Centraliza a tela
+		// Centraliza a tela
 		setLocationRelativeTo(null);
 		
-		//Seta o layout para posicionamento absoluto
+		// Seta o layout para posicionamento absoluto
 		setLayout(null);
+		
+		// Bloqueia a edição de tamanho
+		setResizable(false);
 		
 		setVisible(true);
 	}
@@ -67,4 +71,7 @@ public class GeneralTemplate extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	protected abstract void addActions();
+	
 }
