@@ -1,8 +1,8 @@
 package edu.asselvi.orcamentoobras.view.pages;
 
-import edu.asselvi.orcamentoobras.view.templates.GeneralTempatePages;
+import edu.asselvi.orcamentoobras.view.templates.TempateHomePage;
 
-public class HomePage extends GeneralTempatePages {
+public class HomePage extends TempateHomePage {
 
 	/**
 	 * 
@@ -11,6 +11,6 @@ public class HomePage extends GeneralTempatePages {
 
 	@Override
 	protected void addActions() {
-		// TODO Auto-generated method stub
+		super.addActions();
 	}
 }

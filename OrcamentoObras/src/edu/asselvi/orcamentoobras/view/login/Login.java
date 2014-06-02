@@ -43,7 +43,7 @@ public class Login extends GeneralTemplate {
 		loginPanel.setLayout(null);
 		loginPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		loginPanel.setBackground(Color.LIGHT_GRAY);
-		loginPanel.setBounds(320, 184, 345, 130);
+		loginPanel.setBounds(174, 184, 345, 130);
 		getContentPane().add(loginPanel);
 		
 		JPanel panelTitulo = new JPanel();
@@ -80,13 +80,12 @@ public class Login extends GeneralTemplate {
 		loginBtn.setBounds(230, 95, 90, 25);
 		loginPanel.add(loginBtn);
 		
-		makeBackgroundLogin();
-		
 		addActions();
 		
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
+	@Deprecated
 	private void makeBackgroundLogin() {
 		getContentPane().setBackground(Color.WHITE);
 
