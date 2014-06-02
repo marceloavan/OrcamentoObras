@@ -31,10 +31,10 @@ public class ConfigDb extends GeneralTemplate {
 	private JTextField baseTf;
 	private JTextField userTf;
 	private JPasswordField passwdTf;
-	ButtonDefault salvarBtn;
-	ButtonDefault criarBtn;
-	ButtonDefault inserirBtn;
-	ButtonDefault demoBtn;
+	private ButtonDefault salvarBtn;
+	private ButtonDefault criarBtn;
+	private ButtonDefault inserirBtn;
+	private ButtonDefault demoBtn;
 
 	public ConfigDb() {
 		super(400, 500);
