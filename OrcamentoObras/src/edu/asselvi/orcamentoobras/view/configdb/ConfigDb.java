@@ -20,6 +20,11 @@ import javax.swing.DropMode;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+ /**
+  * Tela responsável pela configuração da conexão com o banco de dados
+  * @author Leandro Rebelo
+  */
+
 public class ConfigDb extends GeneralTemplate {
 
 	/**
@@ -141,7 +146,7 @@ public class ConfigDb extends GeneralTemplate {
 
 	@Override
 	protected void addActions() {
-		// TODO Auto-generated method stub
+
 
 	}
 }
