@@ -9,12 +9,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
 import javax.swing.JTextPane;
 import javax.swing.DropMode;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ConfigDb extends GeneralTemplate {
 
@@ -27,10 +31,10 @@ public class ConfigDb extends GeneralTemplate {
 	private JTextField baseTf;
 	private JTextField userTf;
 	private JPasswordField passwdTf;
-	JButton salvarBtn;
-	JButton criarBtn;
-	JButton inserirBtn;
-	JButton demoBtn;
+	ButtonDefault salvarBtn;
+	ButtonDefault criarBtn;
+	ButtonDefault inserirBtn;
+	ButtonDefault demoBtn;
 
 	public ConfigDb() {
 		super(400, 500);
@@ -110,6 +114,28 @@ public class ConfigDb extends GeneralTemplate {
 		logText.setBackground(new Color(255, 255, 255));
 		logText.setBounds(86, 161, 220, 157);
 		configPanel.add(logText);
+
+		salvarBtn = new ButtonDefault("Salvar");
+		salvarBtn.setBounds(347, 18, 90, 25);
+		configPanel.add(salvarBtn);
+		
+		criarBtn = new ButtonDefault("Criar");
+		criarBtn.setBounds(347, 54, 90, 25);
+		configPanel.add(criarBtn);
+		
+		inserirBtn = new ButtonDefault("Inserir");
+		inserirBtn.setBounds(347, 90, 90, 25);
+		configPanel.add(inserirBtn);
+		
+		demoBtn = new ButtonDefault("Demo");
+		demoBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		demoBtn.setBounds(347, 126, 90, 25);
+		configPanel.add(demoBtn);
+
+		SwingUtilities.updateComponentTreeUI(this);
 
 	}
 
