@@ -43,41 +43,41 @@ public class Login extends GeneralTemplate {
 		loginPanel.setLayout(null);
 		loginPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		loginPanel.setBackground(Color.LIGHT_GRAY);
-		loginPanel.setBounds(320, 160, 345, 180);
+		loginPanel.setBounds(320, 184, 345, 130);
 		getContentPane().add(loginPanel);
 		
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTitulo.setBackground(Color.BLACK);
-		panelTitulo.setBounds(0, 0, 345, 40);
+		panelTitulo.setBounds(0, 0, 345, 25);
 		loginPanel.add(panelTitulo);
 		
 		JLabel tituloLb = new JLabel("OrcaObras - Gest\u00E3o de Or\u00E7amento em Obras");
 		tituloLb.setForeground(Color.WHITE);
-		tituloLb.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		tituloLb.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tituloLb.setHorizontalAlignment(SwingConstants.CENTER);
 		panelTitulo.add(tituloLb);
 		
 		JLabel userLb = new JLabel("Usu\u00E1rio:");
 		userLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		userLb.setBounds(25, 80, 65, 15);
+		userLb.setBounds(25, 40, 65, 15);
 		loginPanel.add(userLb);
 		
 		userTf = new JTextField();
-		userTf.setBounds(100, 75, 220, 20);
+		userTf.setBounds(100, 35, 220, 20);
 		loginPanel.add(userTf);
 		
 		JLabel passwdLb = new JLabel("Senha:");
 		passwdLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		passwdLb.setBounds(25, 110, 65, 15);
+		passwdLb.setBounds(25, 70, 65, 15);
 		loginPanel.add(passwdLb);
 		
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(100, 105, 220, 20);
+		passwdTf.setBounds(100, 65, 220, 20);
 		loginPanel.add(passwdTf);
 		
 		loginBtn = new ButtonDefault("Login");
-		loginBtn.setBounds(230, 135, 90, 25);
+		loginBtn.setBounds(230, 95, 90, 25);
 		loginPanel.add(loginBtn);
 		
 		makeBackgroundLogin();

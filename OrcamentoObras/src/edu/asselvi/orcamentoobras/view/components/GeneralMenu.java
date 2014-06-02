@@ -1,10 +1,8 @@
 package edu.asselvi.orcamentoobras.view.components;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 public class GeneralMenu extends JMenuBar {
 
@@ -13,17 +11,22 @@ public class GeneralMenu extends JMenuBar {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public GeneralMenu() {
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 100, 275, 250);
-		setLayout(null);
-		setVisible(true);
+	public GeneralMenu(Integer width) {
+		setBounds(0, 0, width, 25);
+		generateMenu();
 	}
 
-	public List<JMenu> generateMenus() {
-		List<JMenu> menuLista = new ArrayList<JMenu>();
+	private void generateMenu() {
+
+		JMenu menuAdministracao = new JMenu("Administração");
+		add(menuAdministracao);
 		
-		return menuLista;
+		JMenuItem itemUsuarios = new JMenuItem("Usu\u00E1rios");
+		menuAdministracao.add(itemUsuarios);
+		
+		JMenuItem itemTrocarSenha = new JMenuItem("Trocar senha");
+		menuAdministracao.add(itemTrocarSenha);
+		
 	}
 	
 }
