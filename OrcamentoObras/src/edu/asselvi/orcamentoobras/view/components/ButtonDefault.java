@@ -12,6 +12,5 @@ public class ButtonDefault extends JButton {
 	public ButtonDefault(String texto) {
 		setText(texto);
 		setBackground(null);
-		setBorder(null);
 	}
 }
