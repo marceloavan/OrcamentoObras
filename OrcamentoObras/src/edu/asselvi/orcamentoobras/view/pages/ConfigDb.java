@@ -1,9 +1,8 @@
-package edu.asselvi.orcamentoobras.view.configdb;
+package edu.asselvi.orcamentoobras.view.pages;
 
 import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,7 +15,6 @@ import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
 import javax.swing.JTextPane;
-import javax.swing.DropMode;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
