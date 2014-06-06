@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.CustoReal;
-import edu.asselvi.orcamentoobras.model.Previsao;
+import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
 
 /**
  * Comportamento padrão para toda DAO de {@link CustoReal} 
@@ -25,6 +25,6 @@ public interface ICustoReal extends IDao<CustoReal>{
 	
 	public CustoReal getPeloCodigo (Integer codigo) throws SQLException;
 	
-	public List<CustoReal> getPelaPrevisao (Previsao previsao) throws SQLException;
+	public List<CustoReal> getPelaPrevisao (PrevisaoOrcamento previsao) throws SQLException;
 		
 }

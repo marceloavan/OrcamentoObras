@@ -3,7 +3,9 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 
 
@@ -33,8 +35,26 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 
 	@Override
 	public List<Usuario> getTodos() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Usuario> usuariosList = new ArrayList<Usuario>();
+		String sql = "SELECT USER_NAME, PASSWD, NOME_COMP FROM USUARIOS";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				String userName = rs.getString("USER_NAME");
+				String passwd = rs.getString("PASSWD");
+				String nomeCompleto = rs.getString("NOME_COMP");
+				usuariosList.add(new Usuario(userName, passwd, nomeCompleto));
+			}
+			return usuariosList;
+			
+		} finally {
+			finalizarConexoes(stmt, rs);
+		}
 	}
 
 	@Override

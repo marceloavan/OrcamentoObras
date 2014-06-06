@@ -1,10 +1,10 @@
 package edu.asselvi.orcamentoobras.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
-import edu.asselvi.orcamentoobras.model.intf.IOrcamento;
 
 /**
  * Implementação padrão inicial de orçamentos
@@ -16,7 +16,7 @@ import edu.asselvi.orcamentoobras.model.intf.IOrcamento;
  * @author Marcelo Avancini
  *
  */
-public class Orcamento implements IOrcamento {
+public class Orcamento {
 
 	private Integer id;
 	private String nome;
@@ -27,7 +27,7 @@ public class Orcamento implements IOrcamento {
 	private AbstractPessoa cliente;
 
 	private Double metragemConstrucao;
-	private List<Previsao> previsaoList;
+	private List<PrevisaoOrcamento> previsaoList;
 	private Double percetualLucro;
 	
 	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws Exception {
@@ -94,12 +94,24 @@ public class Orcamento implements IOrcamento {
 		this.metragemConstrucao = metragemConstrucao;
 	}
 	
-	public List<Previsao> getPrevisaoList() {
+	public List<PrevisaoOrcamento> getPrevisaoList() {
 		return previsaoList;
 	}
 
-	public void setPrevisaoList(List<Previsao> previsaoList) {
+	public void setPrevisaoList(List<PrevisaoOrcamento> previsaoList) {
 		this.previsaoList = previsaoList;
+	}
+	
+	/**
+	 * Insere previsão a lista já existente de previsões
+	 * 
+	 * @param previsao
+	 */
+	public void addPrevisao(PrevisaoOrcamento previsao) {
+		if (this.previsaoList == null) {
+			this.previsaoList = new ArrayList<PrevisaoOrcamento>();
+		}
+		this.previsaoList.add(previsao);
 	}
 	
 	public Double getPercetualLucro() {
@@ -117,23 +129,20 @@ public class Orcamento implements IOrcamento {
 	 */
 	public BigDecimal getTotalPrevisao() {
 		BigDecimal totalPrevisao = new BigDecimal(0);
-		for (Previsao previsao : getPrevisaoList()) {
+		for (PrevisaoOrcamento previsao : getPrevisaoList()) {
 			totalPrevisao = totalPrevisao.add(previsao.getValor());
 		}
 		return totalPrevisao;
 	}
 	
-	@Override
 	public BigDecimal getValorVendaCub() {
 		return getCub().getValorMetroQuadrado().multiply(new BigDecimal(getMetragemConstrucao()));
 	}
 
-	@Override
 	public BigDecimal getValorVendaPrevisao() {
 		return getTotalPrevisao().multiply(new BigDecimal(getPercetualLucro() / 100));
 	}
 
-	@Override
 	public AbstractPessoa getCliente() {
 		return cliente;
 	}

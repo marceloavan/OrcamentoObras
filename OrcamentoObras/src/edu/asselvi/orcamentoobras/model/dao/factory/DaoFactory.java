@@ -2,16 +2,22 @@ package edu.asselvi.orcamentoobras.model.dao.factory;
 
 import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
+import edu.asselvi.orcamentoobras.model.dao.OrcamentoDao;
 import edu.asselvi.orcamentoobras.model.dao.PessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.PessoaJuridicaDao;
+import edu.asselvi.orcamentoobras.model.dao.PrevisaoDao;
+import edu.asselvi.orcamentoobras.model.dao.PrevisaoOrcamentoDao;
 import edu.asselvi.orcamentoobras.model.dao.ProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.TerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
 import edu.asselvi.orcamentoobras.model.dao.UsuarioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoOrcamentoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.ITerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
@@ -71,5 +77,20 @@ public class DaoFactory implements IDaoFactory {
 	@Override
 	public IUsuarioDao getUsuarioDao() {
 		return new UsuarioDao();
+	}
+
+	@Override
+	public IPrevisaoOrcamentoDao getPrevisaoOrcamentoDao() {
+		return new PrevisaoOrcamentoDao();
+	}
+
+	@Override
+	public IPrevisaoDao getPrevisaoDao() {
+		return new PrevisaoDao();
+	}
+
+	@Override
+	public IOrcamentoDao getOrcamentoDao() {
+		return new OrcamentoDao();
 	}
 }

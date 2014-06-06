@@ -1,33 +1,29 @@
 package edu.asselvi.orcamentoobras.model;
 
-import java.math.BigDecimal;
-import java.util.List;
-
 /**
- * Representa o valor da previsão do orçamento
  * 
- * @author Leandro Rebelo
- * 
+ * @author Marcelo Avancini
+ *
  */
 public class Previsao {
-
-	private Integer id;
+	
+	private Integer codigo;
 	private String descricao;
-	private BigDecimal valor;
-	private List<CustoReal> custoRealLista;
-
-	public Previsao(String descricao, BigDecimal valor, List<CustoReal> custoRealLista) {
+	
+	/**
+	 * 
+	 * @param descricao
+	 */
+	public Previsao(String descricao) {
 		setDescricao(descricao);
-		setValor(valor);
-		setCustoRealLista(custoRealLista);
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getDescricao() {
@@ -37,29 +33,9 @@ public class Previsao {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	public BigDecimal getValor() {
-		return valor;
-	}
-
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
-	}
-
-	public List<CustoReal> getCustoRealLista() {
-		return custoRealLista;
-	}
-
-	public void setCustoRealLista(List<CustoReal> custoRealLista) {
-		this.custoRealLista = custoRealLista;
-	}
 	
-	public void adicionaCustoReal(CustoReal custoReal) {
-		custoRealLista.add(custoReal);
-	}
-
 	@Override
 	public String toString() {
-		return String.format("Valor da Previsão do Orçamento: %s ", getValor());
+		return getCodigo() + " - " + getDescricao();
 	}
 }

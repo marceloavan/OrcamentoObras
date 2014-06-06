@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.CustoReal;
-import edu.asselvi.orcamentoobras.model.Previsao;
+import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.dao.intf.ICustoReal;
 
 public class CustoRealDao extends AbstractDao implements ICustoReal{
@@ -58,7 +58,7 @@ public class CustoRealDao extends AbstractDao implements ICustoReal{
 	}
 
 	@Override
-	public List<CustoReal> getPelaPrevisao(Previsao previsao) throws SQLException {
+	public List<CustoReal> getPelaPrevisao(PrevisaoOrcamento previsao) throws SQLException {
 		// TODO Vai trazer uma lista de todos os Custos com base no ID da previsão
 		return null;
 	}
