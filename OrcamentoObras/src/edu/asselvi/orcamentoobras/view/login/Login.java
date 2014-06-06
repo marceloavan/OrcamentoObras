@@ -22,6 +22,9 @@ import edu.asselvi.orcamentoobras.model.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
+import edu.asselvi.orcamentoobras.view.exception.PasswdInvalidException;
+import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
+import edu.asselvi.orcamentoobras.view.manager.LoginManager;
 import edu.asselvi.orcamentoobras.view.pages.HomePage;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
@@ -33,11 +36,14 @@ public class Login extends GeneralTemplate {
 	private static final long serialVersionUID = 1L;
 	private JTextField userTf;
 	private JPasswordField passwdTf;
-	JButton loginBtn;
+	private JButton loginBtn;
+	private LoginManager loginManager;
 
 	public Login() {
 		super(500, 700);
 
+		loginManager = new LoginManager();
+		
 		//Criação do painel de login
 		JPanel loginPanel = new JPanel();
 		loginPanel.setLayout(null);
@@ -116,22 +122,14 @@ public class Login extends GeneralTemplate {
 					return;
 				}
 				
-				IUsuarioDao usuarioDao = DaoFactory.getInstance().getUsuarioDao();
-				Usuario usuario = null;
 				try {
-					usuario = usuarioDao.getPeloUserName(userName);
-				} catch (SQLException e) {
-				}
-				if (usuario == null) {
-					JOptionPane.showMessageDialog(null, "Usuário informado não existe");
-					return;
+					loginManager.validarLogin(userName, passwd);
+				} catch (UsuarioNotFoundException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				} catch (PasswdInvalidException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
 				}
 				
-				String passwdCripted = Cripto.criptToMd5(passwd);
-				if (!passwdCripted.equals(usuario.getPasswd())) {
-					JOptionPane.showMessageDialog(null, "Senha incorreta");
-					return;
-				}
 				new HomePage();
 				dispose();
 			}

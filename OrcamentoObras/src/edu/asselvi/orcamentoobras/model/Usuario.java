@@ -41,4 +41,9 @@ public class Usuario {
 	public void setNomeCompleto(String nomeCompleto) {
 		this.nomeCompleto = nomeCompleto;
 	}
+	
+	@Override
+	public String toString() {
+		return getUserName() + " - " + getNomeCompleto();
+	}
 }
