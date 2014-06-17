@@ -2,7 +2,7 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 
 import java.sql.SQLException;
 
-import edu.asselvi.orcamentoobras.model.Produto;
+import edu.asselvi.orcamentoobras.model.beans.Produto;
 
 /**
  * Comportamento padrão para toda DAO de {@link Produto}

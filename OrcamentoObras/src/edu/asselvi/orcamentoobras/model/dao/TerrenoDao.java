@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Endereco;
-import edu.asselvi.orcamentoobras.model.Terreno;
+import edu.asselvi.orcamentoobras.model.beans.Endereco;
+import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.dao.intf.ITerrenoDao;
 
 public class TerrenoDao extends AbstractDao implements ITerrenoDao {

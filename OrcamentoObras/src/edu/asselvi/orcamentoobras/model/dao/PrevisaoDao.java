@@ -3,7 +3,7 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Previsao;
+import edu.asselvi.orcamentoobras.model.beans.Previsao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
 
 public class PrevisaoDao implements IPrevisaoDao {

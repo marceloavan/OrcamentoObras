@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.model;
+package edu.asselvi.orcamentoobras.model.beans;
 
 /**
  * Representa cada <b>Unidade Federativa</b> brasileira

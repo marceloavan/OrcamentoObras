@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUnidadeFederativaDao;
 
 public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederativaDao {

@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.CustoReal;
-import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
+import edu.asselvi.orcamentoobras.model.beans.CustoReal;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.dao.intf.ICustoReal;
 
 public class CustoRealDao extends AbstractDao implements ICustoReal{

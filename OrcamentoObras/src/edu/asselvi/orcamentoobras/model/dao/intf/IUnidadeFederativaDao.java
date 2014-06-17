@@ -2,7 +2,7 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 
 import java.sql.SQLException;
 
-import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 
 /**
  * Comportamento padrão de DAOs para trabalhar com {@link UnidadeFederativa}

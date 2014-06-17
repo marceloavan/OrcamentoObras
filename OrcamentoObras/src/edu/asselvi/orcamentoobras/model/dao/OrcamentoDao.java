@@ -3,7 +3,7 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Orcamento;
+import edu.asselvi.orcamentoobras.model.beans.Orcamento;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
 
 public class OrcamentoDao implements IOrcamentoDao {

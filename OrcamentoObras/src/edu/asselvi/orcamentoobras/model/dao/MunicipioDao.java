@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Municipio;
-import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.beans.Municipio;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 
 public class MunicipioDao extends AbstractDao implements IMunicipioDao {

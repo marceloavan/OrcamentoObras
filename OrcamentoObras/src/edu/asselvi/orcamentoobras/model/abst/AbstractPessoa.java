@@ -1,6 +1,6 @@
 package edu.asselvi.orcamentoobras.model.abst;
 
-import edu.asselvi.orcamentoobras.model.Endereco;
+import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.enumerator.ETipoPessoa;
 import edu.asselvi.orcamentoobras.model.exception.DocumentoForaDoPadraoException;
 

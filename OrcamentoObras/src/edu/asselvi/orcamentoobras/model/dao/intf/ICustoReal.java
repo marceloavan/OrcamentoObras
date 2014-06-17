@@ -3,8 +3,8 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.CustoReal;
-import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
+import edu.asselvi.orcamentoobras.model.beans.CustoReal;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 
 /**
  * Comportamento padrão para toda DAO de {@link CustoReal} 

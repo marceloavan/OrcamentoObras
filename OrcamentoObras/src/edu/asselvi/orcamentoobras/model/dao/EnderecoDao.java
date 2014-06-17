@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Endereco;
-import edu.asselvi.orcamentoobras.model.Municipio;
+import edu.asselvi.orcamentoobras.model.beans.Endereco;
+import edu.asselvi.orcamentoobras.model.beans.Municipio;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 
 public class EnderecoDao extends AbstractDao implements IEnderecoDao {

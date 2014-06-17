@@ -3,8 +3,8 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 import java.sql.SQLException;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Municipio;
-import edu.asselvi.orcamentoobras.model.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.model.beans.Municipio;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 
 /**
  * Comportamento padrão para qualquer DAO de {@link Municipio}

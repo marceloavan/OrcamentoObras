@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.model;
+package edu.asselvi.orcamentoobras.model.beans;
 
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.enumerator.ETipoPessoa;

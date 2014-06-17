@@ -2,8 +2,8 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 
 import java.sql.SQLException;
 
-import edu.asselvi.orcamentoobras.model.Orcamento;
-import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
+import edu.asselvi.orcamentoobras.model.beans.Orcamento;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 
 /**
  * Comportamento padrão de DAOs para trabalhar com {@link PrevisaoOrcamento}

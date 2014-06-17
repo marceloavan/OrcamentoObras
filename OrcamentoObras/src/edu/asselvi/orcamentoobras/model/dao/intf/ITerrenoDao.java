@@ -2,7 +2,7 @@ package edu.asselvi.orcamentoobras.model.dao.intf;
 
 import java.sql.SQLException;
 
-import edu.asselvi.orcamentoobras.model.Terreno;
+import edu.asselvi.orcamentoobras.model.beans.Terreno;
 
 /**
  * Comportamento padrão para toda DAO de {@link Terreno}

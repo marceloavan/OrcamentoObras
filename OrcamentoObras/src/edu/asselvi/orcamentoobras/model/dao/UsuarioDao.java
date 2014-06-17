@@ -10,15 +10,38 @@ import java.util.List;
 
 
 
-import edu.asselvi.orcamentoobras.model.Usuario;
+
+
+import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
 
 public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 
 	@Override
 	public void inserir(Usuario param) throws SQLException {
-		// TODO Auto-generated method stub
 		
+		StringBuilder sb = new StringBuilder();
+		sb.append("INSERT INTO USUARIOS");
+		sb.append(" (USER_NAME, PASSWD, NOME_COMP)");
+		sb.append(" VALUES (?, ?, ?)");
+		
+		String sql = sb.toString();
+		PreparedStatement stmt = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setString(1, param.getUserName());
+			stmt.setString(2, param.getPasswd());
+			stmt.setString(3, param.getNomeCompleto());
+			
+			int linhasAfetadas = stmt.executeUpdate();
+	        if (linhasAfetadas == 0) {
+	            throw new SQLException("Falha ao criar registro");
+	        }
+	        
+		} finally {
+			if (stmt != null) stmt.close();
+			getConexao().close();
+		}
 	}
 
 	@Override

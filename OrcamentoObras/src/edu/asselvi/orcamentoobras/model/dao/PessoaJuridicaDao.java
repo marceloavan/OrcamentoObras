@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Endereco;
-import edu.asselvi.orcamentoobras.model.PessoaJuridica;
+import edu.asselvi.orcamentoobras.model.beans.Endereco;
+import edu.asselvi.orcamentoobras.model.beans.PessoaJuridica;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;

@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Orcamento;
-import edu.asselvi.orcamentoobras.model.PrevisaoOrcamento;
+import edu.asselvi.orcamentoobras.model.beans.Orcamento;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoOrcamentoDao;
 
 

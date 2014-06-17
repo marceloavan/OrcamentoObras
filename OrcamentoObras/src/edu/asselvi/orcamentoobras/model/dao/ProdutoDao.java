@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.model.Produto;
+import edu.asselvi.orcamentoobras.model.beans.Produto;
 import edu.asselvi.orcamentoobras.model.dao.intf.IProdutoDao;
 
 public class ProdutoDao extends AbstractDao implements IProdutoDao {

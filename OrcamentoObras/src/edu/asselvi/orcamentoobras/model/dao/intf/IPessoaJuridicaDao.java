@@ -1,6 +1,6 @@
 package edu.asselvi.orcamentoobras.model.dao.intf;
 
-import edu.asselvi.orcamentoobras.model.PessoaJuridica;
+import edu.asselvi.orcamentoobras.model.beans.PessoaJuridica;
 
 public interface IPessoaJuridicaDao extends IDao<PessoaJuridica> {
 
