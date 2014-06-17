@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -15,13 +16,15 @@ import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
 import javax.swing.JTextPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
- /**
-  * Tela responsável pela configuração da conexão com o banco de dados
-  * @author Leandro Rebelo
-  */
+/**
+ * Tela responsável pela configuração da conexão com o banco de dados
+ * 
+ * @author Leandro Rebelo
+ */
 
 public class ConfigDb extends GeneralTemplate {
 
@@ -121,15 +124,15 @@ public class ConfigDb extends GeneralTemplate {
 		salvarBtn = new ButtonDefault("Salvar");
 		salvarBtn.setBounds(347, 18, 90, 25);
 		configPanel.add(salvarBtn);
-		
+
 		criarBtn = new ButtonDefault("Criar");
 		criarBtn.setBounds(347, 54, 90, 25);
 		configPanel.add(criarBtn);
-		
+
 		inserirBtn = new ButtonDefault("Inserir");
 		inserirBtn.setBounds(347, 90, 90, 25);
 		configPanel.add(inserirBtn);
-		
+
 		demoBtn = new ButtonDefault("Demo");
 		demoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -142,9 +145,66 @@ public class ConfigDb extends GeneralTemplate {
 
 	}
 
+	public void checkField() {
+		String port = portTf.getText();
+		String host = hostTf.getText();
+		String base = baseTf.getText();
+		String user = userTf.getText();
+		String passwd = passwdTf.getText();
+
+		if (port.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe a porta");
+		}
+		if (host.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe o host");
+		}
+		if (base.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe a base");
+		}
+		if (user.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe o login do usuário");
+		}
+		if (passwd.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Informe a senha");
+		}
+	}
+
 	@Override
 	protected void addActions() {
+		salvarBtn.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				checkField();
 
+			}
+		});
+
+		criarBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				checkField();
+
+			}
+		});
+
+		inserirBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				checkField();
+
+			}
+		});
+
+		demoBtn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				checkField();
+
+			}
+		});
 	}
 }
