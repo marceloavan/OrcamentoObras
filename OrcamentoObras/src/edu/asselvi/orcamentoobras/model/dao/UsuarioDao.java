@@ -19,7 +19,6 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 
 	@Override
 	public void inserir(Usuario param) throws SQLException {
-		
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO USUARIOS");
 		sb.append(" (USER_NAME, PASSWD, NOME_COMP)");
@@ -46,8 +45,28 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 
 	@Override
 	public void atualizar(Usuario param) throws SQLException {
-		// TODO Auto-generated method stub
+		StringBuilder sb = new StringBuilder();
+		sb.append("UPDATE USUARIOS SET");
+		sb.append(" PASSWD = ?, NOME_COMP = ?");
+		sb.append(" WHERE USER_NAME = ?");
 		
+		String sql = sb.toString();
+		PreparedStatement stmt = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setString(1, param.getPasswd());
+			stmt.setString(2, param.getNomeCompleto());
+			stmt.setString(3, param.getUserName());
+			
+			int linhasAfetadas = stmt.executeUpdate();
+	        if (linhasAfetadas == 0) {
+	            throw new SQLException("Falha ao atualizar registro");
+	        }
+	        
+		} finally {
+			if (stmt != null) stmt.close();
+			getConexao().close();
+		}
 	}
 
 	@Override
