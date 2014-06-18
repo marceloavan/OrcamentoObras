@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,14 +16,10 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import edu.asselvi.orcamentoobras.cripto.Cripto;
-import edu.asselvi.orcamentoobras.model.Usuario;
-import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
-import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.exception.PasswdInvalidException;
 import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
-import edu.asselvi.orcamentoobras.view.manager.LoginManager;
+import edu.asselvi.orcamentoobras.view.manager.UsuarioManager;
 import edu.asselvi.orcamentoobras.view.pages.HomePage;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
@@ -37,12 +32,12 @@ public class Login extends GeneralTemplate {
 	private JTextField userTf;
 	private JPasswordField passwdTf;
 	private JButton loginBtn;
-	private LoginManager loginManager;
+	private UsuarioManager usuarioManager;
 
 	public Login() {
 		super(500, 700);
 
-		loginManager = new LoginManager();
+		usuarioManager = new UsuarioManager();
 		
 		//Criação do painel de login
 		JPanel loginPanel = new JPanel();
@@ -123,11 +118,13 @@ public class Login extends GeneralTemplate {
 				}
 				
 				try {
-					loginManager.validarLogin(userName, passwd);
+					usuarioManager.validarLogin(userName, passwd);
 				} catch (UsuarioNotFoundException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
+					return;
 				} catch (PasswdInvalidException e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
+					return;
 				}
 				
 				new HomePage();
