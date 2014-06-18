@@ -15,7 +15,7 @@ public abstract class TempateHomePage extends GeneralTemplate {
 	 */
 	private static final long serialVersionUID = 5437083454847063426L;
 
-	GeneralMenu generalMenu;
+	private GeneralMenu generalMenu;
 	
 	public TempateHomePage() {
 		super(700, 900);
@@ -23,15 +23,17 @@ public abstract class TempateHomePage extends GeneralTemplate {
 		generalMenu = new GeneralMenu(900);
 		getContentPane().add(generalMenu);
 		
-		addActions();
-		
 		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	protected GeneralMenu getGeneralMenu() {
+		return generalMenu;
 	}
 	
 	@Override
 	protected void addActions() {
 		
-		generalMenu.getItemSairLogout().addActionListener(new ActionListener() {
+		getGeneralMenu().getItemSairLogout().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -39,12 +41,11 @@ public abstract class TempateHomePage extends GeneralTemplate {
 			}
 		});
 		
-		generalMenu.getItemSairFechar().addActionListener(new ActionListener() {
+		getGeneralMenu().getItemSairFechar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		
 	}
 }

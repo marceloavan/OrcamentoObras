@@ -1,9 +1,12 @@
 package edu.asselvi.orcamentoobras.view.templates;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
+
 import javax.swing.JPanel;
+
 import java.awt.Color;
 
 public abstract class TemplateCadastroPages extends GeneralTemplate {
@@ -14,7 +17,7 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 	private static final long serialVersionUID = 1L;
 	
 	private JButton salvarBtn;
-	private JButton cancelarBtn;
+	private JButton novoBtn;
 	
 	public TemplateCadastroPages() {
 		this(500, 500);
@@ -22,20 +25,21 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 	
 	public TemplateCadastroPages(Integer height, Integer width) {
 		super(height, width);
-		addActions();
 		
 		JPanel panelBtns = new JPanel();
-		panelBtns.setBounds(0, 415, width, 60);
+		panelBtns.setBounds(0, 390, 500, 92);
 		panelBtns.setBackground(Color.LIGHT_GRAY);
 		panelBtns.setLayout(null);
 
 		salvarBtn = new ButtonDefault("Salvar");
-		salvarBtn.setBounds(10, 5, 65, 25);
+		salvarBtn.setBounds(10, 11, 65, 25);
 		panelBtns.add(salvarBtn);
 		
-		cancelarBtn = new ButtonDefault("Cancelar");
-		cancelarBtn.setBounds(85, 5, 75, 25);
-		panelBtns.add(cancelarBtn);
+		novoBtn = new ButtonDefault("Novo");
+		novoBtn.setBounds(85, 11, 75, 25);
+		panelBtns.add(novoBtn);
+		
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		getContentPane().add(panelBtns);
 	}
@@ -44,7 +48,7 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 		return salvarBtn;
 	}
 
-	public JButton getCancelarBtn() {
-		return cancelarBtn;
+	public JButton getNovoBtn() {
+		return novoBtn;
 	}
 }
