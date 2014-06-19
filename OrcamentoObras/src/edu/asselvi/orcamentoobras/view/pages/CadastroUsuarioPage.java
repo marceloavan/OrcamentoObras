@@ -105,12 +105,12 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		table.setModel(dataModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.getColumn("Login").setPreferredWidth(200);
-		table.getColumn("Nome").setPreferredWidth(265);
+		table.getColumn("Nome").setPreferredWidth(250);
 		
 		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 40, 470, 180);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);
 		
 		SwingUtilities.updateComponentTreeUI(this);
