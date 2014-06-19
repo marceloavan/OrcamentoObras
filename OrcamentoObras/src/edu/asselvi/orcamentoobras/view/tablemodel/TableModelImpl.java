@@ -14,6 +14,11 @@ public class TableModelImpl extends AbstractTableModel  {
 		this.data = data;
 	}
 	
+	public TableModelImpl(IModelConverter<?> modelConverter) {
+		this.columnNames = modelConverter.getColumnNames();
+		this.data = modelConverter.getData();
+	}
+	
 	private String[] columnNames;
     private Object[][] data;
 

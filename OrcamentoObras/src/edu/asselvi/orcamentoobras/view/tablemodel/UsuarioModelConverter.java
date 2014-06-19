@@ -6,7 +6,7 @@ import java.util.List;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 
-public class UsuarioModelConverter implements IModel<Usuario> {
+public class UsuarioModelConverter implements IModelConverter<Usuario> {
 	
 	private int qtdColumns = 2;
 	private List<Usuario> usuariosList;

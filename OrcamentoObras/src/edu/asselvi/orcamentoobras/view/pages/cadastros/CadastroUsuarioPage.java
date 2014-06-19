@@ -32,7 +32,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	private JScrollPane scrollPane = new JScrollPane();
 	private CustomTable table;
 	private UsuarioModelConverter usuarioModelConverter;
-	private AbstractTableModel dataModel;
+	private AbstractTableModel tableModel;
 	
 	private JTextField nomeCompletoTf;
 	private JTextField userNameTf;
@@ -99,10 +99,10 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	}
 	
 	private void generateTable() {
-		dataModel = new TableModelImpl(usuarioModelConverter.getColumnNames(), usuarioModelConverter.getData());
+		tableModel = new TableModelImpl(usuarioModelConverter);
 		
 		table = new CustomTable();
-		table.setModel(dataModel);
+		table.setModel(tableModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.getColumn("Login").setPreferredWidth(200);
 		table.getColumn("Nome").setPreferredWidth(250);
