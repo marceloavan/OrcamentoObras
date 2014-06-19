@@ -11,8 +11,14 @@ public class GeneralMenu extends JMenuBar {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	// Itens do menu Adminitracao
 	private JMenuItem itemAdministracaoUsuarios;
 	private JMenuItem itemAdministracaoTrocarSenha;
+	
+	// Itens do menu Orcamento
+	private JMenuItem itemOrcamentoCub;
+	
+	// Itens do menu Sair
 	private JMenuItem itemSairLogout;
 	private JMenuItem itemSairFechar;
 	
@@ -33,6 +39,11 @@ public class GeneralMenu extends JMenuBar {
 		itemAdministracaoTrocarSenha = new JMenuItem("Trocar senha");
 		menuAdministracao.add(itemAdministracaoTrocarSenha);
 
+		/* MENU ORCAMENTO */
+		JMenu menuOrcamento = new JMenu("Orçamento");
+		itemOrcamentoCub = new JMenuItem("Custo Unitário Básico");
+		menuOrcamento.add(itemOrcamentoCub);
+		
 		/* MENU SAIR */
 		JMenu menuSair = new JMenu("Sair");
 		add(menuSair);
@@ -59,5 +70,9 @@ public class GeneralMenu extends JMenuBar {
 
 	public JMenuItem getItemSairFechar() {
 		return itemSairFechar;
+	}
+	
+	public JMenuItem getItemOrcamentoCub() {
+		return itemOrcamentoCub;
 	}
 }

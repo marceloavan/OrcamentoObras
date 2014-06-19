@@ -3,6 +3,7 @@ package edu.asselvi.orcamentoobras.view.pages;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroUsuarioPage;
 import edu.asselvi.orcamentoobras.view.templates.TempateHomePage;
 
 public class HomePage extends TempateHomePage {

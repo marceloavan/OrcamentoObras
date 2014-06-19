@@ -8,6 +8,8 @@ import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public abstract class TemplateCadastroPages extends GeneralTemplate {
 
@@ -18,6 +20,8 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 	
 	private JButton salvarBtn;
 	private JButton novoBtn;
+	private JButton excluirBtn;
+	private JButton fecharBtn;
 	
 	public TemplateCadastroPages() {
 		this(500, 500);
@@ -39,8 +43,16 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 		novoBtn.setBounds(85, 11, 75, 25);
 		panelBtns.add(novoBtn);
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		excluirBtn = new ButtonDefault("Excluir");
+		excluirBtn.setBounds(170, 11, 75, 25);
+		panelBtns.add(excluirBtn);
 		
+		fecharBtn = new ButtonDefault("Fechar");
+		fecharBtn.setBounds(255, 11, 75, 25);
+		panelBtns.add(fecharBtn);
+
+		addDefaultActions();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().add(panelBtns);
 	}
 
@@ -50,5 +62,18 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 
 	public JButton getNovoBtn() {
 		return novoBtn;
+	}
+	
+	public JButton getExcluirBtn() {
+		return excluirBtn;
+	}
+	
+	public void addDefaultActions() {
+		fecharBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 	}
 }
