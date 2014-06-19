@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
  * @author Leandro Rebelo
  */
 
-public class ConfigDb extends GeneralTemplate {
+public class ConfigDbPage extends GeneralTemplate {
 
 	/**
 	 * 
@@ -42,7 +42,7 @@ public class ConfigDb extends GeneralTemplate {
 	private ButtonDefault inserirBtn;
 	private ButtonDefault demoBtn;
 
-	public ConfigDb() {
+	public ConfigDbPage() {
 		super(400, 500);
 		getContentPane().setBackground(Color.WHITE);
 
