@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.view.pages;
+package edu.asselvi.orcamentoobras.view.pages.cadastros;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -157,6 +157,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		getNovoBtn().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				table.clearSelection();
 				limparCampos();
 			}
 		});
