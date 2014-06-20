@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.view.tablemodel;
+package edu.asselvi.orcamentoobras.view.components.table.model;
 
 /**
  * Define os métodos para um conversor de objetos para modelos de tabela 

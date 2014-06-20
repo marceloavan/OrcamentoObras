@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.view.tablemodel;
+package edu.asselvi.orcamentoobras.view.components.table.model;
 
 import javax.swing.table.AbstractTableModel;
 

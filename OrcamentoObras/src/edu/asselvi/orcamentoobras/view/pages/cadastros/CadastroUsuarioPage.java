@@ -17,9 +17,9 @@ import javax.swing.table.AbstractTableModel;
 
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
+import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
+import edu.asselvi.orcamentoobras.view.components.table.model.UsuarioModelConverter;
 import edu.asselvi.orcamentoobras.view.manager.UsuarioManager;
-import edu.asselvi.orcamentoobras.view.tablemodel.TableModelImpl;
-import edu.asselvi.orcamentoobras.view.tablemodel.UsuarioModelConverter;
 import edu.asselvi.orcamentoobras.view.templates.TemplateCadastroPages;
 
 public class CadastroUsuarioPage extends TemplateCadastroPages {
