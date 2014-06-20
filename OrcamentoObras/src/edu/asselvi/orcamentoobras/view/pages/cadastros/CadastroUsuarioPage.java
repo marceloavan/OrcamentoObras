@@ -19,6 +19,7 @@ import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
 import edu.asselvi.orcamentoobras.view.components.table.model.UsuarioModelConverter;
+import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.view.manager.UsuarioManager;
 import edu.asselvi.orcamentoobras.view.templates.TemplateCadastroPages;
 
@@ -39,6 +40,8 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	
 	private JPasswordField passwdTf;
 	private UsuarioManager usuarioManager;
+	
+	private boolean editingUser = false;
 	
 	public CadastroUsuarioPage() {
 		super(500, 500);
@@ -112,6 +115,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);
+		addActionToTable();
 		
 		SwingUtilities.updateComponentTreeUI(this);
 	}
@@ -140,6 +144,10 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 				}
 				try {
 					if (usuarioManager.isUsuarioExistente(userName)) {
+						if (!editingUser) {
+							JOptionPane.showMessageDialog(null, "Usuário já existe. Selecione o usuário na tabela para entrar no modo de edição");
+							return;
+						}
 						usuarioManager.atualizarUsuario(userName, passwd, nomeCompleto);
 					} else {
 						usuarioManager.cadastrarUsuario(userName, passwd, nomeCompleto);
@@ -159,9 +167,35 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 			public void actionPerformed(ActionEvent e) {
 				table.clearSelection();
 				limparCampos();
+				editingUser = false;
 			}
 		});
 		
+		getExcluirBtn().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				try {
+					String userName = userNameTf.getText();
+					if (usuarioManager.isUsuarioLogado(userName)) {
+						JOptionPane.showMessageDialog(null, "Não é possível excluir o usuário logado");
+						return;
+					}
+					usuarioManager.excluirUsuario(userName);
+					limparCampos();
+					generateTable();
+				} catch (UsuarioNotFoundException e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+					return;
+				}
+				JOptionPane.showMessageDialog(null, "Usuário excluído com sucesso");
+			}
+		});
+	}
+	
+	/**
+	 * Método separado porque a tabela é recriada quando algum registro é criado/ removido
+	 */
+	private void addActionToTable() {
 		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
@@ -169,6 +203,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 					Usuario usuario = usuarioModelConverter.getObjectByRowIndex(table.getSelectedRow());
 					loadCamposByObject(usuario);
 					userNameTf.setEnabled(false);
+					editingUser = true;
 				}
 			}
 		});

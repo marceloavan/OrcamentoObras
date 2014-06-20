@@ -71,13 +71,20 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 
 	@Override
 	public void remover(Usuario param) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "DELETE FROM USUARIOS WHERE USER_NAME = ?";
+		PreparedStatement stmt = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setString(1, param.getUserName());
+			stmt.executeUpdate();
+		} finally {
+			finalizarConexoes(stmt, null);
+		}
 		
 	}
 
 	@Override
 	public List<Usuario> getTodos() throws SQLException {
-		
 		List<Usuario> usuariosList = new ArrayList<Usuario>();
 		String sql = "SELECT USER_NAME, PASSWD, NOME_COMP FROM USUARIOS";
 		

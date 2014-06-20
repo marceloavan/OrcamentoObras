@@ -41,6 +41,8 @@ public class GeneralMenu extends JMenuBar {
 
 		/* MENU ORCAMENTO */
 		JMenu menuOrcamento = new JMenu("Orçamento");
+		add(menuOrcamento);
+		
 		itemOrcamentoCub = new JMenuItem("Custo Unitário Básico");
 		menuOrcamento.add(itemOrcamentoCub);
 		

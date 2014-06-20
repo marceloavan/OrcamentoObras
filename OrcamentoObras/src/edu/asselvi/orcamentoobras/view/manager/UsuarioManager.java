@@ -2,6 +2,7 @@ package edu.asselvi.orcamentoobras.view.manager;
 
 import java.sql.SQLException;
 
+import edu.asselvi.orcamentoobras.context.SystemInfo;
 import edu.asselvi.orcamentoobras.cripto.Cripto;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
@@ -42,6 +43,17 @@ public class UsuarioManager {
 		usuarioDao.atualizar(new Usuario(userName, Cripto.criptToMd5(passwd), nomeCompleto));
 	}
 	
+	public void excluirUsuario(String userName) throws UsuarioNotFoundException {
+		try {
+			Usuario usuario = usuarioDao.getPeloUserName(userName);
+			if (usuario == null) {
+				throw new UsuarioNotFoundException("Usuario não existe");
+			}
+			usuarioDao.remover(usuario);
+		} catch (SQLException e) {
+		}
+	}
+	
 	public boolean isUsuarioExistente(String userName) {
 		Usuario usuario = null;
 		try {
@@ -49,5 +61,22 @@ public class UsuarioManager {
 		} catch (SQLException e) {
 		}
 		return usuario != null;
+	}
+	
+	public boolean isUsuarioLogado(String userName) {
+		try {
+			Usuario usuario = usuarioDao.getPeloUserName(userName);
+			return usuario.equals(SystemInfo.getUSuarioLogado());
+		} catch (SQLException e) {
+		}
+		return false;
+	}
+	
+	public Usuario getUsuarioPeloUserName(String userName) {
+		try {
+			return usuarioDao.getPeloUserName(userName);
+		} catch (SQLException e) {
+		}
+		return null;
 	}
 }
