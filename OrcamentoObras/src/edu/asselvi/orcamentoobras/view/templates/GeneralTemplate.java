@@ -63,7 +63,7 @@ public abstract class GeneralTemplate extends JFrame {
 	
 	private void setLookAndFeel() {
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 			SwingUtilities.updateComponentTreeUI(this);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

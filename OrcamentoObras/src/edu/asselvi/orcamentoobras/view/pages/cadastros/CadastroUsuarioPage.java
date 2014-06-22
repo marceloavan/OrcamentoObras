@@ -69,17 +69,17 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		getContentPane().add(senhaLb);
 		
 		nomeCompletoTf = new JTextField();
-		nomeCompletoTf.setBounds(110, 245, 280, 20);
+		nomeCompletoTf.setBounds(110, 245, 280, 25);
 		getContentPane().add(nomeCompletoTf);
 		nomeCompletoTf.setColumns(10);
 		
 		userNameTf = new JTextField();
 		userNameTf.setColumns(10);
-		userNameTf.setBounds(110, 270, 280, 20);
+		userNameTf.setBounds(110, 270, 280, 25);
 		getContentPane().add(userNameTf);
 		
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(110, 295, 280, 20);
+		passwdTf.setBounds(110, 295, 280, 25);
 		getContentPane().add(passwdTf);
 		
 		addActions();

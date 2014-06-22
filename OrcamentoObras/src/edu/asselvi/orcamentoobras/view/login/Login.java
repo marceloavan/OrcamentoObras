@@ -66,7 +66,7 @@ public class Login extends GeneralTemplate {
 		loginPanel.add(userLb);
 		
 		userTf = new JTextField();
-		userTf.setBounds(100, 35, 220, 20);
+		userTf.setBounds(100, 35, 220, 25);
 		loginPanel.add(userTf);
 		
 		JLabel passwdLb = new JLabel("Senha:");
@@ -75,7 +75,7 @@ public class Login extends GeneralTemplate {
 		loginPanel.add(passwdLb);
 		
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(100, 65, 220, 20);
+		passwdTf.setBounds(100, 65, 220, 25);
 		loginPanel.add(passwdTf);
 		
 		loginBtn = new ButtonDefault("Login");

@@ -36,19 +36,19 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 		panelBtns.setLayout(null);
 
 		salvarBtn = new ButtonDefault("Salvar");
-		salvarBtn.setBounds(10, 11, 65, 25);
+		salvarBtn.setBounds(10, 11, 70, 25);
 		panelBtns.add(salvarBtn);
 		
 		novoBtn = new ButtonDefault("Novo");
-		novoBtn.setBounds(85, 11, 75, 25);
+		novoBtn.setBounds(90, 11, 75, 25);
 		panelBtns.add(novoBtn);
 		
 		excluirBtn = new ButtonDefault("Excluir");
-		excluirBtn.setBounds(170, 11, 75, 25);
+		excluirBtn.setBounds(175, 11, 75, 25);
 		panelBtns.add(excluirBtn);
 		
 		fecharBtn = new ButtonDefault("Fechar");
-		fecharBtn.setBounds(255, 11, 75, 25);
+		fecharBtn.setBounds(260, 11, 75, 25);
 		panelBtns.add(fecharBtn);
 
 		addDefaultActions();
