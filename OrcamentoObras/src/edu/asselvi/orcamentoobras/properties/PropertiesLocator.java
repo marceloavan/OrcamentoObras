@@ -65,7 +65,6 @@ public class PropertiesLocator {
 		if (storePropFile) {
 			storePropFile();
 		}
-		refreshProps();
 	}
 	
 	/**
@@ -109,6 +108,7 @@ public class PropertiesLocator {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		refreshProps();
 	}
 	
 	/**
