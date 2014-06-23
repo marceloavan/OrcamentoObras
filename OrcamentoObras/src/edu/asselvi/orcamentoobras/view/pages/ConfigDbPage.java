@@ -12,6 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
@@ -172,11 +173,23 @@ public class ConfigDbPage extends GeneralTemplate {
 	@Override
 	protected void addActions() {
 		salvarBtn.addActionListener(new ActionListener() {
-
+			
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent ae) {
+				
 				checkField();
-
+				
+				String port = portTf.getText();
+				String host = hostTf.getText();
+				String base = baseTf.getText();
+				String user = userTf.getText();
+				String passwd = passwdTf.getText();
+				
+				PropertiesLocator.setPropValue("db.port", port);
+				PropertiesLocator.setPropValue("db.host", host);
+				PropertiesLocator.setPropValue("db.base", base);
+				PropertiesLocator.setPropValue("db.user", user);
+				PropertiesLocator.setPropValue("db.passwd", passwd);
 			}
 		});
 
