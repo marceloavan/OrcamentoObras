@@ -73,7 +73,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(hostLb);
 
 		hostTf = new JTextField();
-		hostTf.setBounds(85, 17, 220, 20);
+		hostTf.setBounds(85, 17, 220, 25);
 		configPanel.add(hostTf);
 
 		JLabel portLb = new JLabel("Port:");
@@ -82,7 +82,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(portLb);
 
 		portTf = new JTextField();
-		portTf.setBounds(85, 46, 220, 20);
+		portTf.setBounds(85, 46, 220, 25);
 		configPanel.add(portTf);
 
 		JLabel baseLb = new JLabel("Base:");
@@ -91,7 +91,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(baseLb);
 
 		baseTf = new JTextField();
-		baseTf.setBounds(85, 74, 220, 20);
+		baseTf.setBounds(85, 74, 220, 25);
 		configPanel.add(baseTf);
 
 		JLabel userLb = new JLabel("Usu\u00E1rio:");
@@ -100,7 +100,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(userLb);
 
 		userTf = new JTextField();
-		userTf.setBounds(85, 103, 220, 20);
+		userTf.setBounds(85, 103, 220, 25);
 		configPanel.add(userTf);
 
 		JLabel passwdLb = new JLabel("Senha:");
@@ -109,7 +109,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(passwdLb);
 
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(85, 132, 220, 20);
+		passwdTf.setBounds(85, 132, 220, 25);
 		configPanel.add(passwdTf);
 
 		JLabel logLb = new JLabel("Log:");
@@ -141,6 +141,8 @@ public class ConfigDbPage extends GeneralTemplate {
 		});
 		demoBtn.setBounds(347, 126, 90, 25);
 		configPanel.add(demoBtn);
+		
+		addActions();
 
 		SwingUtilities.updateComponentTreeUI(this);
 
