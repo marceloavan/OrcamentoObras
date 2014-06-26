@@ -189,4 +189,35 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		}
 		return terreno;
 	}
+
+	@Override
+	public void createTable() throws SQLException {
+		String sql = "CREATE TABLE TERRENO ("
+				+ "  	COD_TERRENO 		INTEGER NOT NULL,"
+				+ "  	DESCRICAO 			VARCHAR(250) NOT NULL,"
+				+ "  	ENDERECO 			INTEGER NOT NULL,"
+				+ "  	VALOR_VENDA 		DECIMAL(10,2) NOT NULL,"
+				+ "  	METRAGEM 			DECIMAL(10,0) NOT NULL,"
+				+ "  	VALOR_ITBI 			DECIMAL(10,2) NOT NULL,"
+				+ "  	VALOR_FRJ 			DECIMAL(10,2) NOT NULL,"
+				+ "  	VALOR_ESCRITURA 	DECIMAL(10,2) NOT NULL,"
+				+ "  	VALOR_REGISTRO 		DECIMAL(10,2) NOT NULL,"
+				+ "  	CONSTRAINT 			PK_TERRENO PRIMARY KEY(COD_TERRENO),"
+				+ "  	CONSTRAINT 			FK_TERRENO_ENDERECO FOREIGN KEY (ENDERECO) REFERENCES ENDERECO(COD_ENDERECO))";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+		} finally {
+			
+			finalizarConexoes(stmt, rs);
+			
+		}
+		
+	}
 }
