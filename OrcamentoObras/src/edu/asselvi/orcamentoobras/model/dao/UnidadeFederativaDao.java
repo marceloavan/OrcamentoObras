@@ -14,19 +14,19 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 	@Deprecated
 	@Override
 	public void inserir(UnidadeFederativa param) throws SQLException {
-		throw new SQLException("Não será necessário inserir UF, todas estão mapeadas");
+		throw new SQLException("Nï¿½o serï¿½ necessï¿½rio inserir UF, todas estï¿½o mapeadas");
 	}
 
 	@Deprecated
 	@Override
 	public void atualizar(UnidadeFederativa param) throws SQLException {
-		throw new SQLException("Não será necessário atualizar UF, todas estão mapeadas");
+		throw new SQLException("Nï¿½o serï¿½ necessï¿½rio atualizar UF, todas estï¿½o mapeadas");
 	}
 
 	@Deprecated
 	@Override
 	public void remover(UnidadeFederativa param) throws SQLException {
-		throw new SQLException("Não será necessário remover UF, todas estão mapeadas");
+		throw new SQLException("Nï¿½o serï¿½ necessï¿½rio remover UF, todas estï¿½o mapeadas");
 	}
 
 	@Override
@@ -83,5 +83,29 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 		} finally {
 			finalizarConexoes(stmt, rs);
 		}
+	}
+
+	@Override
+	public void createTable() throws SQLException {
+		String sql = "CREATE TABLE UNIDADE_FEDERATIVA ("
+				+ "    COD_UF      		INTEGER NOT NULL,"
+				+ "    DESCRICAO   		VARCHAR(100) NOT NULL,"
+				+ "    SIGLA       		VARCHAR(2) NOT NULL,"
+				+ "    CONSTRAINT 			PK_UNIDADE_FEDERATIVA PRIMARY KEY (COD_UF))";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+		} finally {
+			
+			finalizarConexoes(stmt, rs);
+			
+		}
+		
 	}
 }
