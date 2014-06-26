@@ -140,4 +140,10 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 		}
 		return listaPessoaFisica;
 	}
+
+	@Override
+	public void createTable() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }
