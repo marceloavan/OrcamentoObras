@@ -59,8 +59,35 @@ public class CustoRealDao extends AbstractDao implements ICustoReal{
 
 	@Override
 	public List<CustoReal> getPelaPrevisao(PrevisaoOrcamento previsao) throws SQLException {
-		// TODO Vai trazer uma lista de todos os Custos com base no ID da previsão
+		// TODO Vai trazer uma lista de todos os Custos com base no ID da previsï¿½o
 		return null;
+	}
+
+	@Override
+	public void createTable() throws SQLException {
+		String sql = "CREATE TABLE CUSTO_REAL ("
+				+ "  	COD_CUSTOREAL 		INTEGER NOT NULL AUTO_INCREMENT,"
+				+ "  	PRODUTO 			INTEGER NOT NULL,"
+				+ "  	PREVISAO 			INTEGER NOT NULL,"
+				+ "  	ORCAMENTO 			INTEGER NOT NULL,"
+				+ "  	CONSTRAINT 			PK_CUSTO_REAL PRIMARY KEY (COD_CUSTOREAL),"
+				+ "  	CONSTRAINT 			FK_CUSTO_REAL_PRODUTO FOREIGN KEY (PRODUTO) REFERENCES PRODUTO(COD_PRODUTO),"
+				+ "  	CONSTRAINT 			FK_CUSTO_REAL_PREVISAO FOREIGN KEY (PREVISAO) REFERENCES PREVISAO(COD_PREVISAO),"
+				+ "  	CONSTRAINT 			FK_CUSTO_REAL_ORCAMENTO FOREIGN KEY (ORCAMENTO) REFERENCES ORCAMENTO(COD_ORCAMENTO))";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+		} finally {
+			
+			finalizarConexoes(stmt, rs);
+			
+		}
 	}
 
 }
