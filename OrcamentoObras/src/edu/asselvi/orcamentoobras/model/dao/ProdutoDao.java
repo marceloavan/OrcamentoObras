@@ -136,4 +136,25 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 		}
 		return produto;
 	}
+
+	@Override
+	public void createTable() throws SQLException {
+		String sql = "CREATE TABLE PRODUTO ("
+				+ "	    COD_PRODUTO 		INTEGER NOT NULL,"
+				+ "  	DESCRICAO 			VARCHAR(100) NOT NULL,"
+				+ "  	CONSTRAINT 			PK_PRODUTO PRIMARY KEY(COD_PRODUTO))";
+		
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+		} finally {
+			finalizarConexoes(stmt, rs);
+		}
+		
+	}
 }
