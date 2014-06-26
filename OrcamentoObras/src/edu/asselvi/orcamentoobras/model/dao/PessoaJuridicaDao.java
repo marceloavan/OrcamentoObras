@@ -141,4 +141,10 @@ public class PessoaJuridicaDao extends AbstractDao implements IPessoaJuridicaDao
 		}
 		return listaPessoaJuridica;
 	}
+
+	@Override
+	public void createTable() throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
 }
