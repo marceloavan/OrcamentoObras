@@ -52,6 +52,6 @@ public interface IDao<T> {
 	 * @param param
 	 * @throws SQLException
 	 */
-	public void createTable (T param) throws SQLException;
+	public void createTable () throws SQLException;
 	
 }
