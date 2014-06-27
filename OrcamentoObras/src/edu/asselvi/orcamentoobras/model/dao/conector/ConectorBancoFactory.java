@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 
 /**
@@ -49,13 +50,13 @@ public class ConectorBancoFactory {
 	 * Carrega os parametros necessários para a conexão
 	 */
 	private void loadParameters() {
-		String host = PropertiesLocator.getPropValue("db.host");
-		String port = PropertiesLocator.getPropValue("db.port");
-		String base = PropertiesLocator.getPropValue("db.base");
+		String host = PropertiesLocator.getPropValue(EPropertieKeys.DB_HOST.getPropName());
+		String port = PropertiesLocator.getPropValue(EPropertieKeys.DB_PORT.getPropName());
+		String base = PropertiesLocator.getPropValue(EPropertieKeys.DB_BASE.getPropName());
 		
 		url = "jdbc:mysql://" + host + ":" + port + "/" + base; 
-		user = PropertiesLocator.getPropValue("db.user");
-		passwd = PropertiesLocator.getPropValue("db.passwd");
+		user = PropertiesLocator.getPropValue(EPropertieKeys.DB_USER.getPropName());
+		passwd = PropertiesLocator.getPropValue(EPropertieKeys.DB_PASSWD.getPropName());
 		
 		parametersLoaded = true;
 	}

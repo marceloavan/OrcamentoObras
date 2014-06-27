@@ -3,6 +3,7 @@ package edu.asselvi.orcamentoobras.installer;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 
 /**
@@ -18,7 +19,7 @@ public class DataBaseConfig {
 	public Map<String, String> loadProperties() {
 		
 		Map<String, String> propMap = new HashMap<String, String>();
-		propMap.put("db.host", PropertiesLocator.getPropValue("db.host"));
+		propMap.put(EPropertieKeys.DB_HOST.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_HOST.getPropName()));
 		
 		return propMap;
 	}
