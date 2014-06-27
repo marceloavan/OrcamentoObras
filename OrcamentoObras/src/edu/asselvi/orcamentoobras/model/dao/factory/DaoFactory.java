@@ -1,5 +1,8 @@
 package edu.asselvi.orcamentoobras.model.dao.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.OrcamentoDao;
@@ -11,6 +14,7 @@ import edu.asselvi.orcamentoobras.model.dao.ProdutoDao;
 import edu.asselvi.orcamentoobras.model.dao.TerrenoDao;
 import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
 import edu.asselvi.orcamentoobras.model.dao.UsuarioDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
@@ -92,5 +96,22 @@ public class DaoFactory implements IDaoFactory {
 	@Override
 	public IOrcamentoDao getOrcamentoDao() {
 		return new OrcamentoDao();
+	}
+
+	@Override
+	public List<IDao> getTodosDaos() {
+		List<IDao> lista = new ArrayList<IDao>();
+		lista.add(getEnderecoDao());
+		lista.add(getMunicipioDao());
+		lista.add(getOrcamentoDao());
+		lista.add(getPessoaFisicaDao());
+		lista.add(getPessoaJuridicaDao());
+		lista.add(getPrevisaoDao());
+		lista.add(getPrevisaoOrcamentoDao());
+		lista.add(getProdutoDao());
+		lista.add(getTerrenoDao());
+		lista.add(getUnidadeFederativaDao());
+		lista.add(getUsuarioDao());
+		return lista;
 	}
 }

@@ -1,5 +1,8 @@
 package edu.asselvi.orcamentoobras.model.dao.factory;
 
+import java.util.List;
+
+import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
@@ -42,5 +45,12 @@ public interface IDaoFactory {
 	public IPrevisaoDao getPrevisaoDao();
 	
 	public IOrcamentoDao getOrcamentoDao();
+	
+	/**
+	 * Retorna todos os Dao's em uma lista
+	 * 
+	 * @return
+	 */
+	public List<IDao> getTodosDaos();
 	
 }
