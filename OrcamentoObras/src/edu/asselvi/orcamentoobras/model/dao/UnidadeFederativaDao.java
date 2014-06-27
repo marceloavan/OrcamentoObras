@@ -94,16 +94,15 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 				+ "    CONSTRAINT 			PK_UNIDADE_FEDERATIVA PRIMARY KEY (COD_UF))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 			
 		}
 		

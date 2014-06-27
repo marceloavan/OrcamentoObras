@@ -143,16 +143,15 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 				+ "	CONSTRAINT 			PK_USUARIOS PRIMARY KEY(USER_NAME))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 			
 		}
 		

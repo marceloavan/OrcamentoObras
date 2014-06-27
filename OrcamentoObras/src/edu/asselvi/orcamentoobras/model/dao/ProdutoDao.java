@@ -145,15 +145,14 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 				+ "  	CONSTRAINT 			PK_PRODUTO PRIMARY KEY(COD_PRODUTO))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 		}
 		
 	}

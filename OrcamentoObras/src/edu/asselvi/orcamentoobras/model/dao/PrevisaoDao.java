@@ -1,7 +1,6 @@
 package edu.asselvi.orcamentoobras.model.dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -48,16 +47,15 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 				+ "  	CONSTRAINT 			PK_PREVISAO PRIMARY KEY(COD_PREVISAO))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 			
 		}
 		

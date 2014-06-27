@@ -143,7 +143,31 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 
 	@Override
 	public void createTable() throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "CREATE TABLE PESSOA ("
+				+ "  	COD_PESSOA 			INTEGER NOT NULL,"
+				+ "  	ENDERECO 			INTEGER NOT NULL,"
+				+ "  	TIPO_PESSOA 		CHAR(1) NULL,"
+				+ "  	NOME_PESSOA 		VARCHAR(100) NOT NULL,"
+				+ "  	SOBRENOME_PESSOA 	VARCHAR(100) NOT NULL,"
+				+ "  	RAZAO_SOCIAL 		VARCHAR(100) NOT NULL,"
+				+ "  	NOME_FANTASIA 		VARCHAR(100) NOT NULL,"
+				+ "  	DOCUMENTO 			BIGINT NOT NULL,"
+				+ "  	CONSTRAINT 			PK_PESSOA PRIMARY KEY(COD_PESSOA),"
+				+ "  	CONSTRAINT 			PESSOA_ENDERECO FOREIGN KEY (ENDERECO) REFERENCES ENDERECO(COD_ENDERECO),"
+				+ "  	CONSTRAINT 			UK_PESSOA UNIQUE KEY (DOCUMENTO))";
+		
+		PreparedStatement stmt = null;
+		
+		try {
+			
+			stmt = getConexao().prepareStatement(sql);
+			stmt.execute(sql);
+			
+		} finally {
+			
+			finalizarConexoes(stmt, null);
+			
+		}
 		
 	}
 }

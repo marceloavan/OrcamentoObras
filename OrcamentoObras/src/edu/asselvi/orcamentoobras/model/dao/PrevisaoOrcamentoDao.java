@@ -98,16 +98,15 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements IPrevisaoOrcame
 				+ " CONSTRAINT 			FK_ORCAMENTO_PREVISAO_ORCAMENTO FOREIGN KEY (ORCAMENTO) REFERENCES ORCAMENTO(COD_ORCAMENTO))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 			
 		}
 	}

@@ -187,16 +187,15 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 				+ "  	CONSTRAINT 			FK_ENDERECO_MUNICIPIO FOREIGN KEY (MUNICIPIO) REFERENCES MUNICIPIO(COD_MUNICIPIO))";
 
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 
 		try {
 
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 		}
 
 	}

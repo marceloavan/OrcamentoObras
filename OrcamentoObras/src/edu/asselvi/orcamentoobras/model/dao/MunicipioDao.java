@@ -154,16 +154,15 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 				+ "    CONSTRAINT  		FK_MUNICIPIO_UNIDADE_FEDERATIVA FOREIGN KEY (COD_UF) REFERENCES UNIDADE_FEDERATIVA(COD_UF))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 		}
 
 	}

@@ -26,7 +26,7 @@ public class CustoRealDao extends AbstractDao implements ICustoReal{
 			stmt.setInt(1, param.getProduto().getCodigo());
 			stmt.setInt(2, param.getPrevisao().getId());
 		} finally {
-			
+			finalizarConexoes(stmt, rs);
 		}
 		
 		
@@ -76,16 +76,15 @@ public class CustoRealDao extends AbstractDao implements ICustoReal{
 				+ "  	CONSTRAINT 			FK_CUSTO_REAL_ORCAMENTO FOREIGN KEY (ORCAMENTO) REFERENCES ORCAMENTO(COD_ORCAMENTO))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 			
 		}
 	}

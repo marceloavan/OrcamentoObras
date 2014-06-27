@@ -1,7 +1,6 @@
 package edu.asselvi.orcamentoobras.model.dao;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -56,16 +55,15 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				+ "  	CONSTRAINT				FK_ORCAMENTO_TERRENO FOREIGN KEY (TERRENO) REFERENCES TERRENO(COD_TERRENO))";
 		
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		
 		try {
 			
 			stmt = getConexao().prepareStatement(sql);
-			rs = stmt.executeQuery();
+			stmt.execute(sql);
 			
 		} finally {
 			
-			finalizarConexoes(stmt, rs);
+			finalizarConexoes(stmt, null);
 		}
 	}
 }
