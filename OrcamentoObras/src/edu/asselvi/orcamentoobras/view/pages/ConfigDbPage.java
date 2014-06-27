@@ -2,36 +2,23 @@ package edu.asselvi.orcamentoobras.view.pages;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import edu.asselvi.orcamentoobras.model.dao.CustoRealDao;
-import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
-import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
-import edu.asselvi.orcamentoobras.model.dao.OrcamentoDao;
-import edu.asselvi.orcamentoobras.model.dao.PessoaFisicaDao;
-import edu.asselvi.orcamentoobras.model.dao.PrevisaoDao;
-import edu.asselvi.orcamentoobras.model.dao.PrevisaoOrcamentoDao;
-import edu.asselvi.orcamentoobras.model.dao.ProdutoDao;
-import edu.asselvi.orcamentoobras.model.dao.TerrenoDao;
-import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
-import edu.asselvi.orcamentoobras.model.dao.UsuarioDao;
+import edu.asselvi.orcamentoobras.installer.DataBaseConfig;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
-
-import javax.swing.JTextPane;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.sql.SQLException;
 
 /**
  * Tela responsável pela configuração da conexão com o banco de dados
@@ -54,7 +41,8 @@ public class ConfigDbPage extends GeneralTemplate {
 	private ButtonDefault criarBtn;
 	private ButtonDefault inserirBtn;
 	private ButtonDefault demoBtn;
-
+	private DataBaseConfig dataBaseConfig;
+	
 	public ConfigDbPage() {
 		super(400, 500);
 		getContentPane().setBackground(Color.WHITE);
@@ -157,6 +145,8 @@ public class ConfigDbPage extends GeneralTemplate {
 		addActions();
 
 		SwingUtilities.updateComponentTreeUI(this);
+		
+		dataBaseConfig = new DataBaseConfig();
 
 	}
 
@@ -207,40 +197,8 @@ public class ConfigDbPage extends GeneralTemplate {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				checkField();
-				
-				UsuarioDao usuario = new UsuarioDao();
-				ProdutoDao produto = new ProdutoDao();
-				PrevisaoDao previsao = new PrevisaoDao();
-				UnidadeFederativaDao uf = new UnidadeFederativaDao();
-				MunicipioDao municipio = new MunicipioDao();
-				EnderecoDao endereco = new EnderecoDao();
-				TerrenoDao terreno = new TerrenoDao();
-				PessoaFisicaDao pessoa = new PessoaFisicaDao();
-				OrcamentoDao orcamento = new OrcamentoDao();
-				CustoRealDao custoReal = new CustoRealDao();
-				PrevisaoOrcamentoDao previsaoOrcamento = new PrevisaoOrcamentoDao();
-				
-				try {
-					
-					usuario.createTable();
-					produto.createTable();
-					previsao.createTable();
-					uf.createTable();
-					municipio.createTable();
-					endereco.createTable();
-					terreno.createTable();
-					pessoa.createTable();
-					orcamento.createTable();
-					custoReal.createTable();
-					previsaoOrcamento.createTable();
-					
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+				dataBaseConfig.generateDataBase();
 			}
 		});
 
