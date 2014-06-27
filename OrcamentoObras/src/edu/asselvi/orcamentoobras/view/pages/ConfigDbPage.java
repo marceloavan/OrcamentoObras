@@ -12,6 +12,17 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
+import edu.asselvi.orcamentoobras.model.dao.CustoRealDao;
+import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
+import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
+import edu.asselvi.orcamentoobras.model.dao.OrcamentoDao;
+import edu.asselvi.orcamentoobras.model.dao.PessoaFisicaDao;
+import edu.asselvi.orcamentoobras.model.dao.PrevisaoDao;
+import edu.asselvi.orcamentoobras.model.dao.PrevisaoOrcamentoDao;
+import edu.asselvi.orcamentoobras.model.dao.ProdutoDao;
+import edu.asselvi.orcamentoobras.model.dao.TerrenoDao;
+import edu.asselvi.orcamentoobras.model.dao.UnidadeFederativaDao;
+import edu.asselvi.orcamentoobras.model.dao.UsuarioDao;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
@@ -20,6 +31,7 @@ import javax.swing.JTextPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 /**
  * Tela responsável pela configuração da conexão com o banco de dados
@@ -141,7 +153,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		});
 		demoBtn.setBounds(347, 126, 90, 25);
 		configPanel.add(demoBtn);
-		
+
 		addActions();
 
 		SwingUtilities.updateComponentTreeUI(this);
@@ -157,17 +169,13 @@ public class ConfigDbPage extends GeneralTemplate {
 
 		if (port.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a porta");
-		}
-		if (host.isEmpty()) {
+		} else if (host.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe o host");
-		}
-		if (base.isEmpty()) {
+		} else if (base.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a base");
-		}
-		if (user.isEmpty()) {
+		} else if (user.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe o login do usuário");
-		}
-		if (passwd.isEmpty()) {
+		} else if (passwd.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a senha");
 		}
 	}
@@ -175,18 +183,18 @@ public class ConfigDbPage extends GeneralTemplate {
 	@Override
 	protected void addActions() {
 		salvarBtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent ae) {
-				
+
 				checkField();
-				
+
 				String port = portTf.getText();
 				String host = hostTf.getText();
 				String base = baseTf.getText();
 				String user = userTf.getText();
 				String passwd = passwdTf.getText();
-				
+
 				PropertiesLocator.setPropValue("db.port", port);
 				PropertiesLocator.setPropValue("db.host", host);
 				PropertiesLocator.setPropValue("db.base", base);
@@ -199,8 +207,40 @@ public class ConfigDbPage extends GeneralTemplate {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				checkField();
-
+				
+				UsuarioDao usuario = new UsuarioDao();
+				ProdutoDao produto = new ProdutoDao();
+				PrevisaoDao previsao = new PrevisaoDao();
+				UnidadeFederativaDao uf = new UnidadeFederativaDao();
+				MunicipioDao municipio = new MunicipioDao();
+				EnderecoDao endereco = new EnderecoDao();
+				TerrenoDao terreno = new TerrenoDao();
+				PessoaFisicaDao pessoa = new PessoaFisicaDao();
+				OrcamentoDao orcamento = new OrcamentoDao();
+				CustoRealDao custoReal = new CustoRealDao();
+				PrevisaoOrcamentoDao previsaoOrcamento = new PrevisaoOrcamentoDao();
+				
+				try {
+					
+					usuario.createTable();
+					produto.createTable();
+					previsao.createTable();
+					uf.createTable();
+					municipio.createTable();
+					endereco.createTable();
+					terreno.createTable();
+					pessoa.createTable();
+					orcamento.createTable();
+					custoReal.createTable();
+					previsaoOrcamento.createTable();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 
