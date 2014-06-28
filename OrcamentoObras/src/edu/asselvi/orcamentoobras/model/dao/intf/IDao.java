@@ -6,8 +6,8 @@ import java.util.List;
 public interface IDao<T> {
 
 	/**
-	 * Responsï¿½vel por inserir um novo registro na base de dados para
-	 * a entidade em questï¿½o
+	 * Responsável por inserir um novo registro na base de dados para
+	 * a entidade em questão
 	 * 
 	 * @param {@link T} param - entidade a ser persistida
 	 * @throws SQLException
@@ -15,30 +15,30 @@ public interface IDao<T> {
 	public void inserir(T param) throws SQLException;
 	
 	/**
-	 * Reponsï¿½nvel por atualizar informaï¿½ï¿½es de uma entidade jï¿½ persistida
-	 * na base dados. Para tanto, serï¿½ considerado o identificador da entidade
-	 * na verificaï¿½ï¿½o
+	 * Reponsánvel por atualizar informações de uma entidade já persistida
+	 * na base dados. Para tanto, será considerado o identificador da entidade
+	 * na verificação
 	 * 
-	 * @param {@link T} param - entidade que serï¿½ atualizada
+	 * @param {@link T} param - entidade que será atualizada
 	 * @throws SQLException
 	 */
 	public void atualizar(T param) throws SQLException;
 	
 	/**
-	 * Reponsï¿½vel por remover e entidade da base de dados
+	 * Reponsável por remover e entidade da base de dados
 	 * 
-	 * @param {@link T} param - entidade que serï¿½ removida da base de dados
+	 * @param {@link T} param - entidade que será removida da base de dados
 	 * @throws SQLException
 	 */
 	public void remover(T param) throws SQLException;
 	
 	/**
-	 * Irï¿½ retornar todos os registros da entidade associada,
+	 * Irá retornar todos os registros da entidade associada,
 	 * especialmente para fins de listagem e etc.
 	 * 
 	 * Caso a entidade nao possua essa caracteristica por algum motivo,
-	 * a mesma deverï¿½ retornar <b>null<b>. Nesse casos o mï¿½todo implementado
-	 * estarï¿½ deprecado
+	 * a mesma deverá retornar <b>null<b>. Nesse casos o método implementado
+	 * estará deprecado
 	 * 
 	 * @return {@link T} List com todos os registros
 	 * @throws SQLException
@@ -47,7 +47,7 @@ public interface IDao<T> {
 	
 	
 	/**
-	 * ResponsÃ¡vel por criar uma entidade na base de dados em questÃ£o
+	 * Responsável por criar uma entidade na base de dados em questão
 	 * 
 	 * @param param
 	 * @throws SQLException

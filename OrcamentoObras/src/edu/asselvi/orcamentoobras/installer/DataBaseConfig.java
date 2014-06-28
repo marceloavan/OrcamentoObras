@@ -43,7 +43,7 @@ public class DataBaseConfig {
 			try {
 				dao.createTable();
 			} catch (SQLException e) {
-				System.out.println("Probela ao criar tabela para o dao: "+dao.toString());
+				System.out.println("Problema ao criar tabela para o dao: "+dao.toString());
 			}
 		}
 	}
