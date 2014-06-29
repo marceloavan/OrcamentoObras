@@ -17,10 +17,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 import edu.asselvi.orcamentoobras.context.SystemInfo;
+import edu.asselvi.orcamentoobras.controller.UsuarioController;
+import edu.asselvi.orcamentoobras.controller.exception.PasswdInvalidException;
+import edu.asselvi.orcamentoobras.controller.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
-import edu.asselvi.orcamentoobras.view.exception.PasswdInvalidException;
-import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
-import edu.asselvi.orcamentoobras.view.manager.UsuarioManager;
 import edu.asselvi.orcamentoobras.view.pages.HomePage;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
 
@@ -33,12 +33,12 @@ public class Login extends GeneralTemplate {
 	private JTextField userTf;
 	private JPasswordField passwdTf;
 	private JButton loginBtn;
-	private UsuarioManager usuarioManager;
+	private UsuarioController usuarioManager;
 
 	public Login() {
 		super(500, 700);
 
-		usuarioManager = new UsuarioManager();
+		usuarioManager = new UsuarioController();
 		
 		//Criação do painel de login
 		JPanel loginPanel = new JPanel();
@@ -62,20 +62,22 @@ public class Login extends GeneralTemplate {
 		
 		JLabel userLb = new JLabel("Usu\u00E1rio:");
 		userLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		userLb.setBounds(25, 40, 65, 15);
+		userLb.setBounds(25, 45, 65, 15);
 		loginPanel.add(userLb);
-		
-		userTf = new JTextField();
-		userTf.setBounds(100, 35, 220, 25);
-		loginPanel.add(userTf);
 		
 		JLabel passwdLb = new JLabel("Senha:");
 		passwdLb.setHorizontalAlignment(SwingConstants.RIGHT);
 		passwdLb.setBounds(25, 70, 65, 15);
 		loginPanel.add(passwdLb);
+
+		int yPosition = 35;
+		userTf = new JTextField();
+		userTf.setBounds(100, yPosition, 220, 27);
+		loginPanel.add(userTf);
 		
+		yPosition += getDistanceTf();
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(100, 65, 220, 25);
+		passwdTf.setBounds(100, yPosition, 220, 27);
 		loginPanel.add(passwdTf);
 		
 		loginBtn = new ButtonDefault("Login");

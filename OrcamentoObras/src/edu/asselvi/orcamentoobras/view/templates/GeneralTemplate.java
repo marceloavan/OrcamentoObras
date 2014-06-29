@@ -16,6 +16,9 @@ public abstract class GeneralTemplate extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	private Dimension dimension;
+	private int widthTf = 280;
+	private int heightTf = 27;
+	private int distanceTf = 25;
 	
 	public GeneralTemplate(int height, int width) {
 		
@@ -81,4 +84,19 @@ public abstract class GeneralTemplate extends JFrame {
 	 */
 	protected abstract void addActions();
 	
+	public Dimension getDimension() {
+		return dimension;
+	}
+	
+	public int getWidthTf() {
+		return widthTf;
+	}
+	
+	public int getHeightTf() {
+		return heightTf;
+	}
+	
+	public int getDistanceTf() {
+		return distanceTf;
+	}
 }

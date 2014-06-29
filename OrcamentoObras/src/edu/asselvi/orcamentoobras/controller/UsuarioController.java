@@ -1,20 +1,20 @@
-package edu.asselvi.orcamentoobras.view.manager;
+package edu.asselvi.orcamentoobras.controller;
 
 import java.sql.SQLException;
 
 import edu.asselvi.orcamentoobras.context.SystemInfo;
+import edu.asselvi.orcamentoobras.controller.exception.PasswdInvalidException;
+import edu.asselvi.orcamentoobras.controller.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.cripto.Cripto;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IUsuarioDao;
-import edu.asselvi.orcamentoobras.view.exception.PasswdInvalidException;
-import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
 
-public class UsuarioManager {
+public class UsuarioController {
 	
 	private IUsuarioDao usuarioDao;
 	
-	public UsuarioManager() {
+	public UsuarioController() {
 		usuarioDao = DaoFactory.getInstance().getUsuarioDao();
 	}
 	

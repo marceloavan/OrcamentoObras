@@ -22,6 +22,7 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 	private JButton novoBtn;
 	private JButton excluirBtn;
 	private JButton fecharBtn;
+	private JPanel panelBtns;
 	
 	public TemplateCadastroPages() {
 		this(500, 500);
@@ -30,10 +31,7 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 	public TemplateCadastroPages(Integer height, Integer width) {
 		super(height, width);
 		
-		JPanel panelBtns = new JPanel();
-		panelBtns.setBounds(0, 390, 500, 92);
-		panelBtns.setBackground(Color.LIGHT_GRAY);
-		panelBtns.setLayout(null);
+		makeButtonPanel();
 
 		salvarBtn = new ButtonDefault("Salvar");
 		salvarBtn.setBounds(10, 11, 70, 25);
@@ -68,6 +66,13 @@ public abstract class TemplateCadastroPages extends GeneralTemplate {
 		return excluirBtn;
 	}
 	
+	private void makeButtonPanel() {
+		int heightPanel = 100;
+		panelBtns = new JPanel();
+		panelBtns.setBounds(0, getHeight() - heightPanel, getWidth(), heightPanel);
+		panelBtns.setBackground(Color.LIGHT_GRAY);
+		panelBtns.setLayout(null);
+	}
 	public void addDefaultActions() {
 		fecharBtn.addActionListener(new ActionListener() {
 			@Override

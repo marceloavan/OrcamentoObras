@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.view.exception;
+package edu.asselvi.orcamentoobras.controller.exception;
 
 public class PasswdInvalidException extends Exception {
 

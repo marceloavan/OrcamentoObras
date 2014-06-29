@@ -15,12 +15,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
+import edu.asselvi.orcamentoobras.controller.UsuarioController;
+import edu.asselvi.orcamentoobras.controller.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
 import edu.asselvi.orcamentoobras.view.components.table.model.UsuarioModelConverter;
-import edu.asselvi.orcamentoobras.view.exception.UsuarioNotFoundException;
-import edu.asselvi.orcamentoobras.view.manager.UsuarioManager;
 import edu.asselvi.orcamentoobras.view.templates.TemplateCadastroPages;
 
 public class CadastroUsuarioPage extends TemplateCadastroPages {
@@ -39,14 +39,14 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	private JTextField userNameTf;
 	
 	private JPasswordField passwdTf;
-	private UsuarioManager usuarioManager;
+	private UsuarioController usuarioManager;
 	
 	private boolean editingUser = false;
 	
 	public CadastroUsuarioPage() {
 		super(500, 500);
 		
-		usuarioManager = new UsuarioManager();
+		usuarioManager = new UsuarioController();
 		
 		usuarioModelConverter = new UsuarioModelConverter();
 		generateTable();
@@ -58,7 +58,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		loginLb.setBounds(10, 275, 90, 15);
 		getContentPane().add(loginLb);
 		
-		JLabel nomeCompletoLb = new JLabel("Nome Completo");
+		JLabel nomeCompletoLb = new JLabel("Nome Comp.");
 		nomeCompletoLb.setHorizontalAlignment(SwingConstants.RIGHT);
 		nomeCompletoLb.setBounds(10, 250, 90, 15);
 		getContentPane().add(nomeCompletoLb);
@@ -68,18 +68,21 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		senhaLb.setBounds(10, 300, 90, 15);
 		getContentPane().add(senhaLb);
 		
+		int yPosition = 245;
 		nomeCompletoTf = new JTextField();
-		nomeCompletoTf.setBounds(110, 245, 280, 25);
+		nomeCompletoTf.setBounds(110, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(nomeCompletoTf);
 		nomeCompletoTf.setColumns(10);
 		
+		yPosition += getDistanceTf();
 		userNameTf = new JTextField();
 		userNameTf.setColumns(10);
-		userNameTf.setBounds(110, 270, 280, 25);
+		userNameTf.setBounds(110, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(userNameTf);
 		
+		yPosition += getDistanceTf();
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(110, 295, 280, 25);
+		passwdTf.setBounds(110, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(passwdTf);
 		
 		addActions();
