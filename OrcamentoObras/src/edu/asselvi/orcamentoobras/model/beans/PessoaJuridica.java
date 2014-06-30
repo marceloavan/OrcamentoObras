@@ -38,6 +38,6 @@ public final class PessoaJuridica extends AbstractPessoa {
 	
 	@Override
 	public String toString() {
-		return getRazaoSocial();
+		return getRazaoSocial() + " - " + getDocumento();
 	}
 }

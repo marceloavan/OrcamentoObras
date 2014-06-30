@@ -17,6 +17,7 @@ public class GeneralMenu extends JMenuBar {
 	
 	// Itens do menu Orcamento
 	private JMenuItem itemOrcamentoCub;
+	private JMenuItem itemOrcamentoGestaoOrcamento;
 	
 	// Itens do menu Sair
 	private JMenuItem itemSairLogout;
@@ -45,6 +46,9 @@ public class GeneralMenu extends JMenuBar {
 		
 		itemOrcamentoCub = new JMenuItem("Custo Unitário Básico");
 		menuOrcamento.add(itemOrcamentoCub);
+		
+		itemOrcamentoGestaoOrcamento = new JMenuItem("Gestão de orçamentos");
+		menuOrcamento.add(itemOrcamentoGestaoOrcamento);
 		
 		/* MENU SAIR */
 		JMenu menuSair = new JMenu("Sair");
@@ -76,5 +80,9 @@ public class GeneralMenu extends JMenuBar {
 	
 	public JMenuItem getItemOrcamentoCub() {
 		return itemOrcamentoCub;
+	}
+	
+	public JMenuItem getItemOrcamentoGestaoOrcamento() {
+		return itemOrcamentoGestaoOrcamento;
 	}
 }

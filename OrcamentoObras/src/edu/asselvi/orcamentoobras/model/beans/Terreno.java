@@ -116,4 +116,9 @@ public class Terreno implements ICalculaImpostos {
 	public void setValorVenda(BigDecimal valorVenda) {
 		this.valorVenda = valorVenda;
 	}
+	
+	@Override
+	public String toString() {
+		return getDescricao();
+	}
 }

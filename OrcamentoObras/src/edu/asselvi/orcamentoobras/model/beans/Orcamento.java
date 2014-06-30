@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
+import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
 
 /**
  * Implementação padrão inicial de orçamentos
@@ -28,9 +29,9 @@ public class Orcamento {
 
 	private Double metragemConstrucao;
 	private List<PrevisaoOrcamento> previsaoList;
-	private Double percetualLucro;
+	private Double percentualLucro;
 	
-	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws Exception {
+	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws MetragemConstrucaoMaiorTerrenoException {
 		setNome(nome);
 		setDescricao(descricao);
 		setCub(cub);
@@ -86,10 +87,9 @@ public class Orcamento {
 		return metragemConstrucao;
 	}
 
-	public void setMetragemConstrucao(Double metragemConstrucao) throws Exception {
+	public void setMetragemConstrucao(Double metragemConstrucao) throws MetragemConstrucaoMaiorTerrenoException {
 		if (metragemConstrucao > getTerreno().getMetragem()) {
-			// TODO criar exception especifica...
-			throw new Exception();
+			throw new MetragemConstrucaoMaiorTerrenoException("A metragem da construção deve respetar o tamanho do terreno");
 		}
 		this.metragemConstrucao = metragemConstrucao;
 	}
@@ -114,12 +114,12 @@ public class Orcamento {
 		this.previsaoList.add(previsao);
 	}
 	
-	public Double getPercetualLucro() {
-		return percetualLucro;
+	public Double getPercentualLucro() {
+		return percentualLucro;
 	}
 
-	public void setPercetualLucro(Double percetualLucro) {
-		this.percetualLucro = percetualLucro;
+	public void setPercentualLucro(Double percentualLucro) {
+		this.percentualLucro = percentualLucro;
 	}
 
 	/**
@@ -140,7 +140,7 @@ public class Orcamento {
 	}
 
 	public BigDecimal getValorVendaPrevisao() {
-		return getTotalPrevisao().multiply(new BigDecimal(getPercetualLucro() / 100));
+		return getTotalPrevisao().multiply(new BigDecimal(getPercentualLucro() / 100));
 	}
 
 	public AbstractPessoa getCliente() {

@@ -28,7 +28,12 @@ public class HomePage extends TempateHomePage {
 			}
 		});
 		
+		getGeneralMenu().getItemOrcamentoGestaoOrcamento().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new OrcamentoPage();
+			}
+		});
 		super.addActions();
-		
 	}
 }

@@ -1,6 +1,8 @@
 package edu.asselvi.orcamentoobras.model.abst;
 
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
+import edu.asselvi.orcamentoobras.model.beans.PessoaFisica;
+import edu.asselvi.orcamentoobras.model.beans.PessoaJuridica;
 import edu.asselvi.orcamentoobras.model.enumerator.ETipoPessoa;
 import edu.asselvi.orcamentoobras.model.exception.DocumentoForaDoPadraoException;
 
@@ -47,6 +49,20 @@ public abstract class AbstractPessoa {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
+	/**
+	 * Retorna uma string que representa o nome da pessoa em questão
+	 * 
+	 * @return
+	 */
+	public String getNomeAbs() {
+		if (this instanceof PessoaFisica) {
+			return ((PessoaFisica) this).getNome();
+		} else if (this instanceof PessoaJuridica) {
+			return ((PessoaJuridica) this).getRazaoSocial();
+		}
+		return "";
+	}
 
 	/**
 	 * Valida o documento informado de acordo com o {@link ETipoPessoa}, já que o mesmo
@@ -59,5 +75,10 @@ public abstract class AbstractPessoa {
 			String message = String.format("O tamanho do documento está em desacordo. Tipo: %s. Tamanho esperado: %d.", tipoPessoa.getNomenclatura(), tipoPessoa.getLengthDocumento());
 			throw new DocumentoForaDoPadraoException(message);
 		}
+	}
+	
+	@Override
+	public String toString() {
+		return getNomeAbs() + getDocumento();
 	}
 }

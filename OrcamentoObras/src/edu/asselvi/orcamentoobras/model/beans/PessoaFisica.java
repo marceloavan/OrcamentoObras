@@ -38,6 +38,6 @@ public final class PessoaFisica extends AbstractPessoa {
 
 	@Override
 	public String toString() {
-		return getNome() + " " + getSobreNome();
+		return getNome() + " " + getSobreNome() + " - " + getDocumento();
 	}
 }
