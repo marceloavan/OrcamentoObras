@@ -151,9 +151,9 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 							JOptionPane.showMessageDialog(null, "Usuário já existe. Selecione o usuário na tabela para entrar no modo de edição");
 							return;
 						}
-						usuarioManager.atualizarUsuario(userName, passwd, nomeCompleto);
+						usuarioManager.atualizarUsuario(new Usuario(userName, passwd, nomeCompleto));
 					} else {
-						usuarioManager.cadastrarUsuario(userName, passwd, nomeCompleto);
+						usuarioManager.cadastrarUsuario(new Usuario(userName, passwd, nomeCompleto));
 					}
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o usuário");

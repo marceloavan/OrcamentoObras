@@ -35,12 +35,12 @@ public class UsuarioController {
 		}
 	}
 	
-	public void cadastrarUsuario(String userName, String passwd, String nomeCompleto) throws SQLException {
-		usuarioDao.inserir(new Usuario(userName, Cripto.criptToMd5(passwd), nomeCompleto));
+	public void cadastrarUsuario(Usuario usuario) throws SQLException {
+		usuarioDao.inserir(usuario);
 	}
 	
-	public void atualizarUsuario(String userName, String passwd, String nomeCompleto) throws SQLException {
-		usuarioDao.atualizar(new Usuario(userName, Cripto.criptToMd5(passwd), nomeCompleto));
+	public void atualizarUsuario(Usuario usuario) throws SQLException {
+		usuarioDao.atualizar(usuario);
 	}
 	
 	public void excluirUsuario(String userName) throws UsuarioNotFoundException {
