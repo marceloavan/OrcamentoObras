@@ -1,5 +1,7 @@
 package edu.asselvi.orcamentoobras.model.dao.intf;
 
+import java.sql.SQLException;
+
 import edu.asselvi.orcamentoobras.model.beans.Previsao;
 
 /**
@@ -10,6 +12,6 @@ import edu.asselvi.orcamentoobras.model.beans.Previsao;
  */
 public interface IPrevisaoDao extends IDao<Previsao>{
 
-	public Previsao getPeloCodigo();
+	public Previsao getPeloCodigo(Integer codigo) throws SQLException;
 	
 }

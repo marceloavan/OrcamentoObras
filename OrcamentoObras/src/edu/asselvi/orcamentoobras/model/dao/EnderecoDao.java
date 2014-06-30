@@ -155,7 +155,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 			stmt.setInt(1, codigo);
 
 			rs = stmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				String logradouro = rs.getString("LOGRADOURO");
 				Integer numero = rs.getInt("NUMERO");
 				String bairro = rs.getString("BAIRRO");
