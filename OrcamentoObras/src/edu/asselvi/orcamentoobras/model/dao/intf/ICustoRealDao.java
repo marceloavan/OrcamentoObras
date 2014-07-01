@@ -13,7 +13,7 @@ import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
  *
  */
 
-public interface ICustoReal extends IDao<CustoReal>{
+public interface ICustoRealDao extends IDao<CustoReal>{
 	/**
 	 * 
 	 * Retorna {@link CustoReal} considerando o identificador do mesmo
