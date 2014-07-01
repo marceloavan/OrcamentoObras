@@ -2,6 +2,7 @@ package edu.asselvi.orcamentoobras.model.dao.factory;
 
 import java.util.List;
 
+import edu.asselvi.orcamentoobras.model.dao.intf.ICustoRealDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.ICustoUnitarioBasicoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
@@ -48,6 +49,8 @@ public interface IDaoFactory {
 	public IOrcamentoDao getOrcamentoDao();
 	
 	public ICustoUnitarioBasicoDao getCub();
+	
+	public ICustoRealDao getCustoReal();
 	
 	/**
 	 * Retorna todos os Dao's em uma lista
