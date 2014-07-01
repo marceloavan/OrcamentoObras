@@ -6,10 +6,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
+import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
 
 public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
@@ -127,6 +129,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 	@Override
 	public List<Orcamento> getTodos() throws SQLException {
+		
 		List<Orcamento> orcamentoLista = new ArrayList<Orcamento>();
 
 		String sql = "SELECT * FROM ORCAMENTO";
@@ -147,18 +150,19 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				Double metragemConstrucao = rs.getDouble("METRAGEM_CONSTRUCAO");
 				Double percentualLucro = rs.getDouble("PERCENTUAL_LUCRO");
 				Integer codigoCliente = rs.getInt("CLIENTE");
-
+	
 				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
-
+	
 				Orcamento orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				orcamento.setId(id);
 				orcamento.setPercentualLucro(percentualLucro);
 				
-				orcamentoLista.add(orcamento);
-
+				orcamentoLista.add(orcamento); 
 			}
 
+		} catch (MetragemConstrucaoMaiorTerrenoException e) {
+			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
 		} finally {
 			finalizarConexoes(stmt, rs);
 		}
@@ -191,11 +195,14 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				
 				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
-
+				
 				orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				orcamento.setId(id);
 				orcamento.setPercentualLucro(percentualLucro);
+				
 			}
+		} catch (MetragemConstrucaoMaiorTerrenoException e) {
+			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
 		} finally {
 			finalizarConexoes(stmt, rs);
 		}

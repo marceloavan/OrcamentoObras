@@ -159,14 +159,19 @@ public class ConfigDbPage extends GeneralTemplate {
 
 		if (port.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a porta");
+			return;
 		} else if (host.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe o host");
+			return;
 		} else if (base.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a base");
+			return;
 		} else if (user.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe o login do usuário");
+			return;
 		} else if (passwd.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Informe a senha");
+			return;
 		}
 	}
 
