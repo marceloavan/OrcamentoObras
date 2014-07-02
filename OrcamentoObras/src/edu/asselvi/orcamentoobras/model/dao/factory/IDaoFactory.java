@@ -51,6 +51,6 @@ public interface IDaoFactory {
 	 * 
 	 * @return
 	 */
-	public List<IDao> getTodosDaos();
+	public List<IDao<?>> getTodosDaos();
 	
 }

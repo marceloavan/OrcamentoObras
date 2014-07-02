@@ -99,8 +99,8 @@ public class DaoFactory implements IDaoFactory {
 	}
 
 	@Override
-	public List<IDao> getTodosDaos() {
-		List<IDao> lista = new ArrayList<IDao>();
+	public List<IDao<?>> getTodosDaos() {
+		List<IDao<?>> lista = new ArrayList<IDao<?>>();
 		lista.add(getEnderecoDao());
 		lista.add(getMunicipioDao());
 		lista.add(getOrcamentoDao());
