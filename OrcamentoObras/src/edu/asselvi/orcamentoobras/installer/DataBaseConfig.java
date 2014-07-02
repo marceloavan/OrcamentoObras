@@ -1,9 +1,13 @@
 package edu.asselvi.orcamentoobras.installer;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.asselvi.orcamentoobras.model.dao.AbstractDao;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
@@ -18,7 +22,7 @@ import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
  * @author Marcelo Avancini
  *
  */
-public class DataBaseConfig {
+public class DataBaseConfig extends AbstractDao{
 	
 	private IDaoFactory daoFactory;
 	
@@ -45,6 +49,36 @@ public class DataBaseConfig {
 			} catch (SQLException e) {
 				System.out.println("Problema ao criar tabela para o dao: "+dao.toString());
 			}
+		}
+	}
+	
+	public void insertDataBase() {
+		String s = new String();
+		StringBuilder sb = new StringBuilder();
+
+		try {
+
+			FileReader fr = new FileReader(
+					new java.io.File(
+							"/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/teste"));
+			
+			BufferedReader br = new BufferedReader(fr);
+			
+			while ((s = br.readLine()) != null) {
+				sb.append(s);
+			}
+			br.close();
+			
+			String[] inst = sb.toString().split(";");
+			
+			for (int i = 0; i < inst.length; i++) {
+					System.out.println(inst[i]);
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage() + "Não foi possível gerar os registros");
+		} finally {
+			
 		}
 	}
 
