@@ -59,7 +59,7 @@ public class CustoRealDao extends AbstractDao implements ICustoRealDao{
 
 	@Override
 	public List<CustoReal> getPelaPrevisao(PrevisaoOrcamento previsao) throws SQLException {
-		// TODO Vai trazer uma lista de todos os Custos com base no ID da previsï¿½o
+		// TODO Vai trazer uma lista de todos os Custos com base no ID da previsão
 		return null;
 	}
 

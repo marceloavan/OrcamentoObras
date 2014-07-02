@@ -1,11 +1,14 @@
 package edu.asselvi.orcamentoobras.installer;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.swing.JTextArea;
 
 import edu.asselvi.orcamentoobras.model.dao.AbstractDao;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
@@ -13,6 +16,7 @@ import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
+import edu.asselvi.orcamentoobras.view.pages.ConfigDbPage;
 
 /**
  * Contém métodos para configuração e criação da base de dados do sistema,
@@ -42,25 +46,35 @@ public class DataBaseConfig extends AbstractDao{
 		
 	}
 	
-	public void generateDataBase() {
+	/**
+	 * Método responsável por executar o createTable em todos os DAOs
+	 * @throws SQLException 
+	 */
+	public void generateDataBase() throws SQLException {
 		for (IDao<?> dao : daoFactory.getTodosDaos()) {
 			try {
 				dao.createTable();
 			} catch (SQLException e) {
-				System.out.println("Problema ao criar tabela para o dao: "+dao.toString());
+				throw new SQLException("Problema ao criar tabela para o dao: "+dao.toString());
 			}
 		}
 	}
 	
-	public void insertDataBase() {
+	/**
+	 * Método responsável por executar o script SQL referente a inserção do cadastro de UF e Municipios
+	 * @throws SQLException
+	 */
+	public void insertDataBase() throws SQLException {
+		
 		String s = new String();
 		StringBuilder sb = new StringBuilder();
-
+		Statement st = null;
+		
 		try {
 
 			FileReader fr = new FileReader(
 					new java.io.File(
-							"/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/teste"));
+							"/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/insert"));
 			
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -70,15 +84,47 @@ public class DataBaseConfig extends AbstractDao{
 			br.close();
 			
 			String[] inst = sb.toString().split(";");
+			st = getConexao().createStatement();
 			
 			for (int i = 0; i < inst.length; i++) {
-					System.out.println(inst[i]);
+				st.executeUpdate(inst[i]);
+				System.out.println(inst[i]);
 			}
 			
 		} catch (Exception e) {
-			System.out.println(e.getMessage() + "Não foi possível gerar os registros");
+			throw new SQLException("Não foi possível inserir os registros");
 		} finally {
+			if (st != null) st.close();
+		}
+	}
+	
+	public void demoDataBase() throws SQLException{
+		
+		String s = new String();
+		StringBuilder sb = new StringBuilder();
+		Statement st = null;
+		
+		try {
+			FileReader fr = new FileReader(new File("/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/demo"));
 			
+			BufferedReader br = new BufferedReader(fr);
+			
+			while ((s = br.readLine()) != null) {
+				sb.append(s);
+			}
+			br.close();
+			
+			String[] inst = sb.toString().split(";");
+			st = getConexao().createStatement();
+			
+			for (int i = 0; i < inst.length; i++) {
+				st.executeUpdate(inst[i]);
+			}
+			
+		} catch (Exception e) {
+			throw new SQLException("Não foi possível inserir os registros da base demonstração");
+		} finally {
+			if (st != null) st.close();
 		}
 	}
 

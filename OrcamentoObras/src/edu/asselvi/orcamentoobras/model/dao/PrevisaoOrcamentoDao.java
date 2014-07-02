@@ -89,7 +89,7 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements IPrevisaoOrcame
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE ORCAMENTO_PREVISAO ("
-				+ "	COD_ORC_PREV 		INTEGER NOT NULL,"
+				+ "	COD_ORC_PREV 		INTEGER NOT NULL AUTO_INCREMENT,"
 				+ "	PREVISAO 			INTEGER NOT NULL,"
 				+ "	ORCAMENTO 			INTEGER NOT NULL,"
 				+ "	VALOR 				DECIMAL(10,2) NOT NULL,"

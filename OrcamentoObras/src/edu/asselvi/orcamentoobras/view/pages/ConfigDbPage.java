@@ -4,11 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
@@ -41,6 +43,7 @@ public class ConfigDbPage extends GeneralTemplate {
 	private ButtonDefault criarBtn;
 	private ButtonDefault inserirBtn;
 	private ButtonDefault demoBtn;
+	private JTextArea logText;
 	private DataBaseConfig dataBaseConfig;
 	
 	public ConfigDbPage() {
@@ -117,10 +120,11 @@ public class ConfigDbPage extends GeneralTemplate {
 		logLb.setBounds(25, 161, 65, 15);
 		configPanel.add(logLb);
 
-		JTextPane logText = new JTextPane();
+		logText = new JTextArea();
 		logText.setBackground(new Color(255, 255, 255));
 		logText.setBounds(86, 161, 220, 157);
 		configPanel.add(logText);
+		logText.setLineWrap(true);
 
 		salvarBtn = new ButtonDefault("Salvar");
 		salvarBtn.setBounds(347, 18, 90, 25);
@@ -157,22 +161,30 @@ public class ConfigDbPage extends GeneralTemplate {
 		String user = userTf.getText();
 		String passwd = passwdTf.getText();
 
-		if (port.isEmpty()) {
+		if (port.isEmpty() || port == null) {
 			JOptionPane.showMessageDialog(null, "Informe a porta");
 			return;
-		} else if (host.isEmpty()) {
+		} else if (host.isEmpty() || host == null) {
 			JOptionPane.showMessageDialog(null, "Informe o host");
 			return;
-		} else if (base.isEmpty()) {
+		} else if (base.isEmpty() || base == null) {
 			JOptionPane.showMessageDialog(null, "Informe a base");
 			return;
-		} else if (user.isEmpty()) {
+		} else if (user.isEmpty() || user == null) {
 			JOptionPane.showMessageDialog(null, "Informe o login do usuário");
 			return;
-		} else if (passwd.isEmpty()) {
+		} else if (passwd.isEmpty() || passwd == null) {
 			JOptionPane.showMessageDialog(null, "Informe a senha");
 			return;
 		}
+	}
+
+	public JTextArea getLogText() {
+		return logText;
+	}
+
+	public void setLogText(JTextArea logText) {
+		this.logText = logText;
 	}
 
 	@Override
@@ -203,7 +215,13 @@ public class ConfigDbPage extends GeneralTemplate {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkField();
-				dataBaseConfig.generateDataBase();
+				
+				try {
+					dataBaseConfig.generateDataBase();
+				} catch (SQLException e1) {
+					logText.setText("");
+					logText.append(e1.getMessage());
+				}
 			}
 		});
 
@@ -212,6 +230,13 @@ public class ConfigDbPage extends GeneralTemplate {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkField();
+				
+				try {
+					dataBaseConfig.insertDataBase();
+				} catch (SQLException e1) {
+					logText.setText("");
+					logText.append(e1.getMessage());
+				}
 
 			}
 		});
@@ -221,6 +246,13 @@ public class ConfigDbPage extends GeneralTemplate {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkField();
+				
+				try {
+					dataBaseConfig.demoDataBase();
+				} catch (SQLException e1) {
+					logText.setText("");
+					logText.append(e1.getMessage());
+				}
 
 			}
 		});
