@@ -7,9 +7,9 @@ import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.beans.CustoReal;
 import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
-import edu.asselvi.orcamentoobras.model.dao.intf.ICustoReal;
+import edu.asselvi.orcamentoobras.model.dao.intf.ICustoRealDao;
 
-public class CustoRealDao extends AbstractDao implements ICustoReal{
+public class CustoRealDao extends AbstractDao implements ICustoRealDao{
 
 	@Override
 	public void inserir(CustoReal param) throws SQLException {

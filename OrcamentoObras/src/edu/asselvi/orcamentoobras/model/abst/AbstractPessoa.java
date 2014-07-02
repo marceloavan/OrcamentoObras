@@ -77,6 +77,14 @@ public abstract class AbstractPessoa {
 		}
 	}
 	
+	public boolean isPessoaFisica() {
+		return getTipoPessoa().equals(ETipoPessoa.FISICA);
+	}
+	
+	public boolean isPessoaJuridica() {
+		return getTipoPessoa().equals(ETipoPessoa.JURIDICA);
+	}
+	
 	@Override
 	public String toString() {
 		return getNomeAbs() + getDocumento();
