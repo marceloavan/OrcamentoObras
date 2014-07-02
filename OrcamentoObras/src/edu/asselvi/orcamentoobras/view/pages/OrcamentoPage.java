@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import edu.asselvi.orcamentoobras.controller.OrcamentoController;
 import edu.asselvi.orcamentoobras.controller.PessoaController;
 import edu.asselvi.orcamentoobras.controller.TerrenoController;
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
@@ -36,14 +37,14 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	private JTextField metragemTf;
 	private JTextField percuntalLucroTf;
 	
-//	private OrcamentoController orcamentoController;
+	private OrcamentoController orcamentoController;
 	private PessoaController pessoaController;
 	private TerrenoController terrenoController;
 
 	public OrcamentoPage() {
 		super(700, 1000);
 		
-//		orcamentoController = new OrcamentoController();
+		orcamentoController = new OrcamentoController();
 		pessoaController = new PessoaController();
 		terrenoController = new TerrenoController();
 		
@@ -186,6 +187,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 					return;
 				}
 				orcamento.setPercentualLucro(percentualLucro);
+				orcamentoController.cadastrarOrcamento(orcamento);
 			}
 		});
 		
