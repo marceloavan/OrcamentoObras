@@ -153,10 +153,12 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 	
 				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
+				AbstractPessoa cliente = getDaoFactory().getPessoaDao().getPeloCodigo(codigoCliente);
 	
 				Orcamento orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				orcamento.setId(id);
 				orcamento.setPercentualLucro(percentualLucro);
+				orcamento.setCliente(cliente);
 				
 				orcamentoLista.add(orcamento); 
 			}
@@ -195,10 +197,12 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				
 				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
+				AbstractPessoa cliente = getDaoFactory().getPessoaDao().getPeloCodigo(codigoCliente);
 				
 				orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				orcamento.setId(id);
 				orcamento.setPercentualLucro(percentualLucro);
+				orcamento.setCliente(cliente);
 				
 			}
 		} catch (MetragemConstrucaoMaiorTerrenoException e) {
