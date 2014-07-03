@@ -13,10 +13,10 @@ public class CustoReal {
 	private Integer id;
 	private BigDecimal valor;
 	private Produto produto;
-	private PrevisaoOrcamento previsao;
+	private Previsao previsao;
 	private Orcamento orcamento;
 
-	public CustoReal(BigDecimal valor, Produto produto, PrevisaoOrcamento previsao) {
+	public CustoReal(BigDecimal valor, Produto produto, Previsao previsao) {
 		setValor(valor);
 		setProduto(produto);
 		setPrevisao(previsao);
@@ -46,11 +46,11 @@ public class CustoReal {
 		this.produto = produto;
 	}
 
-	public PrevisaoOrcamento getPrevisao() {
+	public Previsao getPrevisao() {
 		return previsao;
 	}
 
-	public void setPrevisao(PrevisaoOrcamento previsao) {
+	public void setPrevisao(Previsao previsao) {
 		this.previsao = previsao;
 	}
 

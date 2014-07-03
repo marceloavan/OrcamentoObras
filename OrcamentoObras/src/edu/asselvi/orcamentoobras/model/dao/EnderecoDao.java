@@ -126,6 +126,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 				String bairro = rs.getString("BAIRRO");
 				Long cep = rs.getLong("CEP");
 				Integer codigoMunicipio = rs.getInt("MUNICIPIO");
+				
 				Municipio municipio = getDaoFactory().getMunicipioDao()
 						.getPeloCodigo(codigoMunicipio);
 
