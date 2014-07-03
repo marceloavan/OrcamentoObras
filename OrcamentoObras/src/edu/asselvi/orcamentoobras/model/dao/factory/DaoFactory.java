@@ -8,6 +8,7 @@ import edu.asselvi.orcamentoobras.model.dao.CustoUnitarioBasicoDao;
 import edu.asselvi.orcamentoobras.model.dao.EnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.MunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.OrcamentoDao;
+import edu.asselvi.orcamentoobras.model.dao.PessoaDao;
 import edu.asselvi.orcamentoobras.model.dao.PessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.PessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.PrevisaoDao;
@@ -22,6 +23,7 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
@@ -129,5 +131,10 @@ public class DaoFactory implements IDaoFactory {
 		lista.add(getCustoReal());
 		lista.add(getPrevisaoOrcamentoDao());
 		return lista;
+	}
+
+	@Override
+	public IPessoaDao getPessoaDao() {
+		return new PessoaDao();
 	}
 }

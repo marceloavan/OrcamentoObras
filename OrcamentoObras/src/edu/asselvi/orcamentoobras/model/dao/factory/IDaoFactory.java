@@ -8,6 +8,7 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IEnderecoDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
+import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPrevisaoDao;
@@ -51,6 +52,8 @@ public interface IDaoFactory {
 	public ICustoUnitarioBasicoDao getCub();
 	
 	public ICustoRealDao getCustoReal();
+	
+	public IPessoaDao getPessoaDao();
 	
 	/**
 	 * Retorna todos os Dao's em uma lista
