@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
@@ -154,7 +153,7 @@ public class ConfigDbPage extends GeneralTemplate {
 
 	}
 
-	public void checkField() {
+	public boolean checkField() {
 		String port = portTf.getText();
 		String host = hostTf.getText();
 		String base = baseTf.getText();
@@ -163,20 +162,21 @@ public class ConfigDbPage extends GeneralTemplate {
 
 		if (port.isEmpty() || port == null) {
 			JOptionPane.showMessageDialog(null, "Informe a porta");
-			return;
+			return false;
 		} else if (host.isEmpty() || host == null) {
 			JOptionPane.showMessageDialog(null, "Informe o host");
-			return;
+			return false;
 		} else if (base.isEmpty() || base == null) {
 			JOptionPane.showMessageDialog(null, "Informe a base");
-			return;
+			return false;
 		} else if (user.isEmpty() || user == null) {
 			JOptionPane.showMessageDialog(null, "Informe o login do usuário");
-			return;
+			return false;
 		} else if (passwd.isEmpty() || passwd == null) {
 			JOptionPane.showMessageDialog(null, "Informe a senha");
-			return;
+			return false;
 		}
+		return true;
 	}
 
 	public JTextArea getLogText() {
@@ -194,7 +194,9 @@ public class ConfigDbPage extends GeneralTemplate {
 			@Override
 			public void actionPerformed(ActionEvent ae) {
 
-				checkField();
+				if (!checkField()) {
+					return;
+				}
 
 				String port = portTf.getText();
 				String host = hostTf.getText();
@@ -214,7 +216,9 @@ public class ConfigDbPage extends GeneralTemplate {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				checkField();
+				if (!checkField()) {
+					return;
+				}
 				
 				try {
 					dataBaseConfig.generateDataBase();
@@ -229,7 +233,9 @@ public class ConfigDbPage extends GeneralTemplate {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				checkField();
+				if (!checkField()) {
+					return;
+				}
 				
 				try {
 					dataBaseConfig.insertDataBase();
@@ -245,7 +251,9 @@ public class ConfigDbPage extends GeneralTemplate {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				checkField();
+				if (!checkField()) {
+					return;
+				}
 				
 				try {
 					dataBaseConfig.demoDataBase();

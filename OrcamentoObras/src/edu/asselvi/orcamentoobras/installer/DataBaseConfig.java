@@ -8,15 +8,12 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.swing.JTextArea;
-
 import edu.asselvi.orcamentoobras.model.dao.AbstractDao;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
-import edu.asselvi.orcamentoobras.view.pages.ConfigDbPage;
 
 /**
  * Contém métodos para configuração e criação da base de dados do sistema,
@@ -29,9 +26,11 @@ import edu.asselvi.orcamentoobras.view.pages.ConfigDbPage;
 public class DataBaseConfig extends AbstractDao{
 	
 	private IDaoFactory daoFactory;
+	private String currentDir;
 	
 	public DataBaseConfig() {
 		daoFactory = DaoFactory.getInstance();
+		currentDir = System.getProperty("user.dir");
 	}
 	
 	public Map<String, String> loadProperties() {
@@ -51,6 +50,7 @@ public class DataBaseConfig extends AbstractDao{
 	 * @throws SQLException 
 	 */
 	public void generateDataBase() throws SQLException {
+		validaDataBase();
 		for (IDao<?> dao : daoFactory.getTodosDaos()) {
 			try {
 				dao.createTable();
@@ -72,9 +72,7 @@ public class DataBaseConfig extends AbstractDao{
 		
 		try {
 
-			FileReader fr = new FileReader(
-					new java.io.File(
-							"/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/insert"));
+			FileReader fr = new FileReader(new java.io.File(currentDir + "/sql/mysql/insert"));
 			
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -105,7 +103,7 @@ public class DataBaseConfig extends AbstractDao{
 		Statement st = null;
 		
 		try {
-			FileReader fr = new FileReader(new File("/home/leandrorebelo/workspace/OrcamentoObras/OrcamentoObras/sql/mysql/demo"));
+			FileReader fr = new FileReader(new File(currentDir + "/sql/mysql/demo"));
 			
 			BufferedReader br = new BufferedReader(fr);
 			
@@ -127,5 +125,9 @@ public class DataBaseConfig extends AbstractDao{
 			if (st != null) st.close();
 		}
 	}
-
+	
+	private void validaDataBase() {
+		// deverá verificar se o data base existe, se não, criar
+		// ou tratar para perguntar ao usuário se ele quer criar, sei lá
+	}
 }
