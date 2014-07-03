@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import edu.asselvi.orcamentoobras.model.dao.exception.ConnectionFailureException;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 
@@ -22,12 +23,18 @@ public class ConectorBancoFactory {
 	private String passwd;
 	private boolean parametersLoaded;
 	
+	private ConectorBancoFactory() {}
+	
+	public static ConectorBancoFactory getInstance() {
+		return new ConectorBancoFactory();
+	}
+	
 	/**
 	 * Retorna conexão de acordo com o configuração no <b>user.dir/properties/config.properties</b>
 	 * 
 	 * @return
 	 */
-	public Connection getConexao() {
+	public synchronized Connection getConexao() throws SQLException {
 		
 		try {
 	        Class.forName("com.mysql.jdbc.Driver");
@@ -42,7 +49,7 @@ public class ConectorBancoFactory {
 		try {
 			return DriverManager.getConnection(url, user, passwd);
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
+			throw new ConnectionFailureException(e.getMessage());
 		}
 	}
 	
@@ -54,7 +61,7 @@ public class ConectorBancoFactory {
 		String port = PropertiesLocator.getPropValue(EPropertieKeys.DB_PORT.getPropName());
 		String base = PropertiesLocator.getPropValue(EPropertieKeys.DB_BASE.getPropName());
 		
-		url = "jdbc:mysql://" + host + ":" + port + "/" + base; 
+		url = "jdbc:mysql://" + host + ":" + port + "/" + (base == null ? "" : base.trim()); 
 		user = PropertiesLocator.getPropValue(EPropertieKeys.DB_USER.getPropName());
 		passwd = PropertiesLocator.getPropValue(EPropertieKeys.DB_PASSWD.getPropName());
 		

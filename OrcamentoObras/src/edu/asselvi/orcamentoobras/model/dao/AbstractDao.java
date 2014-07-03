@@ -24,7 +24,7 @@ public abstract class AbstractDao {
 	private DaoFactory daoFactory;
 	
 	public AbstractDao() {
-		cbf = new ConectorBancoFactory();
+		cbf = ConectorBancoFactory.getInstance();
 		daoFactory = DaoFactory.getInstance();
 	}
 	
@@ -33,7 +33,7 @@ public abstract class AbstractDao {
 	 * 
 	 * @return {@link Connection}
 	 */
-	public Connection getConexao() {
+	public Connection getConexao() throws SQLException {
 		return cbf.getConexao();
 	}
 	
