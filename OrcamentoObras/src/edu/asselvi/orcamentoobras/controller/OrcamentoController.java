@@ -17,10 +17,7 @@ public class OrcamentoController {
 		orcamentoDao = daoFactory.getOrcamentoDao();
 	}
 	
-	public void cadastrarOrcamento(Orcamento orcamento) {
-		try {
-			orcamentoDao.inserir(orcamento);
-		} catch (SQLException e) {
-		}
+	public void cadastrarOrcamento(Orcamento orcamento) throws SQLException {
+		orcamentoDao.inserir(orcamento);
 	}
 }

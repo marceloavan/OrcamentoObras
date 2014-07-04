@@ -2,6 +2,7 @@ package edu.asselvi.orcamentoobras.view.pages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -195,8 +196,12 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				}
 				orcamento.setPercentualLucro(percentualLucro);
 				orcamento.setCliente(cliente);
-//				orcamento.set
-				orcamentoController.cadastrarOrcamento(orcamento);
+				try {
+					orcamentoController.cadastrarOrcamento(orcamento);
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Erro ao cadastrar orçamento");
+					return;
+				}
 			}
 		});
 		
