@@ -13,41 +13,41 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaFisicaDao;
 import edu.asselvi.orcamentoobras.model.dao.intf.IPessoaJuridicaDao;
 
-public class PessoaDao implements IPessoaDao {
+public class PessoaDao extends AbstractDao implements IPessoaDao {
 
 	private IPessoaFisicaDao pessoaFisicaDao;
 	private IPessoaJuridicaDao pessoaJuridicaDao;
 	private IDaoFactory daoFactory = DaoFactory.getInstance();
-	
+
 	public PessoaDao() {
 		pessoaFisicaDao = daoFactory.getPessoaFisicaDao();
 		pessoaJuridicaDao = daoFactory.getPessoaJuridicaDao();
 	}
-	
+
 	@Override
 	public void inserir(AbstractPessoa param) throws SQLException {
 		if (param.isPessoaFisica()) {
-			pessoaFisicaDao.inserir((PessoaFisica)param);
+			pessoaFisicaDao.inserir((PessoaFisica) param);
 		} else if (param.isPessoaJuridica()) {
-			pessoaJuridicaDao.inserir((PessoaJuridica)param);
+			pessoaJuridicaDao.inserir((PessoaJuridica) param);
 		}
 	}
 
 	@Override
 	public void atualizar(AbstractPessoa param) throws SQLException {
 		if (param.isPessoaFisica()) {
-			pessoaFisicaDao.atualizar((PessoaFisica)param);
+			pessoaFisicaDao.atualizar((PessoaFisica) param);
 		} else if (param.isPessoaJuridica()) {
-			pessoaJuridicaDao.atualizar((PessoaJuridica)param);
+			pessoaJuridicaDao.atualizar((PessoaJuridica) param);
 		}
 	}
 
 	@Override
 	public void remover(AbstractPessoa param) throws SQLException {
 		if (param.isPessoaFisica()) {
-			pessoaFisicaDao.remover((PessoaFisica)param);
+			pessoaFisicaDao.remover((PessoaFisica) param);
 		} else if (param.isPessoaJuridica()) {
-			pessoaJuridicaDao.remover((PessoaJuridica)param);
+			pessoaJuridicaDao.remover((PessoaJuridica) param);
 		}
 	}
 
@@ -60,6 +60,12 @@ public class PessoaDao implements IPessoaDao {
 	}
 
 	@Override
+	public AbstractPessoa getPeloCodigo(Integer codigo) throws SQLException {
+		return null;
+	}
+
+	@Override
 	public void createTable() throws SQLException {
 	}
+
 }
