@@ -3,15 +3,21 @@ package edu.asselvi.orcamentoobras.installer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.asselvi.orcamentoobras.model.dao.AbstractDao;
+import edu.asselvi.orcamentoobras.model.DBUtils;
+import edu.asselvi.orcamentoobras.model.dao.conector.ConectorBancoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
+import edu.asselvi.orcamentoobras.model.enumerator.EDataBase;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 
@@ -23,20 +29,28 @@ import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
  * @author Marcelo Avancini
  *
  */
-public class DataBaseConfig extends AbstractDao{
+public class DataBaseConfig {
 	
 	private IDaoFactory daoFactory;
 	private String currentDir;
+	private ConectorBancoFactory cbf;
+	private Map<String, String> propMap = new HashMap<String, String>();
 	
 	public DataBaseConfig() {
 		daoFactory = DaoFactory.getInstance();
 		currentDir = System.getProperty("user.dir");
+		cbf = ConectorBancoFactory.getInstance();
 	}
 	
 	public Map<String, String> loadProperties() {
-		
-		Map<String, String> propMap = new HashMap<String, String>();
 		propMap.put(EPropertieKeys.DB_HOST.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_HOST.getPropName()));
+		propMap.put(EPropertieKeys.DB_PORT.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_PORT.getPropName()));
+		propMap.put(EPropertieKeys.DB_BASE.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_BASE.getPropName()));
+		
+		propMap.put(EPropertieKeys.DB_USER.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_USER.getPropName()));
+		propMap.put(EPropertieKeys.DB_PASSWD.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_PASSWD.getPropName()));
+		
+		propMap.put(EPropertieKeys.DB_DATABASE_TYPE.getPropName(), PropertiesLocator.getPropValue(EPropertieKeys.DB_DATABASE_TYPE.getPropName()));
 		
 		return propMap;
 	}
@@ -82,7 +96,7 @@ public class DataBaseConfig extends AbstractDao{
 			br.close();
 			
 			String[] inst = sb.toString().split(";");
-			st = getConexao().createStatement();
+			st = cbf.getConexao().createStatement();
 			
 			for (int i = 0; i < inst.length; i++) {
 				st.executeUpdate(inst[i]);
@@ -96,7 +110,7 @@ public class DataBaseConfig extends AbstractDao{
 		}
 	}
 	
-	public void demoDataBase() throws SQLException{
+	public void demoDataBase() throws SQLException {
 		
 		String s = new String();
 		StringBuilder sb = new StringBuilder();
@@ -113,7 +127,7 @@ public class DataBaseConfig extends AbstractDao{
 			br.close();
 			
 			String[] inst = sb.toString().split(";");
-			st = getConexao().createStatement();
+			st = cbf.getConexao().createStatement();
 			
 			for (int i = 0; i < inst.length; i++) {
 				st.executeUpdate(inst[i]);
@@ -126,8 +140,45 @@ public class DataBaseConfig extends AbstractDao{
 		}
 	}
 	
-	private void validaDataBase() {
-		// deverá verificar se o data base existe, se não, criar
-		// ou tratar para perguntar ao usuário se ele quer criar, sei lá
+	private void validaDataBase() throws SQLException {
+		String baseName = PropertiesLocator.getPropValue(EPropertieKeys.DB_BASE.getPropName());
+		if(!dataBaseExist(baseName)) {
+			createDataBase(baseName);
+		}
+	}
+	
+	private void createDataBase(String baseName) throws SQLException {
+		loadProperties();
+
+		String host = propMap.get(EPropertieKeys.DB_HOST.getPropName());
+		String port = propMap.get(EPropertieKeys.DB_PORT.getPropName());
+		String url = DBUtils.gerarUrl(host, port, null, EDataBase.MYSQL);
+		String user = propMap.get(EPropertieKeys.DB_USER.getPropName());
+		String passwd = propMap.get(EPropertieKeys.DB_PASSWD.getPropName());
+		
+		String sql = "CREATE DATABASE "+baseName;
+		Connection conn = cbf.getConexao(url, user, passwd);
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.execute();
+	}
+	
+	private boolean dataBaseExist(String baseName) throws SQLException {
+		loadProperties();
+
+		String host = propMap.get(EPropertieKeys.DB_HOST.getPropName());
+		String port = propMap.get(EPropertieKeys.DB_PORT.getPropName());
+		String url = DBUtils.gerarUrl(host, port, null, EDataBase.MYSQL);
+		String user = propMap.get(EPropertieKeys.DB_USER.getPropName());
+		String passwd = propMap.get(EPropertieKeys.DB_PASSWD.getPropName());
+		
+		DatabaseMetaData metaData = cbf.getConexao(url, user, passwd).getMetaData();
+		ResultSet rs = metaData.getCatalogs();
+		while (rs.next()) {
+			if (rs.getString("TABLE_CAT").equals(baseName)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

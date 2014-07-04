@@ -9,7 +9,7 @@ package edu.asselvi.orcamentoobras.model.enumerator;
  */
 public enum EPropertieKeys {
 	
-	DB_DATABASE("db.database"),
+	DB_DATABASE_TYPE("db.database.type"),
 	
 	DB_HOST("db.host"),
 	

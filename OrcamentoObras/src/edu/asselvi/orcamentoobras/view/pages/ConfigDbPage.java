@@ -219,7 +219,6 @@ public class ConfigDbPage extends GeneralTemplate {
 				if (!checkField()) {
 					return;
 				}
-				
 				try {
 					dataBaseConfig.generateDataBase();
 				} catch (SQLException e1) {
