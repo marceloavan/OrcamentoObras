@@ -75,7 +75,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(hostLb);
 
 		hostTf = new JTextField();
-		hostTf.setBounds(85, 17, 220, 25);
+		hostTf.setBounds(85, 17, 220, getHeightTf());
 		configPanel.add(hostTf);
 
 		JLabel portLb = new JLabel("Port:");
@@ -84,7 +84,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(portLb);
 
 		portTf = new JTextField();
-		portTf.setBounds(85, 46, 220, 25);
+		portTf.setBounds(85, 46, 220, getHeightTf());
 		configPanel.add(portTf);
 
 		JLabel baseLb = new JLabel("Base:");
@@ -93,7 +93,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(baseLb);
 
 		baseTf = new JTextField();
-		baseTf.setBounds(85, 74, 220, 25);
+		baseTf.setBounds(85, 74, 220, getHeightTf());
 		configPanel.add(baseTf);
 
 		JLabel userLb = new JLabel("Usu\u00E1rio:");
@@ -102,7 +102,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(userLb);
 
 		userTf = new JTextField();
-		userTf.setBounds(85, 103, 220, 25);
+		userTf.setBounds(85, 103, 220, getHeightTf());
 		configPanel.add(userTf);
 
 		JLabel passwdLb = new JLabel("Senha:");
@@ -111,7 +111,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(passwdLb);
 
 		passwdTf = new JPasswordField();
-		passwdTf.setBounds(85, 132, 220, 25);
+		passwdTf.setBounds(85, 132, 220, getHeightTf());
 		configPanel.add(passwdTf);
 
 		JLabel logLb = new JLabel("Log:");
