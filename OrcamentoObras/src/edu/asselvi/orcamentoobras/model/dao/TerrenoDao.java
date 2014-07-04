@@ -128,6 +128,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 			rs = stmt.executeQuery();
 			while (rs.next()) {
+				Integer codigo = rs.getInt("COD_TERRENO");
 				String descricao = rs.getString("DESCRICAO");
 				Double metragem = rs.getDouble("METRAGEM");
 				BigDecimal valorVenda = rs.getBigDecimal("VALOR_VENDA");
@@ -139,6 +140,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 				Endereco endereco = getDaoFactory().getEnderecoDao().getPeloCodigo(codigoEndereco);
 
 				Terreno terreno = new Terreno(descricao, valorVenda, endereco, metragem);
+				terreno.setCodigo(codigo);
 				terreno.setValorITBI(valorITBI);
 				terreno.setValorFRJ(valorFRJ);
 				terreno.setValorEscritura(valorEscritura);

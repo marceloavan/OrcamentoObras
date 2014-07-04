@@ -21,9 +21,9 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO ORCAMENTO");
-		sb.append(" (COD_ORCAMENTO, CLIENTE, TERRENO, NOME, DESCRICAO,");
+		sb.append(" (CLIENTE, TERRENO, NOME, DESCRICAO,");
 		sb.append(" CUSTO_UNITARIO_BASICO, METRAGEM_CONSTRUCAO, PERCENTUAL_LUCRO)");
-		sb.append(" VALUE (?, ?, ?, ?, ?, ?, ?, ?");
+		sb.append(" VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
@@ -33,14 +33,13 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-			stmt.setInt(1, param.getId());
-			stmt.setInt(2, param.getCliente().getId());
-			stmt.setInt(3, param.getTerreno().getCodigo());
-			stmt.setString(4, param.getNome());
-			stmt.setString(5, param.getDescricao());
-			stmt.setBigDecimal(6, param.getValorVendaCub());
-			stmt.setDouble(7, param.getMetragemConstrucao());
-			stmt.setDouble(8, param.getPercentualLucro());
+			stmt.setInt(1, param.getCliente().getId());
+			stmt.setInt(2, param.getTerreno().getCodigo());
+			stmt.setString(3, param.getNome());
+			stmt.setString(4, param.getDescricao());
+			stmt.setInt(5, param.getCub().getId());
+			stmt.setDouble(6, param.getMetragemConstrucao());
+			stmt.setDouble(7, param.getPercentualLucro());
 
 			int linhasAfetadas = stmt.executeUpdate();
 
@@ -85,7 +84,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 			stmt.setInt(2, param.getTerreno().getCodigo());
 			stmt.setString(3, param.getNome());
 			stmt.setString(4, param.getDescricao());
-			stmt.setBigDecimal(5, param.getValorVendaCub());
+			stmt.setInt(5, param.getCub().getId());
 			stmt.setDouble(6, param.getMetragemConstrucao());
 			stmt.setDouble(7, param.getPercentualLucro());
 			stmt.setInt(8, param.getId());
@@ -223,7 +222,8 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				+ "  	PERCENTUAL_LUCRO 		DECIMAL(10,2) NOT NULL,"
 				+ "  	CONSTRAINT 				PK_ORCAMENTO PRIMARY KEY (COD_ORCAMENTO),"
 				+ "  	CONSTRAINT 				FK_ORCAMENTO_PESSOA FOREIGN KEY (CLIENTE) REFERENCES PESSOA(COD_PESSOA),"
-				+ "  	CONSTRAINT				FK_ORCAMENTO_TERRENO FOREIGN KEY (TERRENO) REFERENCES TERRENO(COD_TERRENO))";
+				+ "  	CONSTRAINT				FK_ORCAMENTO_TERRENO FOREIGN KEY (TERRENO) REFERENCES TERRENO(COD_TERRENO)),"
+				+ "  	CONSTRAINT				FK_ORCAMENTO_CUB FOREIGN KEY (CUSTO_UNITARIO_BASICO) REFERENCES CUB(COD_CUB))";
 
 		PreparedStatement stmt = null;
 

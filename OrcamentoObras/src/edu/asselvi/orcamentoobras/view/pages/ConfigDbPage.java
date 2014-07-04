@@ -289,4 +289,17 @@ public class ConfigDbPage extends GeneralTemplate {
 			}
 		});
 	}
+	
+	/**
+	 * main para configurar outro banco caso necessário
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+	        public void run() {
+	        	new ConfigDbPage();
+	        }
+	    });
+	}
 }
