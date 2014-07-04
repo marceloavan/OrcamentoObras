@@ -20,8 +20,8 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append("INSERT INTO ORCAMENTO");
-		sb.append(" (COD_ORCAMENTO, CLIENTE, TERRENO, NOME, DESCRICAO, "
-				+ "CUSTO_UNITARIO_BASICO, METRAGEM_CONSTRUCAO, PERCENTUAL_LUCRO)");
+		sb.append(" (COD_ORCAMENTO, CLIENTE, TERRENO, NOME, DESCRICAO,");
+		sb.append(" CUSTO_UNITARIO_BASICO, METRAGEM_CONSTRUCAO, PERCENTUAL_LUCRO)");
 		sb.append(" VALUE (?, ?, ?, ?, ?, ?, ?, ?");
 
 		String sql = sb.toString();
@@ -151,7 +151,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				Double percentualLucro = rs.getDouble("PERCENTUAL_LUCRO");
 				Integer codigoCliente = rs.getInt("CLIENTE");
 	
-				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
+				CustoUnitarioBasico cub = getDaoFactory().getCubDao().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
 				AbstractPessoa cliente = getDaoFactory().getPessoaDao().getPeloCodigo(codigoCliente);
 	
@@ -195,7 +195,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				Double percentualLucro = rs.getDouble("PERCENTUAL_LUCRO");
 				Integer codigoCliente = rs.getInt("CLIENTE");
 				
-				CustoUnitarioBasico cub = getDaoFactory().getCub().getPeloCodigo(codigoCub);
+				CustoUnitarioBasico cub = getDaoFactory().getCubDao().getPeloCodigo(codigoCub);
 				Terreno terreno = getDaoFactory().getTerrenoDao().getPeloCodigo(codigoTerreno);
 				AbstractPessoa cliente = getDaoFactory().getPessoaDao().getPeloCodigo(codigoCliente);
 				
@@ -216,7 +216,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE ORCAMENTO ("
-				+ "  	COD_ORCAMENTO 			INTEGER NOT NULL,"
+				+ "  	COD_ORCAMENTO 			INTEGER NOT NULL AUTO_INCREMENT,"
 				+ "  	CLIENTE 				INTEGER NOT NULL,"
 				+ "  	TERRENO 				INTEGER NOT NULL,"
 				+ "  	NOME 					VARCHAR(100) NOT NULL,"

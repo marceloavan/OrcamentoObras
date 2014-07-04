@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
+import edu.asselvi.orcamentoobras.controller.CustoUnitarioBasicoController;
 import edu.asselvi.orcamentoobras.controller.OrcamentoController;
 import edu.asselvi.orcamentoobras.controller.PessoaController;
 import edu.asselvi.orcamentoobras.controller.TerrenoController;
@@ -40,6 +41,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	private OrcamentoController orcamentoController;
 	private PessoaController pessoaController;
 	private TerrenoController terrenoController;
+	private CustoUnitarioBasicoController custoUnitarioBasicoController;
 
 	public OrcamentoPage() {
 		super(700, 1000);
@@ -47,6 +49,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		orcamentoController = new OrcamentoController();
 		pessoaController = new PessoaController();
 		terrenoController = new TerrenoController();
+		custoUnitarioBasicoController = new CustoUnitarioBasicoController();
 		
 		int yPosition = 160;
 		nomeOrcamentoTf = new JTextField();
@@ -139,6 +142,10 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		for (Terreno item : terrenoController.getTerrenos()) {
 			terrenoCb.addItem(item);
 		}
+		cubCb.addItem(null);
+		for (CustoUnitarioBasico cub : custoUnitarioBasicoController.getCustos()) {
+			cubCb.addItem(cub);
+		}
 	}
 	
 	@Override
@@ -183,10 +190,12 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				try {
 					orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				} catch (MetragemConstrucaoMaiorTerrenoException e) {
-					JOptionPane.showMessageDialog(null, "Não foi possível salvar o orçamento. Contacte o suporte.");
+					JOptionPane.showMessageDialog(null, "A metragem da construção não pode ser maior que a do terreno.");
 					return;
 				}
 				orcamento.setPercentualLucro(percentualLucro);
+				orcamento.setCliente(cliente);
+//				orcamento.set
 				orcamentoController.cadastrarOrcamento(orcamento);
 			}
 		});
