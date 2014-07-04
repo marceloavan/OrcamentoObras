@@ -62,4 +62,9 @@ public class PessoaDao implements IPessoaDao {
 	@Override
 	public void createTable() throws SQLException {
 	}
+
+	@Override
+	public AbstractPessoa getPeloCodigo(Integer codigo) {
+		return null; // TODO implementar
+	}
 }

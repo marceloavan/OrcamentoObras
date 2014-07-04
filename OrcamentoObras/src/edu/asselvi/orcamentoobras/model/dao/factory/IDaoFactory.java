@@ -49,9 +49,9 @@ public interface IDaoFactory {
 	
 	public IOrcamentoDao getOrcamentoDao();
 	
-	public ICustoUnitarioBasicoDao getCub();
+	public ICustoUnitarioBasicoDao getCubDao();
 	
-	public ICustoRealDao getCustoReal();
+	public ICustoRealDao getCustoRealDao();
 	
 	public IPessoaDao getPessoaDao();
 	

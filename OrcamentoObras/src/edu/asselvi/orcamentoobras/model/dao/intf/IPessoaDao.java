@@ -4,4 +4,6 @@ import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 
 public interface IPessoaDao extends IDao<AbstractPessoa> {
 
+	public AbstractPessoa getPeloCodigo(Integer codigo);
+	
 }

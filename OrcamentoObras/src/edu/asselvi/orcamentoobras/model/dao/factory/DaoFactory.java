@@ -105,12 +105,12 @@ public class DaoFactory implements IDaoFactory {
 	}
 	
 	@Override
-	public ICustoUnitarioBasicoDao getCub() {
+	public ICustoUnitarioBasicoDao getCubDao() {
 		return new CustoUnitarioBasicoDao();
 	}
 	
 	@Override
-	public ICustoRealDao getCustoReal() {
+	public ICustoRealDao getCustoRealDao() {
 		return new CustoRealDao();
 	}
 
@@ -118,7 +118,7 @@ public class DaoFactory implements IDaoFactory {
 	public List<IDao<?>> getTodosDaos() {
 		List<IDao<?>> lista = new ArrayList<IDao<?>>();
 		lista.add(getUsuarioDao());
-		lista.add(getCub());
+		lista.add(getCubDao());
 		lista.add(getProdutoDao());
 		lista.add(getPrevisaoDao());
 		lista.add(getUnidadeFederativaDao());
@@ -128,7 +128,7 @@ public class DaoFactory implements IDaoFactory {
 		lista.add(getPessoaFisicaDao());
 		lista.add(getPessoaJuridicaDao());
 		lista.add(getOrcamentoDao());
-		lista.add(getCustoReal());
+		lista.add(getCustoRealDao());
 		lista.add(getPrevisaoOrcamentoDao());
 		return lista;
 	}
