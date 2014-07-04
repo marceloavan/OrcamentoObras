@@ -13,14 +13,12 @@ import java.util.List;
 public class PrevisaoOrcamento {
 
 	private Integer id;
-	private String descricao;
 	private BigDecimal valor;
 	private List<CustoReal> custoRealLista;
 	private Previsao previsao;
 	private Orcamento orcamento;
 
-	public PrevisaoOrcamento(String descricao, BigDecimal valor, Previsao previsao, Orcamento orcamento) {
-		setDescricao(descricao);
+	public PrevisaoOrcamento(BigDecimal valor, Previsao previsao, Orcamento orcamento) {
 		setValor(valor);
 		this.previsao = previsao;
 		this.orcamento = orcamento;
@@ -32,14 +30,6 @@ public class PrevisaoOrcamento {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public BigDecimal getValor() {
