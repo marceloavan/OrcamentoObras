@@ -165,7 +165,7 @@ public class DataBaseConfig {
 	
 	private boolean dataBaseExist(String baseName) throws SQLException {
 		loadProperties();
-
+		
 		String host = propMap.get(EPropertieKeys.DB_HOST.getPropName());
 		String port = propMap.get(EPropertieKeys.DB_PORT.getPropName());
 		String url = DBUtils.gerarUrl(host, port, null, EDataBase.MYSQL);

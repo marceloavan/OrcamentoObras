@@ -42,11 +42,12 @@ public class ConfigDbPage extends GeneralTemplate {
 	private ButtonDefault criarBtn;
 	private ButtonDefault inserirBtn;
 	private ButtonDefault demoBtn;
+	private ButtonDefault sairBtn;
 	private JTextArea logText;
 	private DataBaseConfig dataBaseConfig;
 	
 	public ConfigDbPage() {
-		super(400, 500);
+		super(400, 600);
 		getContentPane().setBackground(Color.WHITE);
 
 		// Criação do painel de configuração do banco de dados
@@ -54,13 +55,13 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.setLayout(null);
 		configPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		configPanel.setBackground(Color.LIGHT_GRAY);
-		configPanel.setBounds(10, 35, 474, 329);
+		configPanel.setBounds(10, 35, 578, 329);
 		getContentPane().add(configPanel);
 
 		JPanel panelTitulo = new JPanel();
 		panelTitulo.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTitulo.setBackground(Color.BLACK);
-		panelTitulo.setBounds(10, 11, 474, 25);
+		panelTitulo.setBounds(10, 11, 578, 25);
 		getContentPane().add(panelTitulo);
 
 		JLabel tituloCb = new JLabel("Configura\u00E7\u00E3o do Banco de Dados");
@@ -125,34 +126,50 @@ public class ConfigDbPage extends GeneralTemplate {
 		configPanel.add(logText);
 		logText.setLineWrap(true);
 
-		salvarBtn = new ButtonDefault("Salvar");
-		salvarBtn.setBounds(347, 18, 90, 25);
+		salvarBtn = new ButtonDefault("Salvar Configurações");
+		salvarBtn.setBounds(347, 18, 180, 25);
 		configPanel.add(salvarBtn);
 
-		criarBtn = new ButtonDefault("Criar");
-		criarBtn.setBounds(347, 54, 90, 25);
+		criarBtn = new ButtonDefault("Criar Tabelas");
+		criarBtn.setBounds(347, 54, 180, 25);
 		configPanel.add(criarBtn);
 
-		inserirBtn = new ButtonDefault("Inserir");
-		inserirBtn.setBounds(347, 90, 90, 25);
+		inserirBtn = new ButtonDefault("Inserir UF/Municipios");
+		inserirBtn.setBounds(347, 90, 180, 25);
 		configPanel.add(inserirBtn);
 
-		demoBtn = new ButtonDefault("Demo");
-		demoBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		demoBtn.setBounds(347, 126, 90, 25);
+		demoBtn = new ButtonDefault("Base Demonstração");
+		demoBtn.setBounds(347, 126, 180, 25);
 		configPanel.add(demoBtn);
+		
+		sairBtn = new ButtonDefault("Sair");
+		sairBtn.setBounds(347, 162, 180, 25);
+		configPanel.add(sairBtn);
 
 		addActions();
 
 		SwingUtilities.updateComponentTreeUI(this);
 		
 		dataBaseConfig = new DataBaseConfig();
-
+		
+		loadConfig();
+		
 	}
 
+	public void loadConfig () {
+		String port = PropertiesLocator.getPropValue("db.port");
+		String host = PropertiesLocator.getPropValue("db.host");
+		String base = PropertiesLocator.getPropValue("db.base");
+		String user = PropertiesLocator.getPropValue("db.user");
+		String passwd = PropertiesLocator.getPropValue("db.passwd");
+		
+		portTf.setText(port);
+		hostTf.setText(host);
+		baseTf.setText(base);
+		userTf.setText(user);
+		passwdTf.setText(passwd);
+	}
+	
 	public boolean checkField() {
 		String port = portTf.getText();
 		String host = hostTf.getText();
@@ -261,6 +278,14 @@ public class ConfigDbPage extends GeneralTemplate {
 					logText.append(e1.getMessage());
 				}
 
+			}
+		});
+		
+		sairBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
 	}
