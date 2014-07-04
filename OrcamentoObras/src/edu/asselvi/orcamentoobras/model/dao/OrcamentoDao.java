@@ -3,6 +3,7 @@ package edu.asselvi.orcamentoobras.model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 		try {
 
-			stmt = getConexao().prepareStatement(sql);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			stmt.setInt(1, param.getId());
 			stmt.setInt(2, param.getCliente().getId());
@@ -55,11 +56,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 			}
 
 		} finally {
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-			getConexao().close();
+			finalizarConexoes(stmt, rs);
 		}
 
 	}

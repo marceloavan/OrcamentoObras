@@ -46,11 +46,7 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 			}
 
 		} finally {
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-			getConexao().close();
+			finalizarConexoes(stmt, rs);
 		}
 	}
 
@@ -178,7 +174,8 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 
 	@Override
 	public void createTable() throws SQLException {
-		String sql = "CREATE TABLE ENDERECO (COD_ENDERECO 		INTEGER NOT NULL AUTO_INCREMENT,"
+		String sql = "CREATE TABLE ENDERECO ("
+				+ "		COD_ENDERECO 		INTEGER NOT NULL AUTO_INCREMENT,"
 				+ "  	LOGRADOURO 			VARCHAR(100) NOT NULL,"
 				+ "  	NUMERO 				INTEGER NOT NULL,"
 				+ "  	BAIRRO 				VARCHAR(100) NOT NULL,"

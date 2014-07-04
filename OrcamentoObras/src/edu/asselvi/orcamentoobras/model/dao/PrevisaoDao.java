@@ -46,9 +46,7 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 			}
 
 		} finally {
-
 			finalizarConexoes(stmt, rs);
-
 		}
 
 	}
@@ -179,9 +177,7 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 			stmt.execute(sql);
 
 		} finally {
-
 			finalizarConexoes(stmt, null);
-
 		}
 
 	}

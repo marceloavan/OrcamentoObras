@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,11 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 		
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		
 		try {
 			
-			stmt = getConexao().prepareStatement(sql);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, param.getAno());
 			stmt.setInt(2, param.getMes());
 			stmt.setBigDecimal(3, param.getValorMetroQuadrado());
@@ -36,9 +38,15 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 				throw new SQLException("Falha ao criar registro");
 			}
 			
+			rs = stmt.getGeneratedKeys();
+			if (rs.next()) {
+				param.setId(rs.getInt(1));
+			} else {
+				throw new SQLException("Não foi possivel buscar a chave gerada");
+			}
+			
 		} finally {
-			if (stmt != null) stmt.close();
-			getConexao().close();
+			finalizarConexoes(stmt, rs);
 		}
 		
 	}
@@ -185,7 +193,8 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE CUB ("
 				+ "COD_CUB				INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "ANO					INTEGER NOT NULL," + "MES					INTEGER NOT NULL,"
+				+ "ANO					INTEGER NOT NULL," 
+				+ "MES					INTEGER NOT NULL,"
 				+ "VL_METRO_QUADRADO	DECIMAL(10,2) NOT NULL,"
 				+ "CONSTRAINT			PK_CUB PRIMARY KEY (COD_CUB),"
 				+ "CONSTRAINT			UK_CUB UNIQUE KEU (ANO, MES))";

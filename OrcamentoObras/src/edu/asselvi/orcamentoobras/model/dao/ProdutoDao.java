@@ -20,7 +20,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
+		
 		try {
 			stmt = getConexao().prepareStatement(sql);
 			stmt.setInt(1, param.getCodigo());
@@ -32,11 +32,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 			}
 
 		} finally {
-			if (stmt != null)
-				stmt.close();
-			if (rs != null)
-				rs.close();
-			getConexao().close();
+			finalizarConexoes(stmt, null);
 		}
 	}
 

@@ -42,7 +42,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 			rs = stmt.getGeneratedKeys();
 			if (rs.next()) {
-
+				param.setCodigo(rs.getInt(1));
 			} else {
 				throw new SQLException("Nao foi possivel buscar a chave gerada");
 			}
@@ -193,7 +193,7 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE TERRENO ("
-				+ "  	COD_TERRENO 		INTEGER NOT NULL,"
+				+ "  	COD_TERRENO 		INTEGER NOT NULL AUTO_INCREMENT,"
 				+ "  	DESCRICAO 			VARCHAR(250) NOT NULL,"
 				+ "  	ENDERECO 			INTEGER NOT NULL,"
 				+ "  	VALOR_VENDA 		DECIMAL(10,2) NOT NULL,"

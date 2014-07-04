@@ -41,7 +41,7 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 	        if (rs.next()) {
 	            param.setId(rs.getInt(1));
 	        } else {
-	            throw new SQLException("Nao foi possivel buscar a chave gerada");
+	            throw new SQLException("Não foi possivel buscar a chave gerada");
 	        }
 			
 		} finally {
@@ -144,7 +144,7 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE PESSOA ("
-				+ "  	COD_PESSOA 			INTEGER NOT NULL,"
+				+ "  	COD_PESSOA 			INTEGER NOT NULL AUTO_INCREMENT,"
 				+ "  	ENDERECO 			INTEGER NOT NULL,"
 				+ "  	TIPO_PESSOA 		CHAR(1) NULL,"
 				+ "  	NOME_PESSOA 		VARCHAR(100) NOT NULL,"
