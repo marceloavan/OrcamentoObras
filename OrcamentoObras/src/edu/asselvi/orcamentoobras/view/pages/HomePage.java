@@ -3,10 +3,11 @@ package edu.asselvi.orcamentoobras.view.pages;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroProdutoPage;
 import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroUsuarioPage;
-import edu.asselvi.orcamentoobras.view.templates.TempateHomePage;
+import edu.asselvi.orcamentoobras.view.templates.TemplateHomePage;
 
-public class HomePage extends TempateHomePage {
+public class HomePage extends TemplateHomePage {
 
 	/**
 	 * 
@@ -34,6 +35,14 @@ public class HomePage extends TempateHomePage {
 				new OrcamentoPage();
 			}
 		});
+		
+		getGeneralMenu().getItemCadastroProduto().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroProdutoPage();
+			}
+		});
+		
 		super.addActions();
 	}
 }

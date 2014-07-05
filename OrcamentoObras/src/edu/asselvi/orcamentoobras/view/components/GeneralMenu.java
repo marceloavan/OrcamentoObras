@@ -10,7 +10,10 @@ public class GeneralMenu extends JMenuBar {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	//Itens do menu Cadastro
+	private JMenuItem itemCadastroProdutos;
+	
 	// Itens do menu Adminitracao
 	private JMenuItem itemAdministracaoUsuarios;
 	private JMenuItem itemAdministracaoTrocarSenha;
@@ -40,6 +43,13 @@ public class GeneralMenu extends JMenuBar {
 		itemAdministracaoTrocarSenha = new JMenuItem("Trocar senha");
 		menuAdministracao.add(itemAdministracaoTrocarSenha);
 
+		/* MENU CADASTRO */
+		JMenu menuCadastro = new JMenu("Cadastro");
+		add(menuCadastro);
+		
+		itemCadastroProdutos = new JMenuItem("Produtos");
+		menuCadastro.add(itemCadastroProdutos);
+		
 		/* MENU ORCAMENTO */
 		JMenu menuOrcamento = new JMenu("Orçamento");
 		add(menuOrcamento);
@@ -84,5 +94,9 @@ public class GeneralMenu extends JMenuBar {
 	
 	public JMenuItem getItemOrcamentoGestaoOrcamento() {
 		return itemOrcamentoGestaoOrcamento;
+	}
+	
+	public JMenuItem getItemCadastroProduto() {
+		return itemCadastroProdutos;
 	}
 }

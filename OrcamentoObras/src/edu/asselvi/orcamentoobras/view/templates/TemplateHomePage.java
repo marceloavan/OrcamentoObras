@@ -8,7 +8,7 @@ import javax.swing.SwingUtilities;
 import edu.asselvi.orcamentoobras.view.components.GeneralMenu;
 import edu.asselvi.orcamentoobras.view.login.Login;
 
-public abstract class TempateHomePage extends GeneralTemplate {
+public abstract class TemplateHomePage extends GeneralTemplate {
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public abstract class TempateHomePage extends GeneralTemplate {
 
 	private GeneralMenu generalMenu;
 	
-	public TempateHomePage() {
+	public TemplateHomePage() {
 		super(700, 900);
 		
 		generalMenu = new GeneralMenu(900);
