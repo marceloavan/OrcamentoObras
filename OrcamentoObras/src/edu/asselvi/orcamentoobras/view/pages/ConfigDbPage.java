@@ -130,7 +130,7 @@ public class ConfigDbPage extends GeneralTemplate {
 		salvarBtn.setBounds(347, 18, 180, 25);
 		configPanel.add(salvarBtn);
 
-		criarBtn = new ButtonDefault("Criar Tabelas");
+		criarBtn = new ButtonDefault("Criar DataBase/Tabelas");
 		criarBtn.setBounds(347, 54, 180, 25);
 		configPanel.add(criarBtn);
 
