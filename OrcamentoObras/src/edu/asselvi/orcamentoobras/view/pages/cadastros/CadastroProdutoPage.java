@@ -30,14 +30,14 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 		
 		getContentPane().add(scrollPane);
 		
-		JLabel codigoLb = new JLabel();
+		JLabel codigoLb = new JLabel("Código:");
 		codigoLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		codigoLb.setBounds(10, 275, 90, 15);
+		codigoLb.setBounds(10, 250, 90, 15);
 		getContentPane().add(codigoLb);
 		
-		JLabel descricaoLb = new JLabel();
+		JLabel descricaoLb = new JLabel("Descrição:");
 		descricaoLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		descricaoLb.setBounds(10, 250, 90, 15);
+		descricaoLb.setBounds(10, 275, 90, 15);
 		getContentPane().add(descricaoLb);
 		
 		int yPosition = 245;
