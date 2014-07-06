@@ -24,6 +24,22 @@ public class ProdutoController {
 		return null;
 	}
 	
+	public void cadastrarProduto (Produto produto) throws SQLException {
+		produtoDao.inserir(produto);
+	}
 	
+	public void atualizarProduto (Produto produto) throws SQLException {
+		produtoDao.atualizar(produto);
+	}
+	
+	public void removerProduto (Integer codigo) throws SQLException {
+		try{
+			Produto produto = daoFactory.getProdutoDao().getPeloCodigo(codigo);
+			produtoDao.remover(produto);
+		} catch (SQLException e) {
+			
+		}
+		
+	}
 
 }
