@@ -30,10 +30,10 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JScrollPane scrollPane = new JScrollPane();
-	private CustomTable table;
+	private JScrollPane scrollPaneTableUsuario = new JScrollPane();
+	private CustomTable tableUsuario;
 	private UsuarioModelConverter usuarioModelConverter;
-	private AbstractTableModel tableModel;
+	private AbstractTableModel tableModelUsuario;
 	
 	private JTextField nomeCompletoTf;
 	private JTextField userNameTf;
@@ -50,8 +50,6 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		
 		usuarioModelConverter = new UsuarioModelConverter();
 		generateTable();
-		
-		getContentPane().add(scrollPane);
 		
 		JLabel loginLb = new JLabel("Login");
 		loginLb.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -105,21 +103,22 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	}
 	
 	private void generateTable() {
-		tableModel = new TableModelImpl(usuarioModelConverter);
+		tableModelUsuario = new TableModelImpl(usuarioModelConverter);
 		
-		table = new CustomTable();
-		table.setModel(tableModel);
-		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.getColumn("Login").setPreferredWidth(200);
-		table.getColumn("Nome").setPreferredWidth(250);
+		tableUsuario = new CustomTable();
+		tableUsuario.setModel(tableModelUsuario);
+		tableUsuario.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		tableUsuario.getColumn("Login").setPreferredWidth(200);
+		tableUsuario.getColumn("Nome").setPreferredWidth(250);
 		
-		scrollPane.setViewportView(table);
-		scrollPane.setBounds(10, 40, 470, 180);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBorder(null);
+		scrollPaneTableUsuario.setViewportView(tableUsuario);
+		scrollPaneTableUsuario.setBounds(10, 40, 470, 180);
+		scrollPaneTableUsuario.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneTableUsuario.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPaneTableUsuario.setBorder(null);
 		addActionToTable();
 		
+		getContentPane().add(scrollPaneTableUsuario);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 
@@ -168,7 +167,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		getNovoBtn().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				table.clearSelection();
+				tableUsuario.clearSelection();
 				limparCampos();
 				editingUser = false;
 			}
@@ -199,11 +198,11 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	 * Método separado porque a tabela é recriada quando algum registro é criado/ removido
 	 */
 	private void addActionToTable() {
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+		tableUsuario.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				if (table.getSelectedRow() > -1) {
-					Usuario usuario = usuarioModelConverter.getObjectByRowIndex(table.getSelectedRow());
+				if (tableUsuario.getSelectedRow() > -1) {
+					Usuario usuario = usuarioModelConverter.getObjectByRowIndex(tableUsuario.getSelectedRow());
 					loadCamposByObject(usuario);
 					userNameTf.setEnabled(false);
 					editingUser = true;

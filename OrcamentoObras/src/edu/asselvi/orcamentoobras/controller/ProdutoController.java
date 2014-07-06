@@ -33,13 +33,8 @@ public class ProdutoController {
 	}
 	
 	public void removerProduto (Integer codigo) throws SQLException {
-		try{
-			Produto produto = daoFactory.getProdutoDao().getPeloCodigo(codigo);
-			produtoDao.remover(produto);
-		} catch (SQLException e) {
-			
-		}
-		
+		Produto produto = daoFactory.getProdutoDao().getPeloCodigo(codigo);
+		produtoDao.remover(produto);
 	}
 
 }

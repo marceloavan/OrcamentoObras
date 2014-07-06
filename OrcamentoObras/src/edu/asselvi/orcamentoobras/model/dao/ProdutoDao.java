@@ -62,7 +62,7 @@ public class ProdutoDao extends AbstractDao implements IProdutoDao {
 	@Override
 	public void remover(Produto param) throws SQLException {
 
-		String sql = "DELETE FROM PRODUTOS WHERE COD_PRODUTO = ?";
+		String sql = "DELETE FROM PRODUTO WHERE COD_PRODUTO = ?";
 
 		PreparedStatement stmt = null;
 		try {

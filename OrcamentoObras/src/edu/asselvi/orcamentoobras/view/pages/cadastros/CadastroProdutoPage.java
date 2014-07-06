@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -40,12 +39,12 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 	
 	private boolean editingUser = false;
 	
-	private ProdutoController produtoManager;
+	private ProdutoController produtoController;
 	
 	public CadastroProdutoPage() {
 		super(500,500);
 		
-		produtoManager = new ProdutoController();
+		produtoController = new ProdutoController();
 		produtoModelConverter =  new ProdutoModelConverter();
 		
 		generateTable();
@@ -125,7 +124,7 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 					return;
 				}
 				try {
-					produtoManager.cadastrarProduto(new Produto(codigo, descricao));
+					produtoController.cadastrarProduto(new Produto(codigo, descricao));
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o produto");
 					return;
@@ -152,7 +151,7 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Integer codigo = Integer.parseInt(codigoTf.getText());
-					produtoManager.removerProduto(codigo);
+					produtoController.removerProduto(codigo);
 				} catch (SQLException e1) {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 					return;
