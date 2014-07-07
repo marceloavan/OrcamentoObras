@@ -10,6 +10,7 @@ import java.util.List;
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
@@ -106,7 +107,9 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 		String sql = "DELETE FROM ORCAMENTO WHERE COD_ORCAMENTO = ?";
 
 		PreparedStatement stmt = null;
-
+		for (PrevisaoOrcamento item : param.getPrevisaoList()) {
+			getDaoFactory().getPrevisaoOrcamentoDao().remover(item);
+		}
 		try {
 
 			stmt = getConexao().prepareStatement(sql);
@@ -156,6 +159,9 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				orcamento.setPercentualLucro(percentualLucro);
 				orcamento.setCliente(cliente);
 				
+				List<PrevisaoOrcamento> previsaoList = getDaoFactory().getPrevisaoOrcamentoDao().getPeloOrcamento(orcamento);
+				orcamento.setPrevisaoList(previsaoList);
+				
 				orcamentoLista.add(orcamento); 
 			}
 
@@ -199,6 +205,9 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				orcamento.setId(id);
 				orcamento.setPercentualLucro(percentualLucro);
 				orcamento.setCliente(cliente);
+				
+				List<PrevisaoOrcamento> previsaoList = getDaoFactory().getPrevisaoOrcamentoDao().getPeloOrcamento(orcamento);
+				orcamento.setPrevisaoList(previsaoList);
 				
 			}
 		} catch (MetragemConstrucaoMaiorTerrenoException e) {

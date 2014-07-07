@@ -29,8 +29,7 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements
 		ResultSet rs = null;
 
 		try {
-			stmt = getConexao().prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setInt(1, param.getPrevisao().getCodigo());
 			stmt.setInt(2, param.getOrcamento().getId());
 			stmt.setBigDecimal(3, param.getValor());
@@ -152,6 +151,7 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements
 				Previsao previsao = getDaoFactory().getPrevisaoDao().getPeloCodigo(codPrevisao);
 
 				previsaoOrcamento = new PrevisaoOrcamento(valor, previsao,orcamento);
+				previsaoOrcamento.setId(codigo);
 			}
 		} finally {
 			finalizarConexoes(stmt, rs);
@@ -160,9 +160,9 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements
 	}
 
 	@Override
-	public PrevisaoOrcamento getPeloOrcamento(Orcamento orcamento) throws SQLException {
+	public List<PrevisaoOrcamento> getPeloOrcamento(Orcamento orcamento) throws SQLException {
 		
-		PrevisaoOrcamento previsaoOrcamento = null;
+		List<PrevisaoOrcamento> previsaoOrcamentoList = new ArrayList<PrevisaoOrcamento>();
 		String sql  = "SELECT * FROM PREVISAO_ORCAMENTO WHERE ORCAMENTO = ?";
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -178,14 +178,15 @@ public class PrevisaoOrcamentoDao extends AbstractDao implements
 				BigDecimal valor = rs.getBigDecimal("VALOR");
 				
 				Previsao previsao = getDaoFactory().getPrevisaoDao().getPeloCodigo(codPrevisao);
-				previsaoOrcamento = new PrevisaoOrcamento(valor, previsao, orcamento);
-				previsao.setCodigo(id);
+				PrevisaoOrcamento previsaoOrcamento = new PrevisaoOrcamento(valor, previsao, orcamento);
+				previsaoOrcamento.setId(id);
+				previsaoOrcamentoList.add(previsaoOrcamento);
 			}
 			
 		} finally {
 			finalizarConexoes(stmt, rs);
 		}
-		return previsaoOrcamento;
+		return previsaoOrcamentoList;
 	}
 
 	@Override

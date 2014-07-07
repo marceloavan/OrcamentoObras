@@ -50,6 +50,7 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		
 		usuarioModelConverter = new UsuarioModelConverter();
 		generateTable();
+		getContentPane().add(scrollPaneTableUsuario);
 		
 		JLabel loginLb = new JLabel("Login");
 		loginLb.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -118,7 +119,6 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 		scrollPaneTableUsuario.setBorder(null);
 		addActionToTable();
 		
-		getContentPane().add(scrollPaneTableUsuario);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 

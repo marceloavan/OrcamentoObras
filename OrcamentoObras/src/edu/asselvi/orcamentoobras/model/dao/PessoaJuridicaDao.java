@@ -147,4 +147,35 @@ public class PessoaJuridicaDao extends AbstractDao implements IPessoaJuridicaDao
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public PessoaJuridica getPeloCodigo(Integer codigo) throws SQLException {
+		String sql = "SELECT * FROM PESSOA WHERE COD_PESSOA = ? AND TIPO_PESSOA = 'J'";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, codigo);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				Integer codigoEndereco = rs.getInt("ENDERECO");
+				String razaoSocial = rs.getString("RAZAO_SOCIAL");
+				String nomeFantasia = rs.getString("NOME_FANTASIA");
+				String documento = rs.getString("DOCUMENTO");
+				
+				IDaoFactory daoFactory = DaoFactory.getInstance();
+				Endereco endereco = daoFactory.getEnderecoDao().getPeloCodigo(codigoEndereco);
+				try {
+					PessoaJuridica pessoa = new PessoaJuridica(documento, endereco, razaoSocial, nomeFantasia);
+					pessoa.setId(codigo);
+					return pessoa;
+				} catch (Exception e) {
+					throw new SQLException("Base de dados não consistente");
+				}
+			}
+		} finally {
+			finalizarConexoes(stmt, rs);
+		}
+		return null;
+	}
 }

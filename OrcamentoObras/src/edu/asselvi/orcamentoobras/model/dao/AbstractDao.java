@@ -22,6 +22,7 @@ public abstract class AbstractDao {
 
 	private ConectorBancoFactory cbf;
 	private DaoFactory daoFactory;
+	private Connection conn;
 	
 	public AbstractDao() {
 		cbf = ConectorBancoFactory.getInstance();
@@ -34,7 +35,8 @@ public abstract class AbstractDao {
 	 * @return {@link Connection}
 	 */
 	public Connection getConexao() throws SQLException {
-		return cbf.getConexao();
+		conn = cbf.getConexao();
+		return conn;
 	}
 	
 	/**
@@ -57,6 +59,6 @@ public abstract class AbstractDao {
 	public void finalizarConexoes(PreparedStatement stmt, ResultSet rs) throws SQLException {
 		if (stmt != null) stmt.close();
 		if (rs != null) rs.close();
-		getConexao().close();
+		if (conn != null) conn.close();
 	}
 }

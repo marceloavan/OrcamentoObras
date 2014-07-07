@@ -2,8 +2,10 @@ package edu.asselvi.orcamentoobras.view.pages;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -12,6 +14,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.AbstractTableModel;
 
 import edu.asselvi.orcamentoobras.controller.CustoUnitarioBasicoController;
 import edu.asselvi.orcamentoobras.controller.OrcamentoController;
@@ -20,8 +25,14 @@ import edu.asselvi.orcamentoobras.controller.TerrenoController;
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
+import edu.asselvi.orcamentoobras.model.beans.Previsao;
+import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.view.components.CustomTable;
+import edu.asselvi.orcamentoobras.view.components.table.model.OrcamentoModelConverter;
+import edu.asselvi.orcamentoobras.view.components.table.model.PrevisaoOrcamentoModelConverter;
+import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
 import edu.asselvi.orcamentoobras.view.templates.TemplateCadastroPages;
 
 public class OrcamentoPage extends TemplateCadastroPages {
@@ -37,29 +48,52 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	private JComboBox<Terreno> terrenoCb;
 	private JComboBox<CustoUnitarioBasico> cubCb;
 	private JTextField metragemTf;
-	private JTextField percuntalLucroTf;
+	private JTextField percentualLucroTf;
+	private JTextField valorVendaCubTf;
+	private JTextField valorVendaPrevisaoTf;
 	
 	private OrcamentoController orcamentoController;
 	private PessoaController pessoaController;
 	private TerrenoController terrenoController;
 	private CustoUnitarioBasicoController custoUnitarioBasicoController;
+	
+	private JScrollPane scrollPaneTableOrcamento = new JScrollPane();
+	private CustomTable tableOrcamento;
+	private OrcamentoModelConverter orcamentoModelConverter;
+	private AbstractTableModel tableModelOrcamento;
+	
+	private JScrollPane scrollPaneTablePrevisaoOrcamento = new JScrollPane();
+	private CustomTable tablePrevisaoOrcamento;
+	private PrevisaoOrcamentoModelConverter previsaoOrcamentoModelConverter;
+	private AbstractTableModel tableModelPrevisaoOrcamento;
+	
+	private boolean editingOrcamento = false;
+	private Orcamento orcamentoEdited;
+	
+	private JComboBox<Previsao> previsaoCb;
+	private JTextField valorPrevisaoTf;
+	private JButton incluirPrevisaoBtn;
 
 	public OrcamentoPage() {
-		super(700, 1000);
+		super(600, 1000);
 		
 		orcamentoController = new OrcamentoController();
 		pessoaController = new PessoaController();
 		terrenoController = new TerrenoController();
 		custoUnitarioBasicoController = new CustoUnitarioBasicoController();
 		
+		generateTable();
+		getContentPane().add(scrollPaneTableOrcamento);
+		getContentPane().add(scrollPaneTablePrevisaoOrcamento);
+		
 		int yPosition = 160;
 		nomeOrcamentoTf = new JTextField();
-		nomeOrcamentoTf.setBounds(125, yPosition, getWidthTf(), getHeightTf());
+		nomeOrcamentoTf.setBounds(175, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(nomeOrcamentoTf);
 		
 		JLabel nomeLb = new JLabel("Nome");
 		nomeLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		nomeLb.setBounds(10, yPosition+5, 90, 15);
+		nomeLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(nomeLb);
 		
 		yPosition += getDistanceTf();
@@ -68,7 +102,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		descricaoOrcamentoTa.setWrapStyleWord(true);
 		descricaoOrcamentoSp = new JScrollPane(descricaoOrcamentoTa);
 		descricaoOrcamentoSp.setViewportView(descricaoOrcamentoTa);
-		descricaoOrcamentoSp.setBounds(125, yPosition, getWidthTf(), getHeightTf()*3);
+		descricaoOrcamentoSp.setBounds(175, yPosition, getWidthTf(), getHeightTf()*3);
 		descricaoOrcamentoSp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		descricaoOrcamentoSp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		descricaoOrcamentoSp.setBorder(null);
@@ -76,62 +110,116 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		
 		JLabel descricaoLb = new JLabel("Descrição");
 		descricaoLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		descricaoLb.setBounds(10, yPosition+5, 90, 15);
+		descricaoLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(descricaoLb);
 		
 		yPosition += (getDistanceTf()*3)+4;
 		clienteCb = new JComboBox<AbstractPessoa>();
-		clienteCb.setBounds(125, yPosition, getWidthTf(), getHeightTf());
+		clienteCb.setBounds(175, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(clienteCb);
 		
 		JLabel clienteLb = new JLabel("Cliente");
 		clienteLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		clienteLb.setBounds(10, yPosition+5, 90, 15);
+		clienteLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(clienteLb);
 		
 		yPosition += getDistanceTf();
 		terrenoCb = new JComboBox<Terreno>();
-		terrenoCb.setBounds(125, yPosition, getWidthTf(), getHeightTf());
+		terrenoCb.setBounds(175, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(terrenoCb);
 		
 		JLabel terrenoLb = new JLabel("Terreno");
 		terrenoLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		terrenoLb.setBounds(10, yPosition+5, 90, 15);
+		terrenoLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(terrenoLb);
 		
 		yPosition += getDistanceTf();
 		cubCb = new JComboBox<CustoUnitarioBasico>();
-		cubCb.setBounds(125, yPosition, getWidthTf(), getHeightTf());
+		cubCb.setBounds(175, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(cubCb);
 		
 		JLabel cubLb = new JLabel("C.U.B.");
 		cubLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		cubLb.setBounds(10, yPosition+5, 90, 15);
+		cubLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(cubLb);
 		
 		yPosition += getDistanceTf();
 		metragemTf = new JTextField();
-		metragemTf.setBounds(125, yPosition, getWidthTf(), getHeightTf());
+		metragemTf.setBounds(175, yPosition, getWidthTf(), getHeightTf());
 		getContentPane().add(metragemTf);
 		
 		JLabel metragemLb = new JLabel("Metragem");
 		metragemLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		metragemLb.setBounds(10, yPosition+5, 90, 15);
+		metragemLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(metragemLb);
 		
 		yPosition += getDistanceTf();
-		percuntalLucroTf = new JTextField();
-		percuntalLucroTf.setBounds(125, yPosition, getWidthTf(), getHeightTf());
-		getContentPane().add(percuntalLucroTf);
+		percentualLucroTf = new JTextField();
+		percentualLucroTf.setBounds(175, yPosition, getWidthTf(), getHeightTf());
+		getContentPane().add(percentualLucroTf);
 		
 		JLabel percentualLucroLb = new JLabel("Lucro (%)");
 		percentualLucroLb.setHorizontalAlignment(SwingConstants.RIGHT);
-		percentualLucroLb.setBounds(10, yPosition+5, 90, 15);
+		percentualLucroLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(percentualLucroLb);
+		
+		yPosition += getDistanceTf() + 25;
+		valorVendaCubTf = new JTextField();
+		valorVendaCubTf.setBounds(175, yPosition, getWidthTf(), getHeightTf());
+		valorVendaCubTf.setEditable(false);
+		getContentPane().add(valorVendaCubTf);
+		
+		JLabel valorVendaCubLb = new JLabel("Valor venda C.U.B");
+		valorVendaCubLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		valorVendaCubLb.setBounds(10, yPosition+5, 145, 15);
+		getContentPane().add(valorVendaCubLb);
+		
+		yPosition += getDistanceTf();
+		valorVendaPrevisaoTf = new JTextField();
+		valorVendaPrevisaoTf.setBounds(175, yPosition, getWidthTf(), getHeightTf());
+		valorVendaPrevisaoTf.setEditable(false);
+		getContentPane().add(valorVendaPrevisaoTf);
+		
+		JLabel valorVendaPrevisaoLb = new JLabel("Valor venda previsões");
+		valorVendaPrevisaoLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		valorVendaPrevisaoLb.setBounds(10, yPosition+5, 145, 15);
+		getContentPane().add(valorVendaPrevisaoLb);
+		
+		JLabel previsoesLb = new JLabel("Previsões:");
+		previsoesLb.setBounds(503, 160, 480, 15);
+		getContentPane().add(previsoesLb);
+		
+		JLabel previsaoLb = new JLabel("Previsão:");
+		previsaoLb.setBounds(500, 300, getWidthTf()-50, getHeightTf());
+		getContentPane().add(previsaoLb);
+		
+		previsaoCb = new JComboBox<Previsao>();
+		previsaoCb.setBounds(500, 320, getWidthTf()-50, getHeightTf());
+		getContentPane().add(previsaoCb);
+
+		JLabel valorPrevisaoLb = new JLabel("Valor:");
+		valorPrevisaoLb.setBounds(500 + getWidthTf()-35, 300, getWidthTf()-50, getHeightTf());
+		getContentPane().add(valorPrevisaoLb);
+		
+		valorPrevisaoTf = new JTextField();
+		valorPrevisaoTf.setBounds(500 + getWidthTf()-35, 320, getWidthTf()-50, getHeightTf());
+		getContentPane().add(valorPrevisaoTf);
+		
+		incluirPrevisaoBtn = new JButton("Incluir Previsão");
+		incluirPrevisaoBtn.setBounds(840, 350, 135, 25);
+		getContentPane().add(incluirPrevisaoBtn);
+	
+		setEnablePrevisaoInclude(false);
 		
 		loadItensForCb();
 		addActions();
 		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	private void setEnablePrevisaoInclude(boolean enabled) {
+		incluirPrevisaoBtn.setEnabled(enabled);
+		valorPrevisaoTf.setEnabled(enabled);
+		previsaoCb.setEnabled(enabled);
 	}
 	
 	private void loadItensForCb() {
@@ -147,10 +235,144 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		for (CustoUnitarioBasico cub : custoUnitarioBasicoController.getCustos()) {
 			cubCb.addItem(cub);
 		}
+		previsaoCb.addItem(null);
+		for (Previsao previsao : orcamentoController.getAllPrevisoes()) {
+			previsaoCb.addItem(previsao);
+		}
+	}
+	
+	private void generateTable() {
+		/*
+		 * ORÇAMENTO 
+		 */
+		orcamentoModelConverter = new OrcamentoModelConverter();
+		
+		tableModelOrcamento = new TableModelImpl(orcamentoModelConverter);
+		
+		tableOrcamento = new CustomTable();
+		tableOrcamento.setModel(tableModelOrcamento);
+		tableOrcamento.getColumn("Orcamento").setPreferredWidth(490);
+		tableOrcamento.getColumn("Terreno").setPreferredWidth(450);
+		
+		scrollPaneTableOrcamento.setViewportView(tableOrcamento);
+		scrollPaneTableOrcamento.setBounds(20, 40, 960, 100);
+		scrollPaneTableOrcamento.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneTableOrcamento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		
+		generateSecondsTables();
+		
+		addActionToTable();
+		
+		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	private void generateSecondsTables() {
+		/*
+		 * PREVISAO ORCAMENTO 
+		 */
+		previsaoOrcamentoModelConverter = new PrevisaoOrcamentoModelConverter(orcamentoEdited);
+		
+		tableModelPrevisaoOrcamento = new TableModelImpl(previsaoOrcamentoModelConverter);
+		
+		tablePrevisaoOrcamento = new CustomTable();
+		tablePrevisaoOrcamento.setModel(tableModelPrevisaoOrcamento);
+		tablePrevisaoOrcamento.getColumn("Previsão").setPreferredWidth(300);
+		tablePrevisaoOrcamento.getColumn("Valor").setPreferredWidth(160);
+		tablePrevisaoOrcamento.setEnabled(false);
+		
+		scrollPaneTablePrevisaoOrcamento.setViewportView(tablePrevisaoOrcamento);
+		scrollPaneTablePrevisaoOrcamento.setBounds(500, 180, 480, 120);
+		scrollPaneTablePrevisaoOrcamento.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneTablePrevisaoOrcamento.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	}
+	
+	private void loadCamposByObject(Orcamento orcamento) {
+		nomeOrcamentoTf.setText(orcamento.getNome());
+		descricaoOrcamentoTa.setText(orcamento.getDescricao());
+		clienteCb.setSelectedItem(orcamento.getCliente());
+		terrenoCb.setSelectedItem(orcamento.getTerreno());
+		cubCb.setSelectedItem(orcamento.getCub());
+		metragemTf.setText(orcamento.getMetragemConstrucao().toString());
+		percentualLucroTf.setText(orcamento.getPercentualLucro().toString());
+		loadCalculatedValuesByObject(orcamento);
+		
+		SwingUtilities.updateComponentTreeUI(this);
+	}
+	
+	private void loadCalculatedValuesByObject(Orcamento orcamento) {
+		String vendaCub = String.valueOf(orcamento.getValorVendaCub());
+		String vendaPrevisao = String.valueOf(orcamento.getValorVendaPrevisao().doubleValue());
+		
+		valorVendaCubTf.setText(vendaCub);
+		valorVendaPrevisaoTf.setText(vendaPrevisao);
+	}
+	
+	private void limparCampos() {
+		nomeOrcamentoTf.setText("");
+		descricaoOrcamentoTa.setText("");
+		clienteCb.setSelectedItem(null);
+		terrenoCb.setSelectedItem(null);
+		cubCb.setSelectedItem(null);
+		metragemTf.setText("");
+		percentualLucroTf.setText("");
+		valorVendaCubTf.setText("");
+		valorVendaPrevisaoTf.setText("");
+		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
 	@Override
 	protected void addActions() {
+		
+		incluirPrevisaoBtn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent ae) {
+				
+				Previsao previsao = previsaoCb.getItemAt(previsaoCb.getSelectedIndex());
+				if (previsao == null) {
+					JOptionPane.showMessageDialog(null, "Selecione uma previsão");
+					return;
+				}
+				
+				String valorPrevisao = valorPrevisaoTf.getText();
+				if (valorPrevisao == null || valorPrevisao.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Informe o valor da previsão");
+					return;
+				}
+				
+				BigDecimal valorConverted;
+				try {
+					valorConverted = new BigDecimal(valorPrevisao);
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, "Valor da previsão é inválido");
+					return;
+				}
+				try {
+					orcamentoController.cadastrarPrevisaoOrcamento(new PrevisaoOrcamento(valorConverted, previsao, orcamentoEdited));
+				} catch (SQLException e) {
+					JOptionPane.showMessageDialog(null, "Não foi possível incluir a previsão ao orçamento");
+					return;
+				}
+				generateSecondsTables();
+				orcamentoEdited = orcamentoModelConverter.getObjectByRowIndex(tableOrcamento.getSelectedRow());
+				loadCalculatedValuesByObject(orcamentoEdited);
+				
+				previsaoCb.setSelectedItem(null);
+				valorPrevisaoTf.setText("");
+				JOptionPane.showMessageDialog(null, "Previsão incluida com sucesso");
+			}
+		});
+		
+		getNovoBtn().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tableOrcamento.clearSelection();
+				limparCampos();
+				orcamentoEdited = null;
+				editingOrcamento = false;
+				generateSecondsTables();
+				setEnablePrevisaoInclude(false);
+			}
+		});
 		
 		getSalvarBtn().addActionListener(new ActionListener() {
 			@Override
@@ -185,7 +407,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 					return;
 				}
 				Double metragemConstrucao = new Double(metragemTf.getText());
-				Double percentualLucro = new Double(percuntalLucroTf.getText());
+				Double percentualLucro = new Double(percentualLucroTf.getText());
 				
 				Orcamento orcamento = null;
 				try {
@@ -197,13 +419,60 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				orcamento.setPercentualLucro(percentualLucro);
 				orcamento.setCliente(cliente);
 				try {
-					orcamentoController.cadastrarOrcamento(orcamento);
+					if (editingOrcamento) {
+						orcamento.setId(orcamentoEdited.getId());
+						orcamentoController.atualizarOrcamento(orcamento);
+					} else {
+						orcamentoController.cadastrarOrcamento(orcamento);
+					}
+					// quando o orcamentoEdited (contexto) não é nulo
+					// o mesmo deve repassar a lista da previsoes (que nao é informado em tela)
+					// antes de ser substituido pelo orcamento de edição
+					if (orcamentoEdited != null) {
+						orcamento.setPrevisaoList(orcamentoEdited.getPrevisaoList());
+					}
+					orcamentoEdited = orcamento;
+					loadCalculatedValuesByObject(orcamentoEdited);
 				} catch (SQLException e) {
 					JOptionPane.showMessageDialog(null, "Erro ao cadastrar orçamento");
 					return;
 				}
+				generateTable();
+				editingOrcamento = true;
+				JOptionPane.showMessageDialog(null, "Registro salvo com sucesso");
 			}
 		});
 		
+		getExcluirBtn().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					orcamentoController.removerOrcamento(orcamentoEdited);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Não foi possível remover o registro");
+					return;
+				}
+				generateTable();
+				JOptionPane.showMessageDialog(null, "Registro removido com sucesso");
+			}
+		});
+	}
+	
+	/**
+	 * Método separado porque a tabela é recriada quando algum registro é criado/ removido
+	 */
+	private void addActionToTable() {
+		tableOrcamento.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (tableOrcamento.getSelectedRow() > -1) {
+					editingOrcamento = true;
+					orcamentoEdited = orcamentoModelConverter.getObjectByRowIndex(tableOrcamento.getSelectedRow());
+					loadCamposByObject(orcamentoEdited);
+					generateSecondsTables();
+					setEnablePrevisaoInclude(true);
+				}
+			}
+		});
 	}
 }

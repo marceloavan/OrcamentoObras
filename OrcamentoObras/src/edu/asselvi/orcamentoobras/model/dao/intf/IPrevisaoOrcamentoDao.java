@@ -1,6 +1,7 @@
 package edu.asselvi.orcamentoobras.model.dao.intf;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
 import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
@@ -28,6 +29,6 @@ public interface IPrevisaoOrcamentoDao extends IDao<PrevisaoOrcamento> {
 	 * @return
 	 * @throws SQLException
 	 */
-	public PrevisaoOrcamento getPeloOrcamento(Orcamento orcamento) throws SQLException;
+	public List<PrevisaoOrcamento> getPeloOrcamento(Orcamento orcamento) throws SQLException;
 	
 }
