@@ -170,4 +170,35 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 		}
 		
 	}
+
+	@Override
+	public PessoaFisica getPeloCodigo(Integer codigo) throws SQLException {
+		String sql = "SELECT * FROM PESSOA WHERE COD_PESSOA = ? AND TIPO_PESSOA = 'F'";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, codigo);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				Integer codigoEndereco = rs.getInt("ENDERECO");
+				String nome = rs.getString("NOME_PESSOA");
+				String sobreNome = rs.getString("SOBRENOME_PESSOA");
+				String documento = rs.getString("DOCUMENTO");
+				
+				IDaoFactory daoFactory = DaoFactory.getInstance();
+				Endereco endereco = daoFactory.getEnderecoDao().getPeloCodigo(codigoEndereco);
+				try {
+					PessoaFisica pessoa = new PessoaFisica(documento, endereco, nome, sobreNome);
+					pessoa.setId(codigo);
+					return pessoa;
+				} catch (Exception e) {
+					throw new SQLException("Base de dados não consistente");
+				}
+			}
+		} finally {
+			finalizarConexoes(stmt, rs);
+		}
+		return null;
+	}
 }

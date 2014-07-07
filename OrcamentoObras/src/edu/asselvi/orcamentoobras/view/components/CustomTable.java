@@ -1,6 +1,7 @@
 package edu.asselvi.orcamentoobras.view.components;
 
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableModel;
@@ -16,8 +17,12 @@ public class CustomTable extends JTable {
 		super();
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		this.setRowSelectionAllowed(true);
+		this.setColumnSelectionAllowed(false);
 		this.setAlinhamentoColunas(centralizado);
 		this.setResizableColunes(false);
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setReorderingAllowed(false);
 	}
 	
@@ -25,8 +30,12 @@ public class CustomTable extends JTable {
 		super(tableModel);
 		DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
 		centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		this.setRowSelectionAllowed(true);
+		this.setColumnSelectionAllowed(false);
 		this.setAlinhamentoColunas(centralizado);
 		this.setResizableColunes(false);
+		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.getTableHeader().setReorderingAllowed(false);
 	}
 	

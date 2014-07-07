@@ -61,4 +61,29 @@ public class CustoUnitarioBasico {
 	public String toString() {
 		return String.format("Mês/ano: %d/%d - valor: %s", mes, ano, valorMetroQuadrado);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CustoUnitarioBasico other = (CustoUnitarioBasico) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }

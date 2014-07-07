@@ -61,7 +61,14 @@ public class PessoaDao extends AbstractDao implements IPessoaDao {
 
 	@Override
 	public AbstractPessoa getPeloCodigo(Integer codigo) throws SQLException {
-		return null;
+		AbstractPessoa pessoa = pessoaFisicaDao.getPeloCodigo(codigo);
+		if (pessoa == null) {
+			pessoa = pessoaJuridicaDao.getPeloCodigo(codigo);
+		} 
+		if (pessoa == null) {
+			throw new SQLException("Pessoa não existe");
+		}
+		return pessoa;
 	}
 
 	@Override

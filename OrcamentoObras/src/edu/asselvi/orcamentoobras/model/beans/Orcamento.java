@@ -2,6 +2,7 @@ package edu.asselvi.orcamentoobras.model.beans;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
@@ -95,6 +96,9 @@ public class Orcamento {
 	}
 	
 	public List<PrevisaoOrcamento> getPrevisaoList() {
+		if (previsaoList == null) {
+			return Collections.emptyList();
+		}
 		return previsaoList;
 	}
 
@@ -135,10 +139,21 @@ public class Orcamento {
 		return totalPrevisao;
 	}
 	
+	/**
+	 * Valor de venda considerando o calculo do CUB
+	 * 
+	 * @return
+	 */
 	public BigDecimal getValorVendaCub() {
 		return getCub().getValorMetroQuadrado().multiply(new BigDecimal(getMetragemConstrucao()));
 	}
 
+	/**
+	 * Valor de venda considerando o total de previsões multiplicado
+	 * pelo percentual de lucro esperado
+	 * 
+	 * @return
+	 */
 	public BigDecimal getValorVendaPrevisao() {
 		return getTotalPrevisao().multiply(new BigDecimal(getPercentualLucro() / 100));
 	}
