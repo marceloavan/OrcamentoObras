@@ -80,7 +80,7 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 		
 	}
 	
-	public void limparCampos(){
+	private void limparCampos(){
 		codigoTf.setText("");
 		descricaoTf.setText("");
 		SwingUtilities.updateComponentTreeUI(this);
@@ -91,7 +91,7 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 		descricaoTf.setText(produto.getDescricao());
 	}
 	
-	public void generateTable() {
+	private void generateTable() {
 		tableModel = new TableModelImpl(produtoModelConverter);
 		
 		table = new CustomTable();

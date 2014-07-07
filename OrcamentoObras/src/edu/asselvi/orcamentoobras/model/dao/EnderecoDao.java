@@ -136,7 +136,6 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 			finalizarConexoes(stmt, rs);
 		}
 		return enderecoLista;
-
 	}
 
 	@Override
