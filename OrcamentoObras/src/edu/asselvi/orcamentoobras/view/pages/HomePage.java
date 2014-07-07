@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroCubPage;
+import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroPessoaPage;
 import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroProdutoPage;
 import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroTerrenoPage;
 import edu.asselvi.orcamentoobras.view.pages.cadastros.CadastroUsuarioPage;
@@ -58,6 +59,14 @@ public class HomePage extends TemplateHomePage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new CadastroCubPage();				
+			}
+		});
+		
+		getGeneralMenu().getItemCadastroPessoa().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CadastroPessoaPage();
 			}
 		});
 		

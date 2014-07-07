@@ -49,9 +49,9 @@ public class CadastroCubPage extends TemplateCadastroPages{
 		cubController = new CustoUnitarioBasicoController();
 		cubModelConverter = new CubModelConverter();
 		
-		generateTable();
-		
 		getContentPane().add(scrollPane);
+		
+		generateTable();
 		
 		JLabel mesLb = new JLabel("Mês");
 		mesLb.setBounds(10, 250, 90, 15);
@@ -116,9 +116,8 @@ public class CadastroCubPage extends TemplateCadastroPages{
 		table = new CustomTable();
 		table.setModel(tableModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		table.getColumn("Mês").setPreferredWidth(200);
+		table.getColumn("Mes").setPreferredWidth(200);
 		table.getColumn("Ano").setPreferredWidth(250);
-		table.getColumn("Vlr M2").setPreferredWidth(300);
 		
 		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 40, 470, 180);

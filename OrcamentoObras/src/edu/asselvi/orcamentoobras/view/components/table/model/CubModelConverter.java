@@ -8,12 +8,12 @@ import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 
 public class CubModelConverter implements IModelConverter<CustoUnitarioBasico>{
 
-	int qtdColumns = 3;
+	int qtdColumns = 2;
 	public List<CustoUnitarioBasico> cubList;
 	
 	@Override
 	public String[] getColumnNames() {
-		return new String[] {"Mes", "Ano", "Vlr. M2"};
+		return new String[] {"Mes", "Ano"};
 	}
 
 	@Override
@@ -32,7 +32,6 @@ public class CubModelConverter implements IModelConverter<CustoUnitarioBasico>{
 		for (CustoUnitarioBasico cub : cubList) {
 			objects[row][0] = (Object) cub.getMes();
 			objects[row][1] = (Object) cub.getAno();
-			objects[row][2] = (Object) cub.getValorMetroQuadrado();
 			row++;
 		}
 		return null;
