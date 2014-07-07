@@ -123,7 +123,8 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 				Integer mes = rs.getInt("MES");
 				BigDecimal valorMetroQuadrado = rs.getBigDecimal("VL_METRO_QUADRADO");
 				
-				CustoUnitarioBasico cub = new CustoUnitarioBasico(id, valorMetroQuadrado, mes, ano);
+				CustoUnitarioBasico cub = new CustoUnitarioBasico(valorMetroQuadrado, mes, ano);
+				cub.setId(id);
 				cubLista.add(cub);
 			}
 		} finally {
@@ -154,7 +155,8 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 				Integer codMes = rs.getInt("MES");
 				BigDecimal valorMetroQuadrado = rs.getBigDecimal("VL_METRO_QUADRADO");
 				
-				cub = new CustoUnitarioBasico(id, valorMetroQuadrado, codMes, codAno);
+				cub = new CustoUnitarioBasico(valorMetroQuadrado, codMes, codAno);
+				cub.setId(id);
 			}
 		} finally {
 			finalizarConexoes(stmt, rs);
@@ -181,7 +183,8 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 				Integer mes = rs.getInt("MES");
 				BigDecimal valorMetroQuadrado = rs.getBigDecimal("VL_METRO_QUADRADO");
 				
-				cub = new CustoUnitarioBasico(id, valorMetroQuadrado, mes, ano);
+				cub = new CustoUnitarioBasico(valorMetroQuadrado, mes, ano);
+				cub.setId(id);
 			}
 		} finally {
 			finalizarConexoes(stmt, rs);

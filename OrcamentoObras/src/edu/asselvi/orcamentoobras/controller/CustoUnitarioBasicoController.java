@@ -23,4 +23,17 @@ public class CustoUnitarioBasicoController {
 		}
 		return Collections.emptyList();
 	}
+	
+	public void inserirCub (CustoUnitarioBasico cub) throws SQLException{
+		cubDao.inserir(cub);
+	}
+	
+	public void atualizarCub (CustoUnitarioBasico cub) throws SQLException{
+		cubDao.atualizar(cub);
+	}
+	
+	public void excluirCub (Integer codigo) throws SQLException{
+		CustoUnitarioBasico cub = DaoFactory.getInstance().getCubDao().getPeloCodigo(codigo);
+		cubDao.remover(cub);
+	}
 }

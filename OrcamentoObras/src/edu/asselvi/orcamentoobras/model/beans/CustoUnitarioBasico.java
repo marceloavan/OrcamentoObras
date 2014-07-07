@@ -15,8 +15,7 @@ public class CustoUnitarioBasico {
 	private Integer mes;
 	private Integer ano;
 	
-	public CustoUnitarioBasico(Integer id, BigDecimal valorMetroQuadrado, Integer mes, Integer ano) {
-		setId(id);
+	public CustoUnitarioBasico(BigDecimal valorMetroQuadrado, Integer mes, Integer ano) {
 		setValorMetroQuadrado(valorMetroQuadrado);
 		setMes(mes);
 		setAno(ano);
