@@ -1,13 +1,21 @@
 package edu.asselvi.orcamentoobras.view.pages.cadastros;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.sql.SQLException;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import edu.asselvi.orcamentoobras.controller.EnderecoController;
@@ -31,6 +39,7 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 	private TerrenoModelConverter terrenoModelConverter;
 	private AbstractTableModel tableModel;
 	
+	private JTextField codigoTf;
 	private JTextField valorVendaTf;
 	private JTextField metragemTf;
 	private JTextField itbiTf;
@@ -46,10 +55,15 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 	
 	public CadastroTerrenoPage(){
 		super(580,500);
-		getContentPane().add(scrollPane);
+		
+		
 		
 		terrenoController = new TerrenoController();
 		enderecoController = new EnderecoController();
+		
+		generateTable();
+		
+		getContentPane().add(scrollPane);
 		
 		JLabel descricaoLb = new JLabel("Descrição");
 		descricaoLb.setBounds(10, 250, 90, 15);
@@ -143,7 +157,11 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 		SwingUtilities.updateComponentTreeUI(this);
 		loadItensForCb();
 		
-		
+		yPosition += getDistanceTf();
+		codigoTf = new JTextField();
+		codigoTf.setBounds(110, yPosition, getWidthTf(), getHeightTf());
+		getContentPane().add(codigoTf);
+		codigoTf.setVisible(false);
 	}
 	
 	private void loadItensForCb() {
@@ -182,27 +200,81 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 		table.setModel(tableModel);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		table.getColumn("Descrição").setPreferredWidth(200);
-		table.getColumn("Endereço").setPreferredWidth(250);
 		table.getColumn("Metragem").setPreferredWidth(250);
-		table.getColumn("Vlr. Venda").setPreferredWidth(50);
-		table.getColumn("Vlr. ITBI").setPreferredWidth(50);
-		table.getColumn("Vlr. FRJ").setPreferredWidth(50);
-		table.getColumn("Vlr. Escritura").setPreferredWidth(50);
-		table.getColumn("Vlr Registro").setPreferredWidth(50);
 		
 		scrollPane.setViewportView(table);
 		scrollPane.setBounds(10, 40, 470, 180);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);
-		//addActionToTable();
+		addActionToTable();
 		
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 	@Override
 	protected void addActions() {
-		// TODO Auto-generated method stub
+		getSalvarBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String descricao = descricaoTf.getText();
+				BigDecimal valorVenda = new BigDecimal(valorVendaTf.getText());
+				BigDecimal valorItbi = new BigDecimal(itbiTf.getText());
+				BigDecimal valorFrj = new BigDecimal(frjTf.getText());
+				BigDecimal escritura = new BigDecimal(escrituraTf.getText());
+				BigDecimal registro = new BigDecimal(escrituraTf.getText());
+				Double metragem = Double.parseDouble(metragemTf.getText());
+				
+				try {
+					terrenoController.cadastrarTerreno(new Terreno (descricao, registro, null, metragem));
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o terreno");
+					return;
+				}
+				limparCampos();
+				//generateTable();
+				JOptionPane.showMessageDialog(null, "Terreno cadastrado com sucesso");
+				
+			}
+		});
+		
+		getNovoBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				limparCampos();
+				//table.clearSelection();
+			}
+		});
+		
+		getExcluirBtn().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Integer codigo = Integer.parseInt(codigoTf.getText());
+					terrenoController.removerTerreno(codigo);
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
+				limparCampos();
+				//generateTable();
+			}
+		});
 		
 	}
 
+	private void addActionToTable() {
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (table.getSelectedRow() > -1) {
+					Terreno terreno = terrenoModelConverter.getObjectByRowIndex(table.getSelectedRow());
+					loadCamposByObject(terreno);
+				}
+				
+			}
+		});
+	}
 }

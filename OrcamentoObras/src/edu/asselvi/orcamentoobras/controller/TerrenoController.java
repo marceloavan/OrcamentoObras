@@ -25,5 +25,18 @@ public class TerrenoController {
 		}
 		return Collections.emptyList();
 	}
+	
+	public void cadastrarTerreno(Terreno terreno) throws SQLException{
+		terrenoDao.inserir(terreno);
+	}
+	
+	public void atualizarTerreno (Terreno terreno) throws SQLException{
+		terrenoDao.atualizar(terreno);
+	}
+	
+	public void removerTerreno (Integer codigo) throws SQLException {
+		Terreno terreno = daoFactory.getTerrenoDao().getPeloCodigo(codigo);
+		terrenoDao.remover(terreno);
+	}
 
 }

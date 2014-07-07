@@ -8,12 +8,12 @@ import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 
 public class TerrenoModelConverter implements IModelConverter<Terreno>{
 	
-	private int qtdColumns = 8;
+	private int qtdColumns = 2;
 	public List<Terreno> terrenoList;
 	
 	@Override
 	public String[] getColumnNames() {
-		return new String[] {"Descrição","Endereço","Metragem","Vlr. Venda","Vlr. ITBI","Vlr. FRJ","Vlr. Escritura","Vlr Registro"};
+		return new String[] {"Descrição","Metragem"};
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class TerrenoModelConverter implements IModelConverter<Terreno>{
 		try {
 			terrenoList = DaoFactory.getInstance().getTerrenoDao().getTodos();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}
 		
 		int row = 0;
@@ -31,13 +31,7 @@ public class TerrenoModelConverter implements IModelConverter<Terreno>{
 		
 		for (Terreno terreno : terrenoList) {
 			objects[row][0] = (Object) terreno.getDescricao();
-			objects[row][1] = (Object) terreno.getEndereco().getLogradouro();
-			objects[row][2] = (Object) terreno.getMetragem();
-			objects[row][3] = (Object) terreno.getValorVenda();
-			objects[row][4] = (Object) terreno.getValorITBI();
-			objects[row][5] = (Object) terreno.getValorFRJ();
-			objects[row][6] = (Object) terreno.getValorEscritura();
-			objects[row][7] = (Object) terreno.getValorRegistro();
+			objects[row][1] = (Object) terreno.getMetragem();
 			row++;
 		}
 		return objects;

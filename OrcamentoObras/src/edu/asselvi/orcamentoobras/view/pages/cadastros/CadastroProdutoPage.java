@@ -37,8 +37,6 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 	private JTextField codigoTf;
 	private JTextField descricaoTf;
 	
-	private boolean editingUser = false;
-	
 	private ProdutoController produtoController;
 	
 	public CadastroProdutoPage() {
@@ -118,7 +116,11 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 			public void actionPerformed(ActionEvent e) {
 				String descricao = descricaoTf.getText();
 				Integer codigo = Integer.parseInt(codigoTf.getText());
-								
+					
+				if (codigo == null) {
+					JOptionPane.showMessageDialog(null, "Informe o código do produto");
+					return;
+				}
 				if (descricao.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Informe a descrição do produto");
 					return;
@@ -141,7 +143,6 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 			public void actionPerformed(ActionEvent e) {
 				table.clearSelection();
 				limparCampos();	
-				editingUser = false;
 			}
 		});
 		
@@ -171,7 +172,6 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 				if (table.getSelectedRow() > -1) {
 					Produto produto = produtoModelConverter.getObjectByRowIndex(table.getSelectedRow());
 					loadCamposByObject(produto);
-					editingUser = true;
 				}
 				
 			}
