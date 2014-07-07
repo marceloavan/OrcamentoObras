@@ -68,8 +68,8 @@ public class Endereco {
 		return cep;
 	}
 
-	public void setCep(Long cep) {
-		this.cep = cep;
+	public void setCep(Long cep2) {
+		this.cep = cep2;
 	}
 
 	@Override

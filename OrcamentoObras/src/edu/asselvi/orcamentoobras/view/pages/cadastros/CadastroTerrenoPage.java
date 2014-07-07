@@ -190,6 +190,7 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 		escrituraTf.setText(terreno.getValorEscritura().toString());
 		registroTf.setText(terreno.getValorRegistro().toString());
 		metragemTf.setText(terreno.getMetragem().toString());
+		enderecoCb.setSelectedItem(terreno.getEndereco());
 	}
 	
 	private void generateTable() {

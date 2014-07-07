@@ -15,6 +15,7 @@ public class GeneralMenu extends JMenuBar {
 	private JMenuItem itemCadastroProdutos;
 	private JMenuItem itemCadastroTerrenos;
 	private JMenuItem itemCadastroPessoa;
+	private JMenuItem itemCadastroEndereco;
 	
 	// Itens do menu Adminitracao
 	private JMenuItem itemAdministracaoUsuarios;
@@ -57,6 +58,9 @@ public class GeneralMenu extends JMenuBar {
 		
 		itemCadastroPessoa = new JMenuItem("Clientes");
 		menuCadastro.add(itemCadastroPessoa);
+		
+		itemCadastroEndereco = new JMenuItem("Endereços");
+		menuCadastro.add(itemCadastroEndereco);
 		
 		/* MENU ORCAMENTO */
 		JMenu menuOrcamento = new JMenu("Orçamento");
@@ -114,5 +118,9 @@ public class GeneralMenu extends JMenuBar {
 	
 	public JMenuItem getItemCadastroPessoa() {
 		return itemCadastroPessoa;
+	}
+	
+	public JMenuItem getItemCadastroEndereco() {
+		return itemCadastroEndereco;
 	}
 }

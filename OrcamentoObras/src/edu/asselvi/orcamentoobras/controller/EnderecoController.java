@@ -23,4 +23,33 @@ public class EnderecoController {
 		return Collections.emptyList();
 		
 	}
+	
+	public void inserirEndereco(Endereco endereco) {
+		try {
+			enderecoDao.inserir(endereco);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}	
+		
+	public void atualizarEndereco(Endereco endereco) {
+		try {
+			enderecoDao.atualizar(endereco);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void excluirEndereco (Integer codigo) {
+		try {
+			Endereco endereco = DaoFactory.getInstance().getEnderecoDao().getPeloCodigo(codigo);
+			enderecoDao.remover(endereco);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

@@ -49,23 +49,23 @@ public class CadastroCubPage extends TemplateCadastroPages{
 		cubController = new CustoUnitarioBasicoController();
 		cubModelConverter = new CubModelConverter();
 		
-		getContentPane().add(scrollPane);
-		
 		generateTable();
 		
+		getContentPane().add(scrollPane);
+		
 		JLabel mesLb = new JLabel("Mês");
-		mesLb.setBounds(10, 250, 90, 15);
 		mesLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		mesLb.setBounds(10, 250, 90, 15);
 		getContentPane().add(mesLb);
 		
 		JLabel anoLb = new JLabel("Ano");
-		anoLb.setBounds(10, 275, 90, 15);
 		anoLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		anoLb.setBounds(10, 275, 90, 15);
 		getContentPane().add(anoLb);
 		
 		JLabel valorLb = new JLabel("Vlr M2");
-		valorLb.setBounds(10, 300, 90, 15);
 		valorLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		valorLb.setBounds(10, 300, 90, 15);
 		getContentPane().add(valorLb);
 		
 		int yPosition = 245;
@@ -105,6 +105,7 @@ public class CadastroCubPage extends TemplateCadastroPages{
 	}
 	
 	private void loadCamposByObject(CustoUnitarioBasico cub) {
+		codigoTf.setText(cub.getId().toString());
 		mesTf.setText(cub.getMes().toString());
 		anoTf.setText(cub.getAno().toString());
 		valorTf.setText(cub.getValorMetroQuadrado().toString());
@@ -127,6 +128,7 @@ public class CadastroCubPage extends TemplateCadastroPages{
 		addActionToTable();
 		
 		SwingUtilities.updateComponentTreeUI(this);
+		
 	}
 	
 	@Override
