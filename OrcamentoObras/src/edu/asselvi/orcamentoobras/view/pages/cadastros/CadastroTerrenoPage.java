@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
@@ -56,10 +55,10 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 	public CadastroTerrenoPage(){
 		super(580,500);
 		
-		
-		
 		terrenoController = new TerrenoController();
 		enderecoController = new EnderecoController();
+		
+		terrenoModelConverter = new TerrenoModelConverter();
 		
 		generateTable();
 		
@@ -211,6 +210,21 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 		
 		SwingUtilities.updateComponentTreeUI(this);
 	}
+	
+	private void addActionToTable() {
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				if (table.getSelectedRow() > -1) {
+					Terreno terreno = terrenoModelConverter.getObjectByRowIndex(table.getSelectedRow());
+					loadCamposByObject(terreno);
+				}
+				
+			}
+		});
+	}
+	
 	@Override
 	protected void addActions() {
 		getSalvarBtn().addActionListener(new ActionListener() {
@@ -218,21 +232,34 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String descricao = descricaoTf.getText();
+				if (descricao.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Informe a descrição");
+					return;
+				}
+				
 				BigDecimal valorVenda = new BigDecimal(valorVendaTf.getText());
 				BigDecimal valorItbi = new BigDecimal(itbiTf.getText());
 				BigDecimal valorFrj = new BigDecimal(frjTf.getText());
 				BigDecimal escritura = new BigDecimal(escrituraTf.getText());
 				BigDecimal registro = new BigDecimal(escrituraTf.getText());
-				Double metragem = Double.parseDouble(metragemTf.getText());
+				Double metragem = new Double (metragemTf.getText());
+				Endereco endereco = enderecoCb.getItemAt(enderecoCb.getSelectedIndex());
+				
 				
 				try {
-					terrenoController.cadastrarTerreno(new Terreno (descricao, registro, null, metragem));
+					Terreno terreno = new Terreno(descricao, valorVenda, endereco, metragem);
+					terreno.setValorEscritura(escritura);
+					terreno.setValorFRJ(valorFrj);
+					terreno.setValorITBI(valorItbi);
+					terreno.setValorRegistro(registro);
+					
+					terrenoController.cadastrarTerreno(terreno);
 				} catch (Exception e1) {
 					JOptionPane.showMessageDialog(null, "Não foi possível cadastrar o terreno");
 					return;
 				}
 				limparCampos();
-				//generateTable();
+				generateTable();
 				JOptionPane.showMessageDialog(null, "Terreno cadastrado com sucesso");
 				
 			}
@@ -243,7 +270,7 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				limparCampos();
-				//table.clearSelection();
+				table.clearSelection();
 			}
 		});
 		
@@ -258,23 +285,10 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 				limparCampos();
-				//generateTable();
+				generateTable();
 			}
 		});
 		
 	}
 
-	private void addActionToTable() {
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				if (table.getSelectedRow() > -1) {
-					Terreno terreno = terrenoModelConverter.getObjectByRowIndex(table.getSelectedRow());
-					loadCamposByObject(terreno);
-				}
-				
-			}
-		});
-	}
 }
