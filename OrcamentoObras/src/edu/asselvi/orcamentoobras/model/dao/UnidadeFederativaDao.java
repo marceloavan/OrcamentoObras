@@ -88,10 +88,10 @@ public class UnidadeFederativaDao extends AbstractDao implements IUnidadeFederat
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE UNIDADE_FEDERATIVA ("
-				+ "    COD_UF      		INTEGER NOT NULL,"
-				+ "    DESCRICAO   		VARCHAR(100) NOT NULL,"
-				+ "    SIGLA       		VARCHAR(2) NOT NULL,"
-				+ "    CONSTRAINT 			PK_UNIDADE_FEDERATIVA PRIMARY KEY (COD_UF))";
+				+ "    COD_UF      		INTEGER,"
+				+ "    DESCRICAO   		VARCHAR(100),"
+				+ "    SIGLA       		VARCHAR(2),"
+				+ "    CONSTRAINT 		PK_UNIDADE_FEDERATIVA PRIMARY KEY (COD_UF))";
 		
 		PreparedStatement stmt = null;
 		

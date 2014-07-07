@@ -147,11 +147,11 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE MUNICIPIO ("
-				+ "    COD_MUNICIPIO 		INTEGER NOT NULL, "
-				+ "    DESCRICAO   		VARCHAR(100) NOT NULL,"
-				+ "    COD_UF      		INTEGER NOT NULL,"
-				+ "    CONSTRAINT  		PK_MUNICIPIO PRIMARY KEY (COD_MUNICIPIO),"
-				+ "    CONSTRAINT  		FK_MUNICIPIO_UNIDADE_FEDERATIVA FOREIGN KEY (COD_UF) REFERENCES UNIDADE_FEDERATIVA(COD_UF))";
+					+ "    COD_MUNICIPIO 	INTEGER, "
+					+ "    DESCRICAO   		VARCHAR(100),"
+					+ "    COD_UF      		INTEGER,"
+					+ "    CONSTRAINT  		PK_MUNICIPIO PRIMARY KEY (COD_MUNICIPIO),"
+					+ "    CONSTRAINT  		FK_MUNICIPIO_UNIDADE_FEDERATIVA FOREIGN KEY (COD_UF) REFERENCES UNIDADE_FEDERATIVA(COD_UF))";
 		
 		PreparedStatement stmt = null;
 		

@@ -174,12 +174,12 @@ public class EnderecoDao extends AbstractDao implements IEnderecoDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE ENDERECO ("
-				+ "		COD_ENDERECO 		INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "  	LOGRADOURO 			VARCHAR(100) NOT NULL,"
-				+ "  	NUMERO 				INTEGER NOT NULL,"
-				+ "  	BAIRRO 				VARCHAR(100) NOT NULL,"
-				+ "  	CEP 				INTEGER NOT NULL,"
-				+ "  	MUNICIPIO 			INTEGER NOT NULL,"
+				+ "		COD_ENDERECO 		INTEGER AUTO_INCREMENT,"
+				+ "  	LOGRADOURO 			VARCHAR(100),"
+				+ "  	NUMERO 				INTEGER,"
+				+ "  	BAIRRO 				VARCHAR(100),"
+				+ "  	CEP 				INTEGER,"
+				+ "  	MUNICIPIO 			INTEGER,"
 				+ "  	CONSTRAINT 			PK_ENDERECO PRIMARY KEY (COD_ENDERECO),"
 				+ "  	CONSTRAINT 			FK_ENDERECO_MUNICIPIO FOREIGN KEY (MUNICIPIO) REFERENCES MUNICIPIO(COD_MUNICIPIO))";
 

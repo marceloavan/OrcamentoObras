@@ -165,8 +165,8 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE PREVISAO ("
-				+ "  	COD_PREVISAO 		INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "  	DESCRICAO 			VARCHAR(100) NOT NULL,"
+				+ "  	COD_PREVISAO 		INTEGER AUTO_INCREMENT,"
+				+ "  	DESCRICAO 			VARCHAR(100),"
 				+ "  	CONSTRAINT 			PK_PREVISAO PRIMARY KEY(COD_PREVISAO))";
 
 		PreparedStatement stmt = null;

@@ -144,14 +144,14 @@ public class PessoaFisicaDao extends AbstractDao implements IPessoaFisicaDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE PESSOA ("
-				+ "  	COD_PESSOA 			INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "  	ENDERECO 			INTEGER NOT NULL,"
-				+ "  	TIPO_PESSOA 		CHAR(1) NULL,"
-				+ "  	NOME_PESSOA 		VARCHAR(100) NOT NULL,"
-				+ "  	SOBRENOME_PESSOA 	VARCHAR(100) NOT NULL,"
-				+ "  	RAZAO_SOCIAL 		VARCHAR(100) NOT NULL,"
-				+ "  	NOME_FANTASIA 		VARCHAR(100) NOT NULL,"
-				+ "  	DOCUMENTO 			BIGINT NOT NULL,"
+				+ "  	COD_PESSOA 			INTEGER AUTO_INCREMENT,"
+				+ "  	ENDERECO 			INTEGER,"
+				+ "  	TIPO_PESSOA 		CHAR(1),"
+				+ "  	NOME_PESSOA 		VARCHAR(100),"
+				+ "  	SOBRENOME_PESSOA 	VARCHAR(100),"
+				+ "  	RAZAO_SOCIAL 		VARCHAR(100),"
+				+ "  	NOME_FANTASIA 		VARCHAR(100),"
+				+ "  	DOCUMENTO 			BIGINT,"
 				+ "  	CONSTRAINT 			PK_PESSOA PRIMARY KEY(COD_PESSOA),"
 				+ "  	CONSTRAINT 			PESSOA_ENDERECO FOREIGN KEY (ENDERECO) REFERENCES ENDERECO(COD_ENDERECO),"
 				+ "  	CONSTRAINT 			UK_PESSOA UNIQUE KEY (DOCUMENTO))";

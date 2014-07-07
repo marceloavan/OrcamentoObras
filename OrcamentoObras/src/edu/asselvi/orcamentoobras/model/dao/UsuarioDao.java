@@ -137,10 +137,10 @@ public class UsuarioDao extends AbstractDao implements IUsuarioDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE USUARIOS ("
-				+ "	USER_NAME			VARCHAR(50) NOT NULL,"
-				+ "	PASSWD				VARCHAR(255) NOT NULL,"
-				+ "	NOME_COMP			VARCHAR(100) NOT NULL,"
-				+ "	CONSTRAINT 			PK_USUARIOS PRIMARY KEY(USER_NAME))";
+				+ "	USER_NAME			VARCHAR(50),"
+				+ "	PASSWD				VARCHAR(255),"
+				+ "	NOME_COMP			VARCHAR(100),"
+				+ "	CONSTRAINT 			PK_USUARIOS PRIMARY KEY(USER_NAME));";
 		
 		PreparedStatement stmt = null;
 		

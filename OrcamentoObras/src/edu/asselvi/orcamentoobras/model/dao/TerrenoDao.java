@@ -195,15 +195,15 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE TERRENO ("
-				+ "  	COD_TERRENO 		INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "  	DESCRICAO 			VARCHAR(250) NOT NULL,"
-				+ "  	ENDERECO 			INTEGER NOT NULL,"
-				+ "  	VALOR_VENDA 		DECIMAL(10,2) NOT NULL,"
-				+ "  	METRAGEM 			DECIMAL(10,0) NOT NULL,"
-				+ "  	VALOR_ITBI 			DECIMAL(10,2) NOT NULL,"
-				+ "  	VALOR_FRJ 			DECIMAL(10,2) NOT NULL,"
-				+ "  	VALOR_ESCRITURA 	DECIMAL(10,2) NOT NULL,"
-				+ "  	VALOR_REGISTRO 		DECIMAL(10,2) NOT NULL,"
+				+ "  	COD_TERRENO 		INTEGER AUTO_INCREMENT,"
+				+ "  	DESCRICAO 			VARCHAR(250),"
+				+ "  	ENDERECO 			INTEGER,"
+				+ "  	VALOR_VENDA 		DECIMAL(10,2),"
+				+ "  	METRAGEM 			DECIMAL(10,0),"
+				+ "  	VALOR_ITBI 			DECIMAL(10,2),"
+				+ "  	VALOR_FRJ 			DECIMAL(10,2),"
+				+ "  	VALOR_ESCRITURA 	DECIMAL(10,2),"
+				+ "  	VALOR_REGISTRO 		DECIMAL(10,2),"
 				+ "  	CONSTRAINT 			PK_TERRENO PRIMARY KEY(COD_TERRENO),"
 				+ "  	CONSTRAINT 			FK_TERRENO_ENDERECO FOREIGN KEY (ENDERECO) REFERENCES ENDERECO(COD_ENDERECO))";
 		

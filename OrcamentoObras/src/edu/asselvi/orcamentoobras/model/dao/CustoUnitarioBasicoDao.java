@@ -195,10 +195,10 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 	@Override
 	public void createTable() throws SQLException {
 		String sql = "CREATE TABLE CUB ("
-				+ "COD_CUB				INTEGER NOT NULL AUTO_INCREMENT,"
-				+ "ANO					INTEGER NOT NULL," 
-				+ "MES					INTEGER NOT NULL,"
-				+ "VL_METRO_QUADRADO	DECIMAL(10,2) NOT NULL,"
+				+ "COD_CUB				INTEGER AUTO_INCREMENT,"
+				+ "ANO					INTEGER," 
+				+ "MES					INTEGER,"
+				+ "VL_METRO_QUADRADO	DECIMAL(10,2),"
 				+ "CONSTRAINT			PK_CUB PRIMARY KEY (COD_CUB),"
 				+ "CONSTRAINT			UK_CUB UNIQUE KEU (ANO, MES))";
 
