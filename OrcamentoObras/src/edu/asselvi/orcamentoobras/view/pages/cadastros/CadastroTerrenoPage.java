@@ -48,9 +48,10 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 	private JTextField descricaoTf;
 	private JComboBox<Endereco> enderecoCb;
 	
-	
 	private TerrenoController terrenoController;
 	private EnderecoController enderecoController;
+	
+	private Terreno terrenoSelected;
 	
 	public CadastroTerrenoPage(){
 		super(580,500);
@@ -218,8 +219,8 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				if (table.getSelectedRow() > -1) {
-					Terreno terreno = terrenoModelConverter.getObjectByRowIndex(table.getSelectedRow());
-					loadCamposByObject(terreno);
+					terrenoSelected = terrenoModelConverter.getObjectByRowIndex(table.getSelectedRow());
+					loadCamposByObject(terrenoSelected);
 				}
 				
 			}
@@ -272,6 +273,7 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 			public void actionPerformed(ActionEvent e) {
 				limparCampos();
 				table.clearSelection();
+				terrenoSelected = null;
 			}
 		});
 		
@@ -280,10 +282,14 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Integer codigo = Integer.parseInt(codigoTf.getText());
-					terrenoController.removerTerreno(codigo);
+					if (terrenoSelected == null) {
+						JOptionPane.showMessageDialog(null, "Selecione um terreno para excluir");
+						return;
+					}
+					terrenoController.removerTerreno(terrenoSelected.getCodigo());
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Não foi possível remover o registro, talvez o mesmo possua alguma ligação com orçamento");
+					return;
 				}
 				limparCampos();
 				generateTable();

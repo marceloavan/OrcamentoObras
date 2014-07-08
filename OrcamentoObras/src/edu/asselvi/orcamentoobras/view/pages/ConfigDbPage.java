@@ -236,12 +236,29 @@ public class ConfigDbPage extends GeneralTemplate {
 				if (!checkField()) {
 					return;
 				}
+				String port = portTf.getText();
+				String host = hostTf.getText();
+				String base = baseTf.getText();
+				String user = userTf.getText();
+				String passwd = passwdTf.getText();
+
+				PropertiesLocator.setPropValue("db.port", port);
+				PropertiesLocator.setPropValue("db.host", host);
+				PropertiesLocator.setPropValue("db.base", base);
+				PropertiesLocator.setPropValue("db.user", user);
+				PropertiesLocator.setPropValue("db.passwd", passwd);
 				try {
+					logText.setText("");
+					logText.append("Aguarde...");
 					dataBaseConfig.generateDataBase();
+					logText.setText("");
 				} catch (SQLException e1) {
 					logText.setText("");
 					logText.append(e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Não foi possível executar a tarefa");
+					return;
 				}
+				JOptionPane.showMessageDialog(null, "Tarefa executada com sucesso");
 			}
 		});
 
@@ -254,12 +271,17 @@ public class ConfigDbPage extends GeneralTemplate {
 				}
 				
 				try {
+					logText.setText("");
+					logText.append("Aguarde...");
 					dataBaseConfig.insertDataBase();
+					logText.setText("");
 				} catch (SQLException e1) {
 					logText.setText("");
 					logText.append(e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Não foi possível executar a tarefa");
+					return;
 				}
-
+				JOptionPane.showMessageDialog(null, "Tarefa executada com sucesso");
 			}
 		});
 
@@ -272,12 +294,17 @@ public class ConfigDbPage extends GeneralTemplate {
 				}
 				
 				try {
+					logText.setText("");
+					logText.append("Aguarde...");
 					dataBaseConfig.demoDataBase();
+					logText.setText("");
 				} catch (SQLException e1) {
 					logText.setText("");
 					logText.append(e1.getMessage());
+					JOptionPane.showMessageDialog(null, "Não foi possível executar a tarefa");
+					return;
 				}
-
+				JOptionPane.showMessageDialog(null, "Tarefa executada com sucesso");
 			}
 		});
 		

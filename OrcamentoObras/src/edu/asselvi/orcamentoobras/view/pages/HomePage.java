@@ -63,13 +63,13 @@ public class HomePage extends TemplateHomePage {
 			}
 		});
 		
-		getGeneralMenu().getItemCadastroPessoa().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new CadastroPessoaPage();
-			}
-		});
+//		getGeneralMenu().getItemCadastroPessoa().addActionListener(new ActionListener() {
+//			
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				new CadastroPessoaPage();
+//			}
+//		});
 		
 		getGeneralMenu().getItemCadastroEndereco().addActionListener(new ActionListener() {
 			

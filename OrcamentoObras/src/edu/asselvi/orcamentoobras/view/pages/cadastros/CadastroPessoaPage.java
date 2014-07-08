@@ -24,7 +24,6 @@ import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.beans.PessoaFisica;
 import edu.asselvi.orcamentoobras.model.beans.PessoaJuridica;
-import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.PessoaModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -186,11 +185,40 @@ public class CadastroPessoaPage extends TemplateCadastroPages{
 	}
 	
 	private void loadCamposByObject (AbstractPessoa pessoa) {
-		nomeTf.setText(pessoa.getNomeAbs());
+		if (pessoa.isPessoaFisica()) {
+			nomeTf.setEnabled(true);
+			nomeTf.setText(pessoa.getNomeAbs());
+			razaoSocialTf.setEnabled(false);;
+			
+			sobrenomeTf.setEnabled(true);;
+			sobrenomeTf.setText(pessoa.getSecondNomeAbs());
+			nomeFantasiaTf.setEnabled(false);
+			
+			cpfTf.setEnabled(true);
+			cnpjTf.setEnabled(false);
+			
+			cpfTf.setText(pessoa.getDocumento());
+			cnpjTf.setText("");
+		}
+		if (pessoa.isPessoaJuridica()) {
+			nomeTf.setEnabled(false);
+			razaoSocialTf.setText(pessoa.getNomeAbs());
+			razaoSocialTf.setEnabled(true);;
+			
+			sobrenomeTf.setEnabled(false);
+			nomeFantasiaTf.setEnabled(true);
+			nomeFantasiaTf.setText(pessoa.getSecondNomeAbs());
+			
+			cpfTf.setEnabled(false);
+			cnpjTf.setEnabled(true);
+			
+			cpfTf.setText("");
+			cnpjTf.setText(pessoa.getDocumento());
+		}
 	}
 	
 	private void generateTable() {
-tableModel = new TableModelImpl(pessoaModelConverter);
+		tableModel = new TableModelImpl(pessoaModelConverter);
 		
 		table = new CustomTable();
 		table.setModel(tableModel);

@@ -43,8 +43,8 @@ public class GeneralMenu extends JMenuBar {
 		itemAdministracaoUsuarios = new JMenuItem("Usu\u00E1rios");
 		menuAdministracao.add(itemAdministracaoUsuarios);
 		
-		itemAdministracaoTrocarSenha = new JMenuItem("Trocar senha");
-		menuAdministracao.add(itemAdministracaoTrocarSenha);
+		//itemAdministracaoTrocarSenha = new JMenuItem("Trocar senha");
+		//menuAdministracao.add(itemAdministracaoTrocarSenha);
 
 		/* MENU CADASTRO */
 		JMenu menuCadastro = new JMenu("Cadastro");
@@ -56,8 +56,8 @@ public class GeneralMenu extends JMenuBar {
 		itemCadastroTerrenos = new JMenuItem("Terrenos");
 		menuCadastro.add(itemCadastroTerrenos);
 		
-		itemCadastroPessoa = new JMenuItem("Clientes");
-		menuCadastro.add(itemCadastroPessoa);
+		//itemCadastroPessoa = new JMenuItem("Clientes");
+		//menuCadastro.add(itemCadastroPessoa);
 		
 		itemCadastroEndereco = new JMenuItem("Endereços");
 		menuCadastro.add(itemCadastroEndereco);

@@ -63,6 +63,20 @@ public abstract class AbstractPessoa {
 		}
 		return "";
 	}
+	
+	/**
+	 * Retorna uma string que representa o nome da pessoa em questão
+	 * 
+	 * @return
+	 */
+	public String getSecondNomeAbs() {
+		if (this instanceof PessoaFisica) {
+			return ((PessoaFisica) this).getSobreNome();
+		} else if (this instanceof PessoaJuridica) {
+			return ((PessoaJuridica) this).getNomeFantasia();
+		}
+		return "";
+	}
 
 	/**
 	 * Valida o documento informado de acordo com o {@link ETipoPessoa}, já que o mesmo

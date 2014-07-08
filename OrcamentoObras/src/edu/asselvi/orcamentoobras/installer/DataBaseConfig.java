@@ -100,7 +100,6 @@ public class DataBaseConfig {
 			
 			for (int i = 0; i < inst.length; i++) {
 				st.executeUpdate(inst[i]);
-				System.out.println(inst[i]);
 			}
 			
 		} catch (Exception e) {

@@ -34,7 +34,7 @@ public class CubModelConverter implements IModelConverter<CustoUnitarioBasico>{
 			objects[row][1] = (Object) cub.getAno();
 			row++;
 		}
-		return null;
+		return objects;
 	}
 
 	@Override
