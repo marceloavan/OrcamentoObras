@@ -16,9 +16,11 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 import edu.asselvi.orcamentoobras.controller.EnderecoController;
-import edu.asselvi.orcamentoobras.controller.exception.MunicipioController;
+import edu.asselvi.orcamentoobras.controller.MunicipioController;
+import edu.asselvi.orcamentoobras.controller.UnidadeFederativaController;
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.beans.Municipio;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.EnderecoModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -41,10 +43,13 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 	private JTextField numeroTf;
 	private JTextField bairroTf;
 	private JTextField cepTf;
+	private JComboBox<UnidadeFederativa> unidadeFederativaCb;
 	private JComboBox<Municipio> municipioCb;
+	
 	
 	private EnderecoController enderecoController;
 	private MunicipioController municipioController;
+	private UnidadeFederativaController unidadeFederativaController;
 	
 	public CadastroEnderecoPage() {
 		super (500,500);
@@ -52,10 +57,16 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		enderecoController = new EnderecoController();
 		municipioController = new MunicipioController();
 		enderecoModelConverter = new EnderecoModelConverter();
+		unidadeFederativaController = new UnidadeFederativaController();
 		
 		generateTable();
 		
 		getContentPane().add(scrollPane);
+		
+		JLabel unidadeFederativaLb = new JLabel("Estado");
+		unidadeFederativaLb.setHorizontalAlignment(SwingConstants.RIGHT);
+		unidadeFederativaLb.setBounds(10, 225, 90, 15);
+		getContentPane().add(unidadeFederativaLb);
 		
 		JLabel municipioLb = new JLabel("Município");
 		municipioLb.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -82,9 +93,15 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		cepLb.setBounds(10, 350, 90, 15);
 		getContentPane().add(cepLb);
 		
-		int yPosition = 245;
+		int yPosition = 220;
+		
+		unidadeFederativaCb = new JComboBox<UnidadeFederativa>();
+		unidadeFederativaCb.setBounds(110, 215, getWidthTf(), getHeightTf());
+		getContentPane().add(unidadeFederativaCb);
+		
+		yPosition += getDistanceTf();
 		municipioCb = new JComboBox<Municipio>();
-		municipioCb.setBounds(110, yPosition, getWidthTf(), getHeightTf());
+		municipioCb.setBounds(110, 242, getWidthTf(), getHeightTf());
 		getContentPane().add(municipioCb);
 		
 		yPosition += getDistanceTf();
@@ -118,15 +135,16 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		
 		addActions();
 		SwingUtilities.updateComponentTreeUI(this);
-		loadItensForCb();
+	
 	}
 	
-	private void loadItensForCb() {
+	private void loadItensForMunicipioCb() {
 		municipioCb.addItem(null);
 		for (Municipio municipio : municipioController.getTodos()) {
 			municipioCb.addItem(municipio);
 		}
 	}
+	
 	
 	private void limparCampos(){
 		codigoTf.setText("");
@@ -157,7 +175,7 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		table.getColumn("Bairro").setPreferredWidth(250);
 		
 		scrollPane.setViewportView(table);
-		scrollPane.setBounds(10, 40, 470, 180);
+		scrollPane.setBounds(10, 40, 470, 125);
 		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBorder(null);

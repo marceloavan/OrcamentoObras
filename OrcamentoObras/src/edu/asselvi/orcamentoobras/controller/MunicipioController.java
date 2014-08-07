@@ -1,4 +1,4 @@
-package edu.asselvi.orcamentoobras.controller.exception;
+package edu.asselvi.orcamentoobras.controller;
 
 import java.sql.SQLException;
 import java.util.Collections;
