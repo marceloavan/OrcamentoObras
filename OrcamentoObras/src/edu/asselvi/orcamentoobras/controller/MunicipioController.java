@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.beans.Municipio;
+import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.intf.IMunicipioDao;
 
@@ -21,5 +22,14 @@ public class MunicipioController {
 		} catch (SQLException e) {
 		}
 		return Collections.emptyList();
+	}
+	
+	public List<Municipio> getTodosDaUf() {
+		UnidadeFederativa uf = null;
+		try {
+			return municipioDao.getTodosDaUf(uf);
+		} catch (SQLException e) {
+			return Collections.emptyList();
+		}
 	}
 }

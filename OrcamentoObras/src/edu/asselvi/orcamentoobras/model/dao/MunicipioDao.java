@@ -101,6 +101,7 @@ public class MunicipioDao extends AbstractDao implements IMunicipioDao {
 		ResultSet rs = null;
 		try {
 			stmt = getConexao().prepareStatement(sql);
+			stmt.setInt(1, uf.getCodigo());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {

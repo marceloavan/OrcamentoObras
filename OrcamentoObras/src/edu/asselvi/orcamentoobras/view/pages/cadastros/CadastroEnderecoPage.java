@@ -135,13 +135,14 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		
 		addActions();
 		SwingUtilities.updateComponentTreeUI(this);
+		loadItensForCb();
 	
 	}
 	
-	private void loadItensForMunicipioCb() {
-		municipioCb.addItem(null);
-		for (Municipio municipio : municipioController.getTodos()) {
-			municipioCb.addItem(municipio);
+	private void loadItensForCb() {
+		unidadeFederativaCb.addItem(null);
+		for (UnidadeFederativa uf : unidadeFederativaController.getTodos()) {
+			unidadeFederativaCb.addItem(uf);
 		}
 	}
 	
@@ -247,6 +248,16 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 				generateTable();
 			}
 		});
+		
+		unidadeFederativaCb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		
 	}
 
