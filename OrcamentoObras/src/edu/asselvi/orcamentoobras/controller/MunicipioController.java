@@ -24,8 +24,7 @@ public class MunicipioController {
 		return Collections.emptyList();
 	}
 	
-	public List<Municipio> getTodosDaUf() {
-		UnidadeFederativa uf = null;
+	public List<Municipio> getTodosDaUf(UnidadeFederativa uf) {
 		try {
 			return municipioDao.getTodosDaUf(uf);
 		} catch (SQLException e) {

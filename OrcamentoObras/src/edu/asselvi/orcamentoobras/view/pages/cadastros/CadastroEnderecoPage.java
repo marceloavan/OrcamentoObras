@@ -144,8 +144,22 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 		for (UnidadeFederativa uf : unidadeFederativaController.getTodos()) {
 			unidadeFederativaCb.addItem(uf);
 		}
+		municipioCb.setEnabled(false);
 	}
-	
+
+	private void loadItensForMunicipioCb() {
+		municipioCb.removeAllItems();
+		municipioCb.addItem(null);
+		int indexSelectedUf = unidadeFederativaCb.getSelectedIndex();
+		if (unidadeFederativaCb.getItemAt(indexSelectedUf) == null) {
+			municipioCb.setEnabled(false);
+			return;
+		}
+		for (Municipio municipio : municipioController.getTodosDaUf(unidadeFederativaCb.getItemAt(indexSelectedUf))) {
+			municipioCb.addItem(municipio);
+		}
+		municipioCb.setEnabled(true);
+	}
 	
 	private void limparCampos(){
 		codigoTf.setText("");
@@ -253,12 +267,9 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				loadItensForMunicipioCb();
 			}
+			
 		});
-		
-		
 	}
-
 }

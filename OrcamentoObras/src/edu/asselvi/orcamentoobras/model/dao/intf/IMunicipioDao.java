@@ -9,7 +9,7 @@ import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
 /**
  * Comportamento padrão para qualquer DAO de {@link Municipio}
  * 
- * @author Marcelo
+ * @author Marcelo Avancini
  *
  */
 public interface IMunicipioDao extends IDao<Municipio> {

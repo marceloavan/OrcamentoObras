@@ -46,7 +46,7 @@ public class Municipio {
 
 	@Override
 	public String toString() {
-		return getDescricao() + " / " + getUf().toString();
+		return getDescricao();
 	}
 
 	@Override
