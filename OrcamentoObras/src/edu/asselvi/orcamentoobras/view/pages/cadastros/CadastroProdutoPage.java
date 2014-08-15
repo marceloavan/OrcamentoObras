@@ -15,8 +15,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.ProdutoController;
 import edu.asselvi.orcamentoobras.model.beans.Produto;
+import edu.asselvi.orcamentoobras.service.ProdutoService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.ProdutoModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -37,12 +37,12 @@ public class CadastroProdutoPage extends TemplateCadastroPages{
 	private JTextField codigoTf;
 	private JTextField descricaoTf;
 	
-	private ProdutoController produtoController;
+	private ProdutoService produtoController;
 	
 	public CadastroProdutoPage() {
 		super(500,500);
 		
-		produtoController = new ProdutoController();
+		produtoController = new ProdutoService();
 		produtoModelConverter =  new ProdutoModelConverter();
 		
 		generateTable();

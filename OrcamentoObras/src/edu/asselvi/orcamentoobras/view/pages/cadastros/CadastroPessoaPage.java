@@ -18,12 +18,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.EnderecoController;
-import edu.asselvi.orcamentoobras.controller.PessoaController;
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.beans.PessoaFisica;
 import edu.asselvi.orcamentoobras.model.beans.PessoaJuridica;
+import edu.asselvi.orcamentoobras.service.EnderecoService;
+import edu.asselvi.orcamentoobras.service.PessoaService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.PessoaModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -53,14 +53,14 @@ public class CadastroPessoaPage extends TemplateCadastroPages{
 	private JRadioButton juridicaRb;
 	private ButtonGroup tipoPessoaBg;
 	
-	private PessoaController pessoaController;
-	private EnderecoController enderecoController;
+	private PessoaService pessoaController;
+	private EnderecoService enderecoController;
 	
 	public CadastroPessoaPage() {
 		super(550,500);
 		
-		pessoaController = new PessoaController();
-		enderecoController = new EnderecoController();
+		pessoaController = new PessoaService();
+		enderecoController = new EnderecoService();
 		pessoaModelConverter = new PessoaModelConverter();
 		
 		getContentPane().add(scrollPane);

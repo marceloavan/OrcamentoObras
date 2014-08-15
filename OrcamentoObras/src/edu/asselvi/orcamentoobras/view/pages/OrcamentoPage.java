@@ -18,10 +18,6 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.CustoUnitarioBasicoController;
-import edu.asselvi.orcamentoobras.controller.OrcamentoController;
-import edu.asselvi.orcamentoobras.controller.PessoaController;
-import edu.asselvi.orcamentoobras.controller.TerrenoController;
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
@@ -29,6 +25,10 @@ import edu.asselvi.orcamentoobras.model.beans.Previsao;
 import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.service.CustoUnitarioBasicoService;
+import edu.asselvi.orcamentoobras.service.OrcamentoService;
+import edu.asselvi.orcamentoobras.service.PessoaService;
+import edu.asselvi.orcamentoobras.service.TerrenoService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.OrcamentoModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.PrevisaoOrcamentoModelConverter;
@@ -52,10 +52,10 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	private JTextField valorVendaCubTf;
 	private JTextField valorVendaPrevisaoTf;
 	
-	private OrcamentoController orcamentoController;
-	private PessoaController pessoaController;
-	private TerrenoController terrenoController;
-	private CustoUnitarioBasicoController custoUnitarioBasicoController;
+	private OrcamentoService orcamentoController;
+	private PessoaService pessoaController;
+	private TerrenoService terrenoController;
+	private CustoUnitarioBasicoService custoUnitarioBasicoController;
 	
 	private JScrollPane scrollPaneTableOrcamento = new JScrollPane();
 	private CustomTable tableOrcamento;
@@ -77,10 +77,10 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	public OrcamentoPage() {
 		super(600, 1000);
 		
-		orcamentoController = new OrcamentoController();
-		pessoaController = new PessoaController();
-		terrenoController = new TerrenoController();
-		custoUnitarioBasicoController = new CustoUnitarioBasicoController();
+		orcamentoController = new OrcamentoService();
+		pessoaController = new PessoaService();
+		terrenoController = new TerrenoService();
+		custoUnitarioBasicoController = new CustoUnitarioBasicoService();
 		
 		generateTable();
 		getContentPane().add(scrollPaneTableOrcamento);

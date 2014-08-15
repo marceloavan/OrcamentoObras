@@ -16,8 +16,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.CustoUnitarioBasicoController;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
+import edu.asselvi.orcamentoobras.service.CustoUnitarioBasicoService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.CubModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -40,13 +40,13 @@ public class CadastroCubPage extends TemplateCadastroPages{
 	private JTextField anoTf;
 	private JTextField valorTf;
 	
-	private CustoUnitarioBasicoController cubController;
+	private CustoUnitarioBasicoService cubController;
 	
 	public CadastroCubPage() {
 		
 		super(500,500);
 		
-		cubController = new CustoUnitarioBasicoController();
+		cubController = new CustoUnitarioBasicoService();
 		cubModelConverter = new CubModelConverter();
 		
 		generateTable();

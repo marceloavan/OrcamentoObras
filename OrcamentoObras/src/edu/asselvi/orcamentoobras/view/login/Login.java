@@ -17,9 +17,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
 import edu.asselvi.orcamentoobras.context.SystemInfo;
-import edu.asselvi.orcamentoobras.controller.UsuarioController;
-import edu.asselvi.orcamentoobras.controller.exception.PasswdInvalidException;
-import edu.asselvi.orcamentoobras.controller.exception.UsuarioNotFoundException;
+import edu.asselvi.orcamentoobras.service.UsuarioService;
+import edu.asselvi.orcamentoobras.service.exception.PasswdInvalidException;
+import edu.asselvi.orcamentoobras.service.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.view.components.ButtonDefault;
 import edu.asselvi.orcamentoobras.view.pages.HomePage;
 import edu.asselvi.orcamentoobras.view.templates.GeneralTemplate;
@@ -33,12 +33,12 @@ public class Login extends GeneralTemplate {
 	private JTextField userTf;
 	private JPasswordField passwdTf;
 	private JButton loginBtn;
-	private UsuarioController usuarioManager;
+	private UsuarioService usuarioManager;
 
 	public Login() {
 		super(500, 700);
 
-		usuarioManager = new UsuarioController();
+		usuarioManager = new UsuarioService();
 		
 		//Criação do painel de login
 		JPanel loginPanel = new JPanel();

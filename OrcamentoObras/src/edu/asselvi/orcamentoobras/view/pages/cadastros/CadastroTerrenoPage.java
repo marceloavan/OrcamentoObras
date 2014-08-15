@@ -17,10 +17,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.EnderecoController;
-import edu.asselvi.orcamentoobras.controller.TerrenoController;
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
+import edu.asselvi.orcamentoobras.service.EnderecoService;
+import edu.asselvi.orcamentoobras.service.TerrenoService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
 import edu.asselvi.orcamentoobras.view.components.table.model.TerrenoModelConverter;
@@ -48,16 +48,16 @@ public class CadastroTerrenoPage extends TemplateCadastroPages{
 	private JTextField descricaoTf;
 	private JComboBox<Endereco> enderecoCb;
 	
-	private TerrenoController terrenoController;
-	private EnderecoController enderecoController;
+	private TerrenoService terrenoController;
+	private EnderecoService enderecoController;
 	
 	private Terreno terrenoSelected;
 	
 	public CadastroTerrenoPage(){
 		super(580,500);
 		
-		terrenoController = new TerrenoController();
-		enderecoController = new EnderecoController();
+		terrenoController = new TerrenoService();
+		enderecoController = new EnderecoService();
 		
 		terrenoModelConverter = new TerrenoModelConverter();
 		

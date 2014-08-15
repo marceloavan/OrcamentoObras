@@ -15,9 +15,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.UsuarioController;
-import edu.asselvi.orcamentoobras.controller.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
+import edu.asselvi.orcamentoobras.service.UsuarioService;
+import edu.asselvi.orcamentoobras.service.exception.UsuarioNotFoundException;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
 import edu.asselvi.orcamentoobras.view.components.table.model.UsuarioModelConverter;
@@ -39,14 +39,14 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 	private JTextField userNameTf;
 	
 	private JPasswordField passwdTf;
-	private UsuarioController usuarioManager;
+	private UsuarioService usuarioManager;
 	
 	private boolean editingUser = false;
 	
 	public CadastroUsuarioPage() {
 		super(500, 500);
 		
-		usuarioManager = new UsuarioController();
+		usuarioManager = new UsuarioService();
 		
 		usuarioModelConverter = new UsuarioModelConverter();
 		generateTable();

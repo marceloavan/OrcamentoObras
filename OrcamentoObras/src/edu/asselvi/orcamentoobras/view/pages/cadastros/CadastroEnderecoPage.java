@@ -15,12 +15,12 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
-import edu.asselvi.orcamentoobras.controller.EnderecoController;
-import edu.asselvi.orcamentoobras.controller.MunicipioController;
-import edu.asselvi.orcamentoobras.controller.UnidadeFederativaController;
 import edu.asselvi.orcamentoobras.model.beans.Endereco;
 import edu.asselvi.orcamentoobras.model.beans.Municipio;
 import edu.asselvi.orcamentoobras.model.beans.UnidadeFederativa;
+import edu.asselvi.orcamentoobras.service.EnderecoService;
+import edu.asselvi.orcamentoobras.service.MunicipioService;
+import edu.asselvi.orcamentoobras.service.UnidadeFederativaService;
 import edu.asselvi.orcamentoobras.view.components.CustomTable;
 import edu.asselvi.orcamentoobras.view.components.table.model.EnderecoModelConverter;
 import edu.asselvi.orcamentoobras.view.components.table.model.TableModelImpl;
@@ -47,17 +47,17 @@ public class CadastroEnderecoPage extends TemplateCadastroPages{
 	private JComboBox<Municipio> municipioCb;
 	
 	
-	private EnderecoController enderecoController;
-	private MunicipioController municipioController;
-	private UnidadeFederativaController unidadeFederativaController;
+	private EnderecoService enderecoController;
+	private MunicipioService municipioController;
+	private UnidadeFederativaService unidadeFederativaController;
 	
 	public CadastroEnderecoPage() {
 		super (500,500);
 		
-		enderecoController = new EnderecoController();
-		municipioController = new MunicipioController();
+		enderecoController = new EnderecoService();
+		municipioController = new MunicipioService();
 		enderecoModelConverter = new EnderecoModelConverter();
-		unidadeFederativaController = new UnidadeFederativaController();
+		unidadeFederativaController = new UnidadeFederativaService();
 		
 		generateTable();
 		
