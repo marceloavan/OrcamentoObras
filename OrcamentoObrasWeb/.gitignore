@@ -1,1 +1,10 @@
 /build/
+
+/bin
+
+/.settings
+
+*.classpath
+*.project
+
+properties/config.properties
