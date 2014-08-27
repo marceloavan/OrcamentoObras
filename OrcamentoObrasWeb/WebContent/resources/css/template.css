@@ -1,0 +1,51 @@
+/* CSS para template do OrcaObras */
+body {
+	margin: 0;
+}
+
+#header {
+	height: 80px;
+	background-color: #B0B0B0;
+	position: relative;
+}
+
+#header-inner {
+	height: 100%;
+	width: 1100px;
+}
+
+#menu {
+	height: 30px;
+	box-shadow: 0px 3px 5px #B0B0B0;
+	position: relative;
+	background-color: #fff;
+	z-index: 1;
+}
+
+#menu-inner {
+	height: 100%;
+	width: 1100px;
+	z-index: 1;
+}
+
+#body-page {
+	width: 1100px;
+	min-height: 500px;
+	box-shadow: 0px -5px 5px #B0B0B0;
+}
+
+#user-loged {
+	float: right;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin: 10px; 
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.img-header {
+	margin: 10px;
+}

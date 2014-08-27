@@ -3,6 +3,5 @@
 /.settings
 
 *.classpath
-*.project
 
 properties/config.properties
