@@ -1,0 +1,19 @@
+/* CSS para tela de Login*/
+
+body {
+	background-color: #B0B0B0
+}
+
+#login {
+}
+
+#img-login {
+	height: 400px;
+	width: 400px;
+}
+
+#form-login {
+	height: 300px;
+	width: 300px;
+}
+
