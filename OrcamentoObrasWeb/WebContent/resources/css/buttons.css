@@ -3,6 +3,30 @@
 	float: right;
 }
 
+.group-left {
+	float: left;
+}
+
 .button-menu {
-	
+	text-indent: 0;
+	display: inline-block;
+	color: #f8f8f8;
+	height: 100%;
+	line-height: 30px;
+	width: 100px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.button-menu-small {
+	width: 65px;
+}
+
+.button-menu:hover {
+	background-color: #f8f8f8;
+	color: #333;
+}
+
+.button-menu:active {
+	background-color: #fff;
 }

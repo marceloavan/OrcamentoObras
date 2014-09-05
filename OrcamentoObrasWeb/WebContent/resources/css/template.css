@@ -1,12 +1,17 @@
 /* CSS para template do OrcaObras */
 body {
 	margin: 0;
+	font-family: Verdana;
+	font-size: 9pt;
+	position: absolute;
+	width: 100%;
 }
 
 #header {
 	height: 80px;
 	background-color: #B0B0B0;
-	position: relative;
+	position: absolute;
+	width: 100%;
 }
 
 #header-inner {
@@ -17,8 +22,10 @@ body {
 #menu {
 	height: 30px;
 	box-shadow: 0px 3px 5px #B0B0B0;
-	position: relative;
-	background-color: #fff;
+	position: absolute;
+	width: 100%;
+	background-color: #333;
+	margin-top: 80px;
 	z-index: 1;
 }
 
@@ -29,16 +36,16 @@ body {
 }
 
 #body-page {
-	width: 1100px;
+	width: 1070px;
 	min-height: 500px;
 	box-shadow: 0px -5px 5px #B0B0B0;
+	margin-top: 110px;
+	padding: 15px;
 }
 
 #user-loged {
 	float: right;
-	margin-top: auto;
-	margin-bottom: auto;
-	margin: 10px; 
+	line-height: 80px;
 }
 
 .center {
