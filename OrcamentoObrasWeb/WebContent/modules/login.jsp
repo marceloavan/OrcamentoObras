@@ -9,17 +9,30 @@
 </head>
 <body>
 
-	<div id="login">
-		<div id="img-login">
-			<img alt="ImgLogin" src="resources/images/login.jpg">
+	<div id=header>
+		<div id="header-inner" class=center>
+			<img alt="OrcaObras" class="image-head" src="resources/images/logo.png"/>
 		</div>
-		<div id="form-login">
-			<form action="processLogin.jsp" method="post">
-				<input type="text" name="edtUser" value="" />
-				<input type="password" name="edtPassword" value="" />
-				<input type="submit" name="btnProcess" value="Entrar"/> 
-			</form>
-		</div>
+		
 	</div>
+	
+	<div id="body-page">
+		<img class="image-login" alt="ImgLogin" src="resources/images/login.jpg">
+			<div id="form-login">
+				<form action="processLogin.jsp" method="post">
+					<br><br><br><br>
+					<span>Usuário</span>
+					<input type="text" name="edtUser" value="" />
+					<br>
+					<span>Senha</span>
+					<input type="password" name="edtPassword" value="" />
+					<br>
+					<input type="submit" name="btnProcess" value="Entrar"/> 
+				</form>
+			</div>
+	</div>
+	
+	
+	
 </body>
 </html>
