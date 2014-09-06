@@ -4,31 +4,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="resources/css/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 <title>Orça Obras - Login</title>
 </head>
 <body>
 
 	<div id=header>
 		<div id="header-inner" class=center>
-			<img alt="OrcaObras" class="image-head" src="resources/images/logo.png"/>
+			<img alt="OrcaObras" class="image-head" src="${pageContext.request.contextPath}/resources/images/logo.png"/>
 		</div>
-		
 	</div>
 	
-	<div id="body-page">
-		<img class="image-login" alt="ImgLogin" src="resources/images/login.jpg">
+	<div id="login">
+		<img class="image-login" alt="ImgLogin" src="${pageContext.request.contextPath}/resources/images/login.jpg">
 			<div id="form-login">
-				<form action="processLogin.jsp" method="post">
-					<br><br><br><br>
-					<span>Usuário</span>
-					<input type="text" name="edtUser" value="" />
-					<br>
-					<span>Senha</span>
-					<input type="password" name="edtPassword" value="" />
-					<br>
-					<input type="submit" name="btnProcess" value="Entrar"/> 
-				</form>
+				<div id="login-user">
+						<form action="processLogin.jsp" method="post">
+						<span>Usuário</span>
+						<input type="text" name="edtUser" value="" />
+						<br>
+						<span>Senha</span>
+						<input type="password" name="edtPassword" value="" />
+						<br>
+						<input type="submit" name="btnProcess" value="Entrar"/> 
+					</form>
+				</div>
 			</div>
 	</div>
 	
