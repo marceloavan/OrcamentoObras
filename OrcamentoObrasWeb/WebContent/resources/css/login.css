@@ -15,7 +15,7 @@ span {
 	background-color: #B0B0B0;
 	position: absolute;
 	width: 100%;
-	top: 10%;
+	margin-top: -80px;
 }
 
 #header-inner {
@@ -24,7 +24,7 @@ span {
 	position: static;
 }
 
-#login{
+#body {
 	width:500px;
 	height:400px;
 	position: absolute;

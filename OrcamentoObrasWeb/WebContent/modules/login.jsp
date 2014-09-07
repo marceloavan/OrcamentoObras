@@ -9,13 +9,12 @@
 </head>
 <body>
 
-	<div id=header>
-		<div id="header-inner" class=center>
-			<img alt="OrcaObras" class="image-head" src="${pageContext.request.contextPath}/resources/images/logo.png"/>
+	<div id="body">
+		<div id=header>
+			<div id="header-inner" class=center>
+				<img alt="OrcaObras" class="image-head" src="${pageContext.request.contextPath}/resources/images/logo.png"/>
+			</div>
 		</div>
-	</div>
-	
-	<div id="login">
 		<img class="image-login" alt="ImgLogin" src="${pageContext.request.contextPath}/resources/images/login.jpg">
 			<div id="form-login">
 				<div id="login-user">
