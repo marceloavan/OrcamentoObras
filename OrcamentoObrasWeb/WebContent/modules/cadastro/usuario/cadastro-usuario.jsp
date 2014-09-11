@@ -30,6 +30,10 @@
 	    <input type="button">
 	  </div>
 	  
+	  <div class="button-cadastro">
+	    <input type="button">
+	  </div>
+	  
 	</div>
   </jsp:body>
 </base:template>
