@@ -6,6 +6,30 @@
 
 <base:template>
   <jsp:body>
-    
+	<span class="title_page">
+	  <c:out value="Cadastro de usuário"></c:out>
+	</span>
+	
+	<div class="box-cadastro">
+	  <div class="item-cadastro">
+		<label><c:out value="Nome completo:"></c:out></label>
+		<input type="text" />
+	  </div>
+	  
+	  <div class="item-cadastro">
+		<label><c:out value="Login:"></c:out></label>
+		<input type="text" />
+	  </div>
+	  
+	  <div class="item-cadastro">
+		<label><c:out value="Senha:"></c:out></label>
+		<input type="password" />
+	  </div>
+	  
+	  <div class="button-cadastro">
+	    <input type="button">
+	  </div>
+	  
+	</div>
   </jsp:body>
 </base:template>

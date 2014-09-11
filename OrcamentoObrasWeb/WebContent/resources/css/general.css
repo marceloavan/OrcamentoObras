@@ -1,3 +1,36 @@
 .title_page {
+	display: block;
 	font-size: 14pt;
+	margin-bottom: 15px;
+}
+
+.box-cadastro {
+	padding: 15px;
+}
+
+.item-cadastro {
+	margin: 3px;
+}
+
+.item-cadastro label {
+	display: inline-block; 
+	width: 250px; 
+	text-align: right;
+	background-color: #e2e2e2;
+	line-height: 180%
+}
+
+.item-cadastro input[type="email"], 
+.item-cadastro input[type="number"], 
+.item-cadastro input[type="password"], 
+.item-cadastro input[type="tel"], 
+.item-cadastro input[type="url"],
+.item-cadastro input[type="text"] {
+	width: 350px;
+}
+
+.button-cadastro input[type="button"],
+.button-cadastro input[type="submit"] {
+	width: 80px;
+	margin-top: 10px;
 }

@@ -3,6 +3,7 @@ body {
 	margin: 0;
 	font-family: Verdana;
 	font-size: 9pt;
+	color: #333;
 	position: absolute;
 	width: 100%;
 }
@@ -16,7 +17,7 @@ body {
 
 #header-inner {
 	height: 100%;
-	width: 1100px;
+	width: 1000px;
 }
 
 #menu {
@@ -31,16 +32,17 @@ body {
 
 #menu-inner {
 	height: 100%;
-	width: 1100px;
+	width: 1000px;
 	z-index: 1;
 }
 
 #body-page {
-	width: 1070px;
+	width: 970px;
 	min-height: 500px;
 	box-shadow: 0px -5px 5px #B0B0B0;
 	margin-top: 110px;
 	padding: 15px;
+	padding-top: 20px;
 }
 
 #user-loged {
