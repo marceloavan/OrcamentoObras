@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/template.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttons.css">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/24x24/icon24x24.ico" >
+    <title>Orça Obras</title>
   </head>
   <body>
   

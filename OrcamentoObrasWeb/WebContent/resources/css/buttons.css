@@ -30,3 +30,30 @@
 .button-menu:active {
 	background-color: #fff;
 }
+
+.button-modules {
+	display: block;
+	padding: 3px;
+	padding-top: 30px;
+	width: 120px;
+	height: 100px;
+	margin: 10px 10px;
+	text-decoration: none;
+	color: #000;
+	text-align: center;
+	border: 1px solid #888;
+	border-radius: 10px;
+	vertical-align: middle;
+	float: left;
+}
+
+.button-modules:hover {
+	background-color: #f8f8f8;
+}
+
+.button-modules div {
+	margin-top: 30px
+}
+
+.button-modules div img {
+}
