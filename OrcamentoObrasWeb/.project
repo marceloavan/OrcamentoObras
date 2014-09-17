@@ -3,6 +3,7 @@
 	<name>OrcamentoObrasWeb</name>
 	<comment></comment>
 	<projects>
+		<project>OrcamentoObras</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

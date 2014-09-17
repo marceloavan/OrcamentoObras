@@ -1,6 +1,8 @@
 package edu.asselvi.orcamentoobras.service;
 
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 
 import edu.asselvi.orcamentoobras.context.SystemInfo;
 import edu.asselvi.orcamentoobras.cripto.Cripto;
@@ -78,5 +80,13 @@ public class UsuarioService {
 		} catch (SQLException e) {
 		}
 		return null;
+	}
+	
+	public List<Usuario> getTodosUsuarios() {
+		try {
+			return usuarioDao.getTodos();
+		} catch (SQLException e) {
+			return Collections.emptyList();
+		}
 	}
 }

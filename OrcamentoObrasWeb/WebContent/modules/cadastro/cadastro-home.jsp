@@ -8,7 +8,7 @@
   <jsp:body>
     
     <div id="cadastroUsuarioBtn">
-      <a href="usuario/cadastro-usuario.jsp" class="button-modules">
+      <a href="${pageContext.request.contextPath}/UsuarioController?action=listarUsuarios" class="button-modules">
 	    <img alt="Cadastro de usuário" src="${pageContext.request.contextPath}/resources/images/32x32/user.png">
 	    <br/><br/>
     	<span><c:out value="Usuário"></c:out></span>
