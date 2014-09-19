@@ -57,3 +57,23 @@
 
 .button-modules div img {
 }
+
+
+.button-cadastro input[type="button"],
+.button-cadastro input[type="submit"] {
+	border: 0;
+	cursor: pointer;
+	width: 80px;
+	height: 25px;
+	margin-top: 10px;
+	margin: 3px;
+	background: #333;
+	color: #f8f8f8;
+	float: left;
+}
+
+.button-cadastro input[type="button"]:active,
+.button-cadastro input[type="submit"]:active {
+	background-color: #fff;
+	color: #333;
+}
