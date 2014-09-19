@@ -2,42 +2,59 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="edu.asselvi.orcamentoobrasw.utils.SystemUtils"%>
-<%@taglib prefix="base" tagdir="/WEB-INF/tags" %>
+<%@taglib prefix="base" tagdir="/WEB-INF/tags"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <base:template>
-  <jsp:body>
-  	<form action="processAdress" method="post">
- 		<div>
- 			<label>Unidade Federativa</label>
- 			<select>
- 				<option>Marcelinho Gay</option>
- 			</select>
- 		</div>
- 		<div>
- 			<label>Município</label>
- 			<select>
- 				<option>Marcelinho Gay</option>
- 			</select>
- 		</div>
- 		<div>
- 			<label>Logradouro</label>
- 			<input type="text">
- 		</div>
- 		<div>
- 			<label>Número</label>
- 			<input type="text">
- 		</div>
- 		<div>
- 			<label>Bairro</label>
- 			<input type="text">
- 		</div>
- 		<div>
- 			<label>CEP</label>
- 			<input type="text">
- 		</div>
- 		<div>
-  			<input type="submit" value="Gravar">
+	<jsp:body>
+		
+		<span class="title_page">
+			<c:out value="Cadastro de Endereços"></c:out>		
+		</span>
+		
+  		<div class="box-cadastro">
+  			<div class="item-cadastro">
+ 				<label><c:out value="Unidade Federativa"></c:out></label>
+ 				<select>
+ 					<option>Marcelinho Gay</option>
+ 				</select>
+ 			</div>
+ 			
+ 			<div class="item-cadastro">
+ 				<label><c:out value="Município"></c:out></label>
+ 				<select>
+ 					<option>Marcelinho Gay</option>
+ 				</select>
+ 			</div>
+ 			
+ 			<div class="item-cadastro">
+ 				<label><c:out value="Logradouro"></c:out></label>
+ 				<input type="text">
+ 			</div>
+ 			
+ 			<div class="item-cadastro">
+ 				<label><c:out value="Número"></c:out></label>
+ 				<input type="text">
+ 			</div>
+ 			
+ 			<div class="item-cadastro">
+ 				<label><c:out value="Bairro"></c:out></label>
+ 				<input type="text">
+ 			</div>
+ 			
+ 			<div class="item-cadastro">
+ 				<label><c:out value="CEP"></c:out></label>
+ 				<input type="text">
+ 			</div>
+ 			
+ 			<div class="button-cadastro">
+  				<input type="button">
+  			</div>
+  			
+  			<div class="button-cadastro">
+  				<input type="button">
+  			</div>
+  			
   		</div>
-  	</form>
   </jsp:body>
 </base:template>
