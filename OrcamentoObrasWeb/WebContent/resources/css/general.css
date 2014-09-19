@@ -18,7 +18,8 @@
 	display: inline-block; 
 	width: 250px; 
 	text-align: right;
-	background-color: #e2e2e2;
+	background-color: #333;
+	color: #f8f8f8;
 	line-height: 180%;
 }
 
@@ -54,7 +55,7 @@
 }
 
 .table-listagem-container {
-	position: absolute;
+	display: table;
 }
 
 .img-list {

@@ -13,9 +13,9 @@
 	  <table class="table-listagem">
         <thead>
           <tr>
-            <th width="150px">Login</th>
-            <th width="300px">Nome do usuário</th>
-            <th width="15px" colspan=2>Ações</th>
+            <th style="width: 150px">Login</th>
+            <th style="width: 300px">Nome do usuário</th>
+            <th style="width: 15px" colspan=2>Ações</th>
           </tr>
         </thead>
         <tbody>

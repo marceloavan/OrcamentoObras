@@ -27,11 +27,11 @@
 	  </div>
 	  
 	  <div class="button-cadastro">
-	    <input type="button">
+	    <input type="button" value="Salvar">
 	  </div>
 	  
 	  <div class="button-cadastro">
-	    <input type="button">
+	    <input type="button" value="Cancelar">
 	  </div>
 	  
 	</div>
