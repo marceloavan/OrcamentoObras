@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/template.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/general.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/utils-orcamento-obras.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/24x24/icon24x24.ico" >
     <title>Orça Obras</title>
   </head>

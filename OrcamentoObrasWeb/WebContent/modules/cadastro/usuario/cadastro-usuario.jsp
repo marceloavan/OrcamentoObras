@@ -11,28 +11,35 @@
 	</span>
 	
 	<div class="box-cadastro">
-	  <div class="item-cadastro">
-		<label><c:out value="Nome completo:"></c:out></label>
-		<input type="text" />
-	  </div>
 	  
-	  <div class="item-cadastro">
-		<label><c:out value="Login:"></c:out></label>
-		<input type="text" />
-	  </div>
+	  <form action="UsuarioController" method="post" onsubmit="return checkInputs(['inptLogin', 'inptNomeComp', 'inptPasswd'], ['Login', 'Nome completo', 'Senha'])">
+	    <div class="item-cadastro">
+		  <label><c:out value="Login:"></c:out></label>
+		  <input type="text" id="inptLogin" name="inptLogin" ${isEdicao ? "readonly style='background-color: #dddddd'" : ""} value="${inptLogin}"/>
+	    </div>
 	  
-	  <div class="item-cadastro">
-		<label><c:out value="Senha:"></c:out></label>
-		<input type="password" />
-	  </div>
+	    <div class="item-cadastro">
+		  <label><c:out value="Nome completo:"></c:out></label>
+		  <input type="text" id="inptNomeComp" name="inptNomeComp" value="${inptNomeComp}"/>
+	    </div>
 	  
-	  <div class="button-cadastro">
-	    <input type="button" value="Salvar">
-	  </div>
+	    <div class="item-cadastro">
+		  <label><c:out value="Senha:"></c:out></label>
+		  <input type="password" id="inptPasswd" name="inptPasswd" value="${inptPasswd}"/>
+	    </div>
+	    <!-- Action hidden -->
+	    <input type="hidden" name="action" value="${action}"/>
+	    
+	    <div class="button-cadastro">
+	      <input type="submit" value="Salvar">
+	    </div>
 	  
-	  <div class="button-cadastro">
-	    <input type="button" value="Cancelar">
-	  </div>
+	    <div class="button-cadastro">
+          <a href="UsuarioController?action=listar">
+	        <input type="button" value="Cancelar">
+	      </a>
+	    </div>
+	  </form>
 	  
 	</div>
   </jsp:body>

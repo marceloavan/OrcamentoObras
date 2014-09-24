@@ -33,7 +33,7 @@
                 </a>
               </td>
               <td>
-                <a href="UsuarioController?action=deletar&userName=<c:out value="${usuario.userName}"/>">
+                <a href="UsuarioController?action=deletar&userName=<c:out value="${usuario.userName}"/>" onclick="return confirm('Deseja realmente deletar o usuário?')">
                   <img 
                     alt="Remover" 
                     src="${pageContext.request.contextPath}/resources/images/24x24/delete24.png"
@@ -51,7 +51,9 @@
         </tbody>
       </table>
       <div class="button-cadastro">
-	    <input type="button" value="Novo">
+        <a href="UsuarioController?action=cadastrar">
+     	  <input type="button" value="Novo">
+        </a>
 	  </div>
 	</div>
   </jsp:body>

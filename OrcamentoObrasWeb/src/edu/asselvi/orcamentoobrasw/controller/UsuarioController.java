@@ -1,6 +1,7 @@
 package edu.asselvi.orcamentoobrasw.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.service.UsuarioService;
 import edu.asselvi.orcamentoobras.service.exception.UsuarioNotFoundException;
 
@@ -32,21 +34,74 @@ public class UsuarioController extends HttpServlet  {
 		String action = req.getParameter("action");
 		RequestDispatcher rd = null;
 		
-		if (action.equals("listarUsuarios")) {
-			req.setAttribute("usuariosLista", usuarioService.getTodosUsuarios());
-			rd = req.getRequestDispatcher(LISTA_USUARIO_PG);
-		} else if (action.equals("deletar")) {
-			String userName = req.getParameter("userName");
-			try {
-				usuarioService.excluirUsuario(userName);
+		switch (action) {
+			case "listar": {
 				req.setAttribute("usuariosLista", usuarioService.getTodosUsuarios());
-			} catch (UsuarioNotFoundException e) {
+				rd = req.getRequestDispatcher(LISTA_USUARIO_PG);
+				break;
 			}
-			rd = req.getRequestDispatcher(LISTA_USUARIO_PG);
-		} else {
-			rd = req.getRequestDispatcher(CADASTRO_USUARIO_PG);
+			
+			case "deletar": {
+				String userName = req.getParameter("userName");
+				try {
+					usuarioService.excluirUsuario(userName);
+					req.setAttribute("usuariosLista", usuarioService.getTodosUsuarios());
+				} catch (UsuarioNotFoundException e) {
+				}
+				rd = req.getRequestDispatcher(LISTA_USUARIO_PG);
+				break;
+			}
+			
+			case "editar": {
+				Usuario usuario = usuarioService.getUsuarioPeloUserName(req.getParameter("userName"));
+				
+				req.setAttribute("inptLogin", usuario.getUserName());
+				req.setAttribute("inptNomeComp", usuario.getNomeCompleto());
+				req.setAttribute("action", action);
+				req.setAttribute("isEdicao", true);
+				rd = req.getRequestDispatcher(CADASTRO_USUARIO_PG);
+				break;
+			}
+			
+			case "cadastrar": {
+				req.setAttribute("action", action);
+				req.setAttribute("isEdicao", false);
+				rd = req.getRequestDispatcher(CADASTRO_USUARIO_PG);
+				break;
+			}
+			
+			default: {
+				rd = req.getRequestDispatcher(CADASTRO_USUARIO_PG);
+				break;
+			}
 		}
 		rd.forward(req, resp);
 	}
-
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String nomeCompleto = req.getParameter("inptNomeComp");
+		String userName = req.getParameter("inptLogin");
+		String passwd = req.getParameter("inptPasswd");
+		String action = req.getParameter("action");
+		
+		switch (action) {
+			case "cadastrar": {
+				try {
+					usuarioService.cadastrarUsuario(new Usuario(userName, passwd, nomeCompleto));
+				} catch (SQLException e) {
+				}
+				break;
+			}
+			
+			case "editar": {
+				try {
+					usuarioService.atualizarUsuario(new Usuario(userName, passwd, nomeCompleto));
+				} catch (SQLException e) {
+				}
+				break;
+			}
+		}
+		resp.sendRedirect("UsuarioController?action=listar");
+	}
 }

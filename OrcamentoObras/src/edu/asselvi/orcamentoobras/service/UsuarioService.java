@@ -38,10 +38,12 @@ public class UsuarioService {
 	}
 	
 	public void cadastrarUsuario(Usuario usuario) throws SQLException {
+		usuario.setPasswd(Cripto.criptToMd5(usuario.getPasswd()));
 		usuarioDao.inserir(usuario);
 	}
 	
 	public void atualizarUsuario(Usuario usuario) throws SQLException {
+		usuario.setPasswd(Cripto.criptToMd5(usuario.getPasswd()));
 		usuarioDao.atualizar(usuario);
 	}
 	
