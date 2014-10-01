@@ -34,18 +34,18 @@
             <c:out value="Cadastro"/>
           </a>
           
-          <a href="#" class="button-menu">
+          <a href="${pageContext.request.contextPath}/modules/orcamento/orcamento-home.jsp" class="button-menu">
             <c:out value="Orçamento"/>
           </a>
           
-          <a href="#" class="button-menu">
+          <a href="${pageContext.request.contextPath}/modules/administrador/administrador-home.jsp" class="button-menu">
             <c:out value="Administrador"/>
           </a>
         </div>
         
         <!-- RIGHT MENU -->
         <div id=buttons-menu-rigth class="group-rigth">
-          <a href="https://google.com" class="button-menu button-menu-small">
+          <a href="https://google.com" target="_blank" class="button-menu button-menu-small">
             <c:out value="Ajuda"/>
           </a>
           

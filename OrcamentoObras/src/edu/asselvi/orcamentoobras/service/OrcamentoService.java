@@ -50,4 +50,8 @@ public class OrcamentoService {
 	public void removerOrcamento(Orcamento orcamento) throws SQLException {
 		orcamentoDao.remover(orcamento);
 	}
+	
+	public List<Orcamento> getAllOrcamentos() throws SQLException {
+		return orcamentoDao.getTodos();
+	}
 }
