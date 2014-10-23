@@ -36,4 +36,12 @@ public class CustoUnitarioBasicoService {
 		CustoUnitarioBasico cub = DaoFactory.getInstance().getCubDao().getPeloCodigo(codigo);
 		cubDao.remover(cub);
 	}
+	
+	public CustoUnitarioBasico getCubPeloCodigo (Integer codigo) {
+		try {
+			return cubDao.getPeloCodigo(codigo);
+		} catch (SQLException e) {	
+		}
+		return null;
+	}
 }

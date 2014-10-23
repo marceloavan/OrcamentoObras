@@ -7,40 +7,42 @@
 
 <base:template>
   <jsp:body>
-  		<span class="title_page">
-	  		<c:out value="Cadastro de Custo Unitário Básico"></c:out>
-		</span>
+  	<span class="title_page">
+	  	<c:out value="Cadastro de Custo Unitário Básico"></c:out>
+	</span>
   		
-  		<div class="box-cadastro">
-  		
-  			<div class="item-cadastro">
-  				<label><c:out value="Mês"></c:out></label>
-  				<input type="text" />
-  			</div>
-  		
-  			
-  			<div class="item-cadastro">
-				<label><c:out value="Ano"></c:out></label>
-  				<input type="text" /> 			
-  			</div>
-  		
-  		
-  			
-  			<div class="item-cadastro">
-  				<label><c:out value="Valor"></c:out></label>
-  				<input type="text" />
-  			</div>
-  		
-  		
-  			<div class="button-cadastro"> 
-  				<input type="button">
-  			</div>
-  		
-  			<div class="button-cadastro">
-  				<input type="button">
-  			</div>
-  		
+  	<div class="box-cadastro">
+  	
+  	<form action="CustoBasicoUnitarioController" method="post" onsubmit="return checkInputs([inptMes,inptAno,inptValor],[Mês, Ano, Valor])">
+  		<div class="item-cadastro">
+  			<label><c:out value="Mês"></c:out></label>
+  			<input type="text" id="inptMes" name="inptMes" ${isEdicao ? "readonly style='background-color: #dddddd'" : ""} value="${inptMes}"/>
   		</div>
+  			
+  		<div class="item-cadastro">
+			<label><c:out value="Ano"></c:out></label>
+  			<input type="text" id="inptAno" name="inptAno" value="${inptAno}"/> 			
+  		</div>
+  		
+  		<div class="item-cadastro">
+  			<label><c:out value="Valor"></c:out></label>
+  			<input type="text" id="inptValor" name="inptValor" value="${inptValor}"/>
+  		</div>
+  		
+  		<!-- Action hidden -->
+  		<input type="hidden" name="action" value="${action}">
+  		
+  		<div class="button-cadastro"> 
+  			<input type="button" value="Salvar">
+  		</div>
+  		
+  		<div class="button-cadastro">
+  			<a href="CustoBasicoUnitarioController?action=listar">
+  				<input type="button" value="Cancelar">
+  			</a>
+  		</div>
+  	</form>	
+  	</div>
   		
   </jsp:body>
 </base:template>

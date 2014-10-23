@@ -26,4 +26,16 @@
     <servlet-name>OrcamentoController</servlet-name>
     <url-pattern>/OrcamentoController</url-pattern>
   </servlet-mapping>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>CustoUnitarioBasicoController</display-name>
+    <servlet-name>CustoUnitarioBasicoController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.CustoUnitarioBasicoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustoUnitarioBasicoController</servlet-name>
+    <url-pattern>/CustoUnitarioBasicoController</url-pattern>
+  </servlet-mapping>
 </web-app>
