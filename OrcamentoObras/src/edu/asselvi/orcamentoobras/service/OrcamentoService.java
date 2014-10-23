@@ -51,7 +51,15 @@ public class OrcamentoService {
 		orcamentoDao.remover(orcamento);
 	}
 	
+	public void removerOrcamentoById(Integer orcamentoId) throws SQLException {
+		orcamentoDao.remover(getById(orcamentoId));
+	}
+	
 	public List<Orcamento> getAllOrcamentos() throws SQLException {
 		return orcamentoDao.getTodos();
+	}
+	
+	public Orcamento getById(Integer id) throws SQLException {
+		return orcamentoDao.getPeloCodigo(id);
 	}
 }

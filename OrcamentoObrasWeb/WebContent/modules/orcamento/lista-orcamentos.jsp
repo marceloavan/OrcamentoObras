@@ -16,7 +16,7 @@
             <th style="width: 200px">Nome</th>
             <th style="width: 200px">Terreno</th>
             <th style="width: 125px">Metragem</th>
-            <th style="width: 125px">Lucro desejado</th>
+            <th style="width: 125px">Lucro planejado</th>
             <th style="width: 15px" colspan=2>Ações</th>
           </tr>
         </thead>
@@ -28,7 +28,7 @@
               <td style="text-align: right"><c:out value="${orcamento.metragemConstrucao} m2" /></td>
               <td style="text-align: right"><c:out value="${orcamento.percentualLucro}%" /></td>
               <td>
-                <a href="UsuarioController?action=editar&userName=<c:out value="${usuario.userName}"/>">
+                <a href="OrcamentoController?action=editar&orcamentoId=<c:out value="${orcamento.id}"/>">
                   <img 
                     alt="Editar" 
                     src="${pageContext.request.contextPath}/resources/images/24x24/edit24.png"
@@ -37,7 +37,7 @@
                 </a>
               </td>
               <td>
-                <a href="UsuarioController?action=deletar&userName=<c:out value="${orcamento.id}"/>" onclick="return confirm('Deseja realmente deletar o orçamento?')">
+                <a href="OrcamentoController?action=deletar&orcamentoId=<c:out value="${orcamento.id}"/>" onclick="return confirm('Deseja realmente deletar o orçamento?')">
                   <img 
                     alt="Remover" 
                     src="${pageContext.request.contextPath}/resources/images/24x24/delete24.png"
