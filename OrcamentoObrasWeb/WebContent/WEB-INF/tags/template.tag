@@ -1,3 +1,4 @@
+<%@tag import="edu.asselvi.orcamentoobrasw.session.SessionValidator"%>
 <%@tag description="template" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -9,9 +10,20 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/utils-orcamento-obras.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/24x24/icon24x24.ico" >
     <title>Orça Obras</title>
+    <%
+    	String logout = request.getParameter("logout");
+    	if (logout != null && logout.equals("1")) {
+    		request.getRequestDispatcher("/modules/login.jsp").forward(request, response);
+    		return;
+    	}
+    	SessionValidator sessionValidator = SessionValidator.getCurrentInstance();
+    	if (!sessionValidator.validaSessao()) {
+    		request.setAttribute("errorMessage", sessionValidator.getMessage());
+			request.getRequestDispatcher("/modules/login.jsp").forward(request, response);
+    	}
+    %>
   </head>
   <body>
-  
     <div id="header">
       <div id="header-inner" class="center">
         <a href="${pageContext.request.contextPath}">
@@ -20,7 +32,7 @@
             class="img-header" height="70%">
         </a>
         <div id="user-loged">
-          <span>Usuário logado</span>
+          <span>Usuário logado: ${SessionValidator.getCurrentInstance().getNomeUsuarioLogado()}</span>
         </div>
       </div>
     </div>
@@ -49,7 +61,7 @@
             <c:out value="Ajuda"/>
           </a>
           
-          <a href="#" class="button-menu button-menu-small">
+          <a href="${pageContext.request.contextPath}/AuthController?logout=1" class="button-menu button-menu-small">
             <c:out value="Sair"/>
           </a>
         </div>
@@ -60,6 +72,7 @@
     <div id="body-page" class="center">
       <jsp:doBody/>
     </div>
-
+	
+	<jsp:include page="/modules/message.jsp" />
   </body>
 </html>

@@ -26,4 +26,15 @@
     <servlet-name>OrcamentoController</servlet-name>
     <url-pattern>/OrcamentoController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AuthController</display-name>
+    <servlet-name>AuthController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.AuthController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthController</servlet-name>
+    <url-pattern>/AuthController</url-pattern>
+  </servlet-mapping>
 </web-app>
