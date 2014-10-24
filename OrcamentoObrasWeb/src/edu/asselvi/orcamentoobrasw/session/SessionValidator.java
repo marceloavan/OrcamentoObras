@@ -14,6 +14,9 @@ public class SessionValidator {
 
 	private static SessionValidator INSTANCE;
 	
+	public static final String MESSAGE_SESSION_EXPIRED = "Sessão expirada. Favor efetuar o login novamente"; 
+	public static final String MESSAGE_NEW_SESSION = "Favor efetuar o login";
+	
 	public static SessionValidator getCurrentInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new SessionValidator(100000l);
@@ -23,7 +26,7 @@ public class SessionValidator {
 	
 	private SessionValidator(long tempoLimite) {
 		this.tempoLimite = tempoLimite;
-		setMessage("Favor efetuar o login"); 
+		setMessage(MESSAGE_NEW_SESSION); 
 	}
 	
 	public Usuario getUsuarioLogado() {
@@ -50,7 +53,7 @@ public class SessionValidator {
 		ultimaMovimentacao = acesso;
 	}
 	
-	private void setMessage(String message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 	
@@ -73,7 +76,7 @@ public class SessionValidator {
 			setUltimaMovimentacao(new Date());
 			return true;
 		}
-		setMessage("Sessão expirada. Favor efetuar o login novamente");
+		setMessage(MESSAGE_SESSION_EXPIRED);
 		setUsuarioLogado(null);
 		setUltimaMovimentacao(null);
 		return false;

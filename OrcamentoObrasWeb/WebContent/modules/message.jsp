@@ -13,10 +13,31 @@
 			}
 			alert(message);
 		}
+		
+		function getMessages() {
+			var messageList = [];
+			messageList.push('${pageContext.request.getAttribute("errorMessage")}');
+			messageList.push('${pageContext.request.getAttribute("infoMessage")}');
+			return messageList;
+		}
 	</script>
 		
 	<script type="text/javascript">
-		var message = '${pageContext.request.getAttribute("errorMessage")}';
+		var messageList = getMessages();
+		var message = '';
+		
+		for (var idx = 0; idx < messageList.length; idx++) {
+			var text = messageList[idx];
+			if (text != null && text != '') {
+				if (message == '') {
+					message = message + '- ';
+				} else {
+					message = message + '\n- ';
+				}
+				message = message + text;
+			}
+		}
+		
 		showMessage(message);
 	</script>
 	

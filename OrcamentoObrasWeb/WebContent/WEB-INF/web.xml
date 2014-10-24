@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>OrcamentoObrasWeb</display-name>
+  <welcome-file-list>
+    <welcome-file>modules/login.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description></description>
+    <display-name>UsuarioController</display-name>
+    <servlet-name>UsuarioController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.UsuarioController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioController</servlet-name>
+    <url-pattern>/UsuarioController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>OrcamentoController</display-name>
+    <servlet-name>OrcamentoController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.OrcamentoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrcamentoController</servlet-name>
+    <url-pattern>/OrcamentoController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>AuthController</display-name>
+    <servlet-name>AuthController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.AuthController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AuthController</servlet-name>
+    <url-pattern>/AuthController</url-pattern>
+  </servlet-mapping>
+</web-app>

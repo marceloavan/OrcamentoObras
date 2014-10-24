@@ -1,5 +1,7 @@
 package edu.asselvi.orcamentoobrasw.controller;
 
+import static edu.asselvi.orcamentoobrasw.session.SessionValidator.MESSAGE_NEW_SESSION;
+
 import java.io.IOException;
 import java.util.Date;
 
@@ -40,6 +42,7 @@ public class AuthController  extends HttpServlet {
 	private void cleanLogin() {
 		sessionValidator.setUltimaMovimentacao(null);
 		sessionValidator.setUsuarioLogado(null);
+		sessionValidator.setMessage(MESSAGE_NEW_SESSION);
 	}
 	
 	@Override
