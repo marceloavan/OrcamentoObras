@@ -178,10 +178,6 @@ public class CadastroUsuarioPage extends TemplateCadastroPages {
 			public void actionPerformed(ActionEvent ae) {
 				try {
 					String userName = userNameTf.getText();
-					if (usuarioManager.isUsuarioLogado(userName)) {
-						JOptionPane.showMessageDialog(null, "Não é possível excluir o usuário logado");
-						return;
-					}
 					usuarioManager.excluirUsuario(userName);
 					limparCampos();
 					generateTable();

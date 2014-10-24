@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
 
-import edu.asselvi.orcamentoobras.context.SystemInfo;
 import edu.asselvi.orcamentoobras.service.UsuarioService;
 import edu.asselvi.orcamentoobras.service.exception.PasswdInvalidException;
 import edu.asselvi.orcamentoobras.service.exception.UsuarioNotFoundException;
@@ -130,7 +129,6 @@ public class Login extends GeneralTemplate {
 					return;
 				}
 				
-				SystemInfo.setUSuarioLogado(usuarioManager.getUsuarioPeloUserName(userName));
 				new HomePage();
 				dispose();
 			}

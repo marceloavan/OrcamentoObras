@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
-import edu.asselvi.orcamentoobras.context.SystemInfo;
 import edu.asselvi.orcamentoobras.cripto.Cripto;
 import edu.asselvi.orcamentoobras.model.beans.Usuario;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
@@ -20,7 +19,7 @@ public class UsuarioService {
 		usuarioDao = DaoFactory.getInstance().getUsuarioDao();
 	}
 	
-	public void validarLogin(String userName, String passwd) throws UsuarioNotFoundException, PasswdInvalidException {
+	public Usuario validarLogin(String userName, String passwd) throws UsuarioNotFoundException, PasswdInvalidException {
 		Usuario usuario = null;
 		try {
 			usuario = usuarioDao.getPeloUserName(userName);
@@ -33,8 +32,9 @@ public class UsuarioService {
 		
 		String passwdCripted = Cripto.criptToMd5(passwd);
 		if (!passwdCripted.equals(usuario.getPasswd())) {
-			throw new PasswdInvalidException("Senha incorreta");
+			throw new PasswdInvalidException("Login inválido");
 		}
+		return usuario;
 	}
 	
 	public void cadastrarUsuario(Usuario usuario) throws SQLException {
@@ -65,15 +65,6 @@ public class UsuarioService {
 		} catch (SQLException e) {
 		}
 		return usuario != null;
-	}
-	
-	public boolean isUsuarioLogado(String userName) {
-		try {
-			Usuario usuario = usuarioDao.getPeloUserName(userName);
-			return usuario.equals(SystemInfo.getUSuarioLogado());
-		} catch (SQLException e) {
-		}
-		return false;
 	}
 	
 	public Usuario getUsuarioPeloUserName(String userName) {
