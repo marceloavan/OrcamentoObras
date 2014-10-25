@@ -57,7 +57,7 @@
         
         <!-- RIGHT MENU -->
         <div id=buttons-menu-rigth class="group-rigth">
-          <a href="https://google.com" target="_blank" class="button-menu button-menu-small">
+          <a href="https://www.google.com.br/?#safe=off&q=como+usar+um+sistema+de+gestao+de+obras" target="_blank" class="button-menu button-menu-small">
             <c:out value="Ajuda"/>
           </a>
           
