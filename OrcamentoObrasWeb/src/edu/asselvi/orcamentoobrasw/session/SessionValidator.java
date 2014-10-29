@@ -12,16 +12,11 @@ public class SessionValidator {
 	private long tempoLimite;
 	private String message;
 
-	private static SessionValidator INSTANCE;
-	
 	public static final String MESSAGE_SESSION_EXPIRED = "Sessão expirada. Favor efetuar o login novamente"; 
 	public static final String MESSAGE_NEW_SESSION = "Favor efetuar o login";
 	
-	public static SessionValidator getCurrentInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new SessionValidator(100000l);
-		}
-		return INSTANCE;
+	public static SessionValidator newInstance() {
+		return new SessionValidator(1000000);
 	}
 	
 	private SessionValidator(long tempoLimite) {
@@ -58,7 +53,7 @@ public class SessionValidator {
 	}
 	
 	/**
-	 * Retorna a última mesagem válida gravada no {@link SessionValidator}
+	 * Retorna a última mensagem válida gravada no {@link SessionValidator}
 	 * 
 	 * @return
 	 */

@@ -21,10 +21,10 @@
 				<div id="login-user">
 					<form action="${pageContext.request.contextPath}/AuthController" method="post">
 						<span><c:out value="Usuário"/></span>
-						<input type="text" name="userName" />
+						<input type="text" name="userNameLogin" />
 						<br>
 						<span><c:out value="Senha"/></span>
-						<input type="password" name="passwd" />
+						<input type="password" name="passwdLogin" />
 						<br>
 						<input type="submit" name="btnProcess" value="Entrar"/> 
 					</form>

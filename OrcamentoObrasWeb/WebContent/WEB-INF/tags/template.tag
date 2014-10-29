@@ -13,10 +13,16 @@
     <%
     	String logout = request.getParameter("logout");
     	if (logout != null && logout.equals("1")) {
+    		session.invalidate();
     		request.getRequestDispatcher("/modules/login.jsp").forward(request, response);
     		return;
     	}
-    	SessionValidator sessionValidator = SessionValidator.getCurrentInstance();
+    	
+    	SessionValidator sessionValidator = (SessionValidator) session.getAttribute("sessionValidator");
+    	if (sessionValidator == null) {
+    		request.setAttribute("errorMessage", "Favor efetuar login");
+			request.getRequestDispatcher("/modules/login.jsp").forward(request, response);
+    	}
     	if (!sessionValidator.validaSessao()) {
     		request.setAttribute("errorMessage", sessionValidator.getMessage());
 			request.getRequestDispatcher("/modules/login.jsp").forward(request, response);
@@ -32,7 +38,8 @@
             class="img-header" height="70%">
         </a>
         <div id="user-loged">
-          <span>Usuário logado: ${SessionValidator.getCurrentInstance().getNomeUsuarioLogado()}</span>
+          <img alt="Cadastro de usuário" height="16" width="16" src="${pageContext.request.contextPath}/resources/images/32x32/user.png">
+          <span><%= sessionValidator.getNomeUsuarioLogado() %> </span>
         </div>
       </div>
     </div>

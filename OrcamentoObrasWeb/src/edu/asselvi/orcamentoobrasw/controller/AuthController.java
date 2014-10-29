@@ -27,11 +27,11 @@ public class AuthController  extends HttpServlet {
 	
 	public AuthController() {
 		usuarioService = new UsuarioService();
-		sessionValidator = SessionValidator.getCurrentInstance();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)	throws ServletException, IOException {
+		sessionValidator = (SessionValidator) req.getSession().getAttribute("sessionValidator");
 		String logout = req.getParameter("logout");
 		if (logout.equals("1")) {
 			cleanLogin();
@@ -47,12 +47,15 @@ public class AuthController  extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String userName = req.getParameter("userName");
-		String passwd = req.getParameter("passwd");
+		sessionValidator = SessionValidator.newInstance();
 		
+		String userName = req.getParameter("userNameLogin");
+		String passwd = req.getParameter("passwdLogin");
 		try {
 			sessionValidator.setUsuarioLogado(usuarioService.validarLogin(userName, passwd));
 			sessionValidator.setUltimaMovimentacao(new Date());
+			
+			req.getSession().setAttribute("sessionValidator", sessionValidator);
 		} catch (UsuarioNotFoundException | PasswdInvalidException e) {
 			req.setAttribute("errorMessage", e.getMessage());
 			req.getRequestDispatcher("modules/login.jsp").forward(req, resp);

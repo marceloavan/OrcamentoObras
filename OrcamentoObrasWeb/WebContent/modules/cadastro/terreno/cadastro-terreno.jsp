@@ -37,7 +37,7 @@
   		<div>
   			<label>Endereço</label>
   			<select>
-  				<option>Marcelinho Gay</option>
+  				<option>Teste</option>
   			</select>
   		</div>
   		<div>

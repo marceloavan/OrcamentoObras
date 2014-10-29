@@ -7,7 +7,14 @@
 <base:template>
   <jsp:body>  
     
-    
-    
+    <span class="title_page">
+    	<c:out value="Informações Gerais"></c:out>
+  	</span>
+	  	
+  	
+  	<span class="title_page">
+    	<c:out value="Informações Gráficas"></c:out>
+  	</span>
+  	
   </jsp:body>
 </base:template>

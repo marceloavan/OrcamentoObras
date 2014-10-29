@@ -69,7 +69,7 @@
 	margin: 3px;
 	background: #333;
 	color: #f8f8f8;
-	float: left;
+	float: right;
 }
 
 .button-cadastro input[type="button"]:active,

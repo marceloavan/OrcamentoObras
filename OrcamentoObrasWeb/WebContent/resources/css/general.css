@@ -9,6 +9,8 @@
 
 .box-cadastro {
 	padding: 15px;
+	position: absolute;
+	z-index: -1;
 }
 
 .item-cadastro {
@@ -17,11 +19,11 @@
 
 .item-cadastro label {
 	display: inline-block; 
-	width: 250px; 
+	width: 200px; 
 	text-align: right;
-	background-color: #333;
-	color: #f8f8f8;
 	line-height: 180%;
+	background-color: #333;
+	color: #fff;
 }
 
 .item-cadastro input[type="email"], 
