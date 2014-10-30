@@ -22,6 +22,14 @@
     	<span><c:out value="Terreno"></c:out></span>
       </a>
     </div>
+    
+     <div id="cadastroCubBtn">
+      <a href="cub/cadastro-cub.jsp" class="button-modules">
+	    <img alt="Cadastro de custo unitário básico" src="${pageContext.request.contextPath}/resources/images/32x32/box.png">
+	    <br/><br/>
+    	<span><c:out value="Custo Unitário Básico"></c:out></span>
+      </a>
+    </div>
       
   </jsp:body>
 </base:template>

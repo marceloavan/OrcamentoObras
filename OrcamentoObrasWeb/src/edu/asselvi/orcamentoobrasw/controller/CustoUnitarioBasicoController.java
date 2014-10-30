@@ -1,6 +1,7 @@
 package edu.asselvi.orcamentoobrasw.controller;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -74,15 +75,15 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 	}
 	
 	protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		Integer mes = Integer.parseInt(req.getParameter(""));
-		Integer ano = Integer.parseInt(req.getParameter(""));
-		//BigDecimal valor = 
+		Integer mes = Integer.parseInt(req.getParameter("inptValor"));
+		Integer ano = Integer.parseInt(req.getParameter("inptAno"));
+		BigDecimal valor = new BigDecimal(req.getParameter("inptValor"));
 		String action = req.getParameter("action");
 		
 		switch (action) {
 			case "cadastrar": {
 				try {
-					cubService.inserirCub(new CustoUnitarioBasico(null, mes, ano));
+					cubService.inserirCub(new CustoUnitarioBasico(valor, mes, ano));
 				} catch (SQLException e) {
 				}
 				break;
@@ -90,7 +91,7 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 			
 			case "editar": {
 				try {
-					cubService.atualizarCub(new CustoUnitarioBasico(null, mes, ano));
+					cubService.atualizarCub(new CustoUnitarioBasico(valor, mes, ano));
 				} catch (SQLException e) {
 				}
 			}

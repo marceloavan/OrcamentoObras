@@ -10,7 +10,7 @@
 	  		<c:out value="Listagem de Custo Básico Mensais"></c:out>
 		</span>	
 		<div class="table-listagem-container center">
-			<table class="table-listagem-container center">
+			<table class="table-listagem">
 				<thead>
 					<tr>
 						<th style="width: 150px">Mês</th>
@@ -19,7 +19,33 @@
 						<th style="width: 15px" colspan="2">Ações</th>
 					</tr>
 				</thead>
+				<tbody>
+					<c:forEach items="${cubLista}" var="cub">
+						<tr>
+							<td><c:out value="${cubLista.mes}"/></td>
+							<td><c:out value="${cubLista.ano}"/></td>
+							<td><c:out value="${cubLista.valorMetroQuadrado}"/></td>
+							<td>
+								<a href="CustoUnitarioBasicoController?action=editar&id=<c:out value="${cub.id}"/>" onclick="return confirm('Deseja realmente deletar o custo unitário básico?')">
+								<img alt="Remover" 
+                   					 src="${pageContext.request.contextPath}/resources/images/24x24/delete24.png"
+                    					class="img-list"/> 
+                    			</a>
+							</td>
+						</tr>
+					</c:forEach>
+					<c:if test="${cubLista.isEmpty()}">
+            			<tr>
+             			<td colspan="4">Não foram encontrados registros!</td>
+            			</tr>
+          			</c:if>
+				</tbody>
 			</table>
+			 <div class="button-cadastro">
+        		<a href="CustoUnitarioBasicoController?action=cadastrar">
+     	  		<input type="button" value="Novo">
+       			</a>
+	  		</div>
 		</div>
 	</jsp:body>
 </base:template>
