@@ -12,6 +12,8 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.SwingUtilities;
+
 import edu.asselvi.orcamentoobras.model.DBUtils;
 import edu.asselvi.orcamentoobras.model.dao.conector.ConectorBancoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
@@ -20,6 +22,7 @@ import edu.asselvi.orcamentoobras.model.dao.intf.IDao;
 import edu.asselvi.orcamentoobras.model.enumerator.EDataBase;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
+import edu.asselvi.orcamentoobras.view.pages.ConfigDbPage;
 
 /**
  * Contém métodos para configuração e criação da base de dados do sistema,
@@ -179,5 +182,13 @@ public class DataBaseConfig {
 			}
 		}
 		return false;
+	}
+	
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+	        public void run() {
+	        	new ConfigDbPage();
+	        }
+	    });
 	}
 }

@@ -18,7 +18,9 @@ import java.util.Properties;
 public class PropertiesLocator {
 
 	private static String propFileName = "config";
-	private static String pathProp = System.getProperty("user.dir") + "/properties/" + propFileName + ".properties";
+	private static String basePathProp = System.getProperty("user.dir");
+	private static String pathProp = basePathProp + "/properties/" + propFileName + ".properties";
+	private static InputStream inProp;
 	private static Properties properties;
 	
 	private PropertiesLocator() { /* Singleton */ }
@@ -89,7 +91,10 @@ public class PropertiesLocator {
 			File file = new File(pathProp);
 			properties = new Properties();
 			try {
-				InputStream in = new FileInputStream(file);
+				InputStream in = inProp;
+				if (in == null) {
+					in = new FileInputStream(file);
+				}
 				properties.load(in);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -118,5 +123,14 @@ public class PropertiesLocator {
 	public static void refreshProps() {
 		properties = null;
 		loadPropFile();
+	}
+	
+	/**
+	 * Seta o {@link InputStream} para o arquivo, tirando a necessidade de recarregar o arquivo
+	 * 
+	 * @param path
+	 */
+	public static void setInputStreamProp(InputStream in) {
+		inProp = in;
 	}
 }
