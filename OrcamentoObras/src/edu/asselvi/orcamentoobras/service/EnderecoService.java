@@ -52,4 +52,18 @@ public class EnderecoService {
 		
 	}
 	
+	/**
+	 * Busca o endereço através do código, caso contrário retorna null
+	 * 
+	 * @param codigoEndereco
+	 * @return
+	 */
+	public Endereco getById(Integer codigoEndereco) {
+		try {
+			return enderecoDao.getPeloCodigo(codigoEndereco);
+		} catch (SQLException e) {
+		}
+		return null;
+	}
+	
 }

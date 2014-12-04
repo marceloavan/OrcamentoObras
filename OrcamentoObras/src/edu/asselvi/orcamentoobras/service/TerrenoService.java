@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.dao.factory.DaoFactory;
 import edu.asselvi.orcamentoobras.model.dao.factory.IDaoFactory;
@@ -37,6 +39,14 @@ public class TerrenoService {
 	public void removerTerreno (Integer codigo) throws SQLException {
 		Terreno terreno = daoFactory.getTerrenoDao().getPeloCodigo(codigo);
 		terrenoDao.remover(terreno);
+	}
+	
+	public Terreno getPeloCodigo (Integer codigo){
+		try {
+			return daoFactory.getTerrenoDao().getPeloCodigo(codigo);
+		} catch (SQLException e){
+		}
+		return null;
 	}
 
 }
