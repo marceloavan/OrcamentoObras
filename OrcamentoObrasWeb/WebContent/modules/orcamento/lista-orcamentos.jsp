@@ -54,6 +54,11 @@
           </c:if>
         </tbody>
       </table>
+      <div class="button-cadastro">
+        <a href="OrcamentoController?action=cadastrar">
+     	  <input type="button" value="Novo">
+        </a>
+	  </div>
 	</div>  
   </jsp:body>
 </base:template>

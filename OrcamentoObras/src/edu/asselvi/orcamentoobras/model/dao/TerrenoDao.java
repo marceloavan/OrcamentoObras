@@ -65,9 +65,9 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 		sb.append(" VALOR_VENDA = ?,");
 		sb.append(" METRAGEM = ?,");
 		sb.append(" VALOR_ITBI = ?,");
-		sb.append(" VALOR_FRJ = ?");
-		sb.append(" VALOR_ESCRITURA = ?");
-		sb.append(" VALOR_REGISTRO = ?");
+		sb.append(" VALOR_FRJ = ?,");
+		sb.append(" VALOR_ESCRITURA = ?,");
+		sb.append(" VALOR_REGISTRO = ?,");
 		sb.append(" ENDERECO = ?");
 		sb.append(" WHERE COD_TERRENO = ?");
 

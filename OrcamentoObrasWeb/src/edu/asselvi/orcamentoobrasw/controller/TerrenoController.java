@@ -3,6 +3,10 @@ package edu.asselvi.orcamentoobrasw.controller;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,14 +62,20 @@ public class TerrenoController extends HttpServlet {
 			
 			req.setAttribute("inptCodigo", terreno.getCodigo());
 			req.setAttribute("inptDescricao", terreno.getDescricao());
-			req.setAttribute("enderecoLista", enderecoService.getTodos());
 			req.setAttribute("inptMetragem", terreno.getMetragem());
 			req.setAttribute("inptValorVenda", terreno.getValorVenda());
 			req.setAttribute("inptValorITBI", terreno.getValorITBI());
 			req.setAttribute("inptValorFRJ", terreno.getValorFRJ());
 			req.setAttribute("inptValorEscritura", terreno.getValorEscritura());
 			req.setAttribute("inptValorRegistro", terreno.getValorRegistro());
+			req.setAttribute("action", action);
 			
+			Set<Endereco> enderecoLista = new LinkedHashSet<Endereco>();
+			enderecoLista.add(terreno.getEndereco());
+			enderecoLista.addAll(enderecoService.getTodos());
+			
+			req.setAttribute("enderecoLista", enderecoLista);
+
 			rd = req.getRequestDispatcher(CADASTRO_TERRENO_PG);
 			break;
 		}
@@ -73,7 +83,12 @@ public class TerrenoController extends HttpServlet {
 		case "cadastrar": {
 			req.setAttribute("action", action);
 			req.setAttribute("isEdicao", true);
-			req.setAttribute("enderecoLista", enderecoService.getTodos());
+			
+			List<Endereco> enderecoLista = new ArrayList<Endereco>();
+			enderecoLista.add(null);
+			enderecoLista.addAll(enderecoService.getTodos());
+			req.setAttribute("enderecoLista", enderecoLista);
+			req.setAttribute("action", action);
 			rd = req.getRequestDispatcher(CADASTRO_TERRENO_PG);
 			break;
 		}
@@ -106,7 +121,6 @@ public class TerrenoController extends HttpServlet {
 		terreno.setValorEscritura(escritura);
 		terreno.setValorRegistro(registro);
 		terreno.setEndereco(endereco);
-		
 	
 		switch (action) {
 		case "cadastrar": {
@@ -122,6 +136,7 @@ public class TerrenoController extends HttpServlet {
 			try {
 				terrenoService.atualizarTerreno(terreno);
 			} catch (SQLException e) {
+				e.printStackTrace();
 			}
 			break;
 		}
