@@ -24,11 +24,15 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 	private final String CADASTRO_CUB_PG = "/modules/cadastro/cub/cadastro-cub.jsp";
 	private CustoUnitarioBasicoService cubService;
 	
+	public CustoUnitarioBasicoController() {
+		cubService = new CustoUnitarioBasicoService();
+	}
+	
 	protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
 		RequestDispatcher rd = null;
 		
-		switch ("action") {
+		switch (action) {
 			case "listar": {
 				req.setAttribute("cubLista", cubService.getCustos());
 				rd = req.getRequestDispatcher(LISTA_CUB_PG);
@@ -36,9 +40,9 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 			}
 			
 			case "deletar": {
-				Integer codigo = Integer.parseInt(req.getParameter("codCub"));
+				Integer id = Integer.parseInt(req.getParameter("id"));
 				try {
-					cubService.excluirCub(codigo);
+					cubService.excluirCub(id);
 					req.setAttribute("cubLista", cubService.getCustos());
 				} catch (SQLException e) {	
 				} 
@@ -47,12 +51,12 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 			}
 			
 			case "editar": {
-				CustoUnitarioBasico cub = cubService.getCubPeloCodigo(Integer.parseInt(req.getParameter("")));
+				CustoUnitarioBasico cub = cubService.getCubPeloCodigo(Integer.parseInt(req.getParameter("id")));
 				
-				req.setAttribute("", cub.getId());
-				req.setAttribute("", cub.getMes());
-				req.setAttribute("", cub.getAno());
-				req.setAttribute("", cub.getValorMetroQuadrado());
+				req.setAttribute("inptId", cub.getId());
+				req.setAttribute("inptMes", cub.getMes());
+				req.setAttribute("inptAno", cub.getAno());
+				req.setAttribute("inptValor", cub.getValorMetroQuadrado());
 				req.setAttribute("action", action);
 				req.setAttribute("isEdicao", true);
 				rd = req.getRequestDispatcher(CADASTRO_CUB_PG);
@@ -75,15 +79,18 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 	}
 	
 	protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		Integer mes = Integer.parseInt(req.getParameter("inptValor"));
+		Integer mes = Integer.parseInt(req.getParameter("inptMes"));
 		Integer ano = Integer.parseInt(req.getParameter("inptAno"));
 		BigDecimal valor = new BigDecimal(req.getParameter("inptValor"));
+		
 		String action = req.getParameter("action");
+		
+		CustoUnitarioBasico cub = new CustoUnitarioBasico(valor, mes, ano);
 		
 		switch (action) {
 			case "cadastrar": {
 				try {
-					cubService.inserirCub(new CustoUnitarioBasico(valor, mes, ano));
+					cubService.inserirCub(cub);
 				} catch (SQLException e) {
 				}
 				break;
@@ -91,7 +98,9 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 			
 			case "editar": {
 				try {
-					cubService.atualizarCub(new CustoUnitarioBasico(valor, mes, ano));
+					Integer id = Integer.parseInt(req.getParameter("inptId"));
+					cub.setId(id);
+					cubService.atualizarCub(cub);					
 				} catch (SQLException e) {
 				}
 			}

@@ -22,11 +22,20 @@
 				<tbody>
 					<c:forEach items="${cubLista}" var="cub">
 						<tr>
-							<td><c:out value="${cubLista.mes}"/></td>
-							<td><c:out value="${cubLista.ano}"/></td>
-							<td><c:out value="${cubLista.valorMetroQuadrado}"/></td>
+							<td><c:out value="${cub.mes}"/></td>
+							<td><c:out value="${cub.ano}"/></td>
+							<td><c:out value="${cub.valorMetroQuadrado}"/></td>
 							<td>
-								<a href="CustoUnitarioBasicoController?action=editar&id=<c:out value="${cub.id}"/>" onclick="return confirm('Deseja realmente deletar o custo unitário básico?')">
+                				<a href="CustoUnitarioBasicoController?action=editar&id=<c:out value="${cub.id}"/>">
+                  				<img 
+                    			alt="Editar" 
+                   				src="${pageContext.request.contextPath}/resources/images/24x24/edit24.png"
+                    			class="img-list"
+                    				/>
+               					 </a>
+              				</td>
+							<td>
+								<a href="CustoUnitarioBasicoController?action=deletar&id=<c:out value="${cub.id}"/>" onclick="return confirm('Deseja realmente deletar o custo unitário básico?')">
 								<img alt="Remover" 
                    					 src="${pageContext.request.contextPath}/resources/images/24x24/delete24.png"
                     					class="img-list"/> 

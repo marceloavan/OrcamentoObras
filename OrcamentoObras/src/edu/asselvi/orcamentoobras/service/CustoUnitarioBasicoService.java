@@ -20,8 +20,8 @@ public class CustoUnitarioBasicoService {
 		try {
 			return cubDao.getTodos();
 		} catch (SQLException e) {
+			return Collections.emptyList();
 		}
-		return Collections.emptyList();
 	}
 	
 	public void inserirCub (CustoUnitarioBasico cub) throws SQLException{

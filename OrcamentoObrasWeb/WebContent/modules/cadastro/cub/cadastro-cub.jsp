@@ -12,10 +12,10 @@
   		
   	<div class="box-cadastro">
   	
-  	<form action="CustoBasicoUnitarioController" method="post" onsubmit="return checkInputs([inptMes,inptAno,inptValor],[Mês, Ano, Valor])">
+  	<form action="CustoUnitarioBasicoController" method="post" onsubmit="return checkInputs([inptMes,inptAno,inptValor],[Mês, Ano, Valor])">
   		<div class="item-cadastro">
   			<label><c:out value="Mês"></c:out></label>
-  			<input type="text" id="inptMes" name="inptMes" ${isEdicao ? "readonly style='background-color: #dddddd'" : ""} value="${inptMes}"/>
+  			<input type="text" id="inptMes" name="inptMes" value="${inptMes}"/>
   		</div>
   			
   		<div class="item-cadastro">
@@ -30,13 +30,14 @@
   		
   		<!-- Action hidden -->
   		<input type="hidden" name="action" value="${action}">
+  		<input type="hidden" name="inptId" value="${inptId}">
   		
   		<div class="button-cadastro"> 
-  			<input type="button" value="Salvar">
+  			<input type="submit" value="Salvar">
   		</div>
   		
   		<div class="button-cadastro">
-  			<a href="CustoBasicoUnitarioController?action=listar">
+  			<a href="CustoUnitarioBasicoController?action=listar">
   				<input type="button" value="Cancelar">
   			</a>
   		</div>
