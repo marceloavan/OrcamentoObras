@@ -36,5 +36,13 @@ public class ProdutoService {
 		Produto produto = daoFactory.getProdutoDao().getPeloCodigo(codigo);
 		produtoDao.remover(produto);
 	}
+	
+	public Produto getPeloCodigo (Integer codigo) {
+		try {
+			return daoFactory.getProdutoDao().getPeloCodigo(codigo);
+		} catch (SQLException e) {
+		}
+		return null;
+	}
 
 }
