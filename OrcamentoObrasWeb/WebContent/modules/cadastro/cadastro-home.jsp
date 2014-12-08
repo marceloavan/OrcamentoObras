@@ -30,6 +30,14 @@
     	<span><c:out value="Custo Unitário Básico"></c:out></span>
       </a>
     </div>
+    
+    <div id="cadastroProdutoBtn">
+      <a href="${pageContext.request.contextPath}/ProdutoController?action=listar" class="button-modules">
+	    <img alt="Cadastro de produto" src="${pageContext.request.contextPath}/resources/images/32x32/box.png">
+	    <br/><br/>
+    	<span><c:out value="Produto"></c:out></span>
+      </a>
+    </div>
       
   </jsp:body>
 </base:template>
