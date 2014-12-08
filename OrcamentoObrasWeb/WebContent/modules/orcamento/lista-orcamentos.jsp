@@ -49,7 +49,7 @@
           </c:forEach>
           <c:if test="${orcamentosLista.isEmpty()}">
             <tr>
-              <td colspan="4">Não foram encontrados registros!</td>
+              <td colspan="5">Não foram encontrados registros!</td>
             </tr>
           </c:if>
         </tbody>

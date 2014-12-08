@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/buttons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/general.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/24x24/icon24x24.ico" >
 <title>Orça Obras - Login</title>
@@ -22,16 +24,18 @@
 					<form action="${pageContext.request.contextPath}/AuthController" method="post">
 						<span><c:out value="Usuário"/></span>
 						<input type="text" name="userNameLogin" />
-						<br>
+						<br/>
 						<span><c:out value="Senha"/></span>
 						<input type="password" name="passwdLogin" />
-						<br>
-						<input type="submit" name="btnProcess" value="Entrar"/> 
+						<br/>
+						<input type="submit" name="btnProcess" value="Entrar"/>
+						<br/>
+						<a href="DatabaseConfigController?action=configurar">Configurar base de dados</a> 
 					</form>
 				</div>
 			</div>
 	</div>
 	
-	<jsp:include page="message.jsp" />
+	<jsp:include page="../components/message.jsp" />
 </body>
 </html>

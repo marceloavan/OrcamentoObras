@@ -59,4 +59,15 @@
     <servlet-name>AuthController</servlet-name>
     <url-pattern>/AuthController</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>DatabaseConfigController</display-name>
+    <servlet-name>DatabaseConfigController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.DatabaseConfigController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatabaseConfigController</servlet-name>
+    <url-pattern>/DatabaseConfigController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -80,6 +80,6 @@
       <jsp:doBody/>
     </div>
 	
-	<jsp:include page="/modules/message.jsp" />
+	<jsp:include page="/components/message.jsp" />
   </body>
 </html>

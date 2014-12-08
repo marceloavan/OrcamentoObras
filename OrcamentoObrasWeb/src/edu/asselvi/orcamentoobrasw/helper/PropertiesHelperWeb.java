@@ -12,11 +12,17 @@ import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
  * @author marcelo
  *
  */
-public class PropertiesHelper {
+public class PropertiesHelperWeb {
 	
 	public static void loadPropFile(ServletContext context) {
 		InputStream in = context.getResourceAsStream("/WEB-INF/properties/config.properties");
 		PropertiesLocator.setInputStreamProp(in);
 	}
-
+	
+	/**
+	 * @param key
+	 */
+	public static void getPropValue(String key) {
+		PropertiesLocator.getPropValue(key);
+	}
 }

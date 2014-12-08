@@ -7,27 +7,33 @@
 <base:template>
   <jsp:body>
 	<span class="title_page">
-	  <c:out value="Cadastro de usuário"></c:out>
+	  <c:out value="Cadastro de orçamento"></c:out>
 	</span>
 	
 	<div class="box-cadastro">
 	  
-	  <form action="UsuarioController" method="post" onsubmit="return checkInputs(['inptLogin', 'inptNomeComp', 'inptPasswd'], ['Login', 'Nome completo', 'Senha'])">
+	  <form action="OrcamentoController" method="post" onsubmit="return checkInputs(['inptLogin', 'inptNomeComp', 'inptPasswd'], ['Login', 'Nome completo', 'Senha'])">
+		  
+	    <div class="item-cadastro">
+		  <label><c:out value="Nome"></c:out></label>
+		  <input type="text" id="inptNome" name="inptNome" value="${inptNome}"/>
+	    </div>
 	    
 	    <div class="item-cadastro">
-		  <label><c:out value="Login"></c:out></label>
-		  <input type="text" id="inptLogin" name="inptLogin" ${isEdicao ? "readonly style='background-color: #dddddd'" : ""} value="${inptLogin}"/>
+		  <label><c:out value="Descrição"></c:out></label>
+		  <textarea id="inptDesc" name="inptDesc" >${inptDesc}</textarea>
+	    </div>
+	    
+	    <div class="item-cadastro">
+		  <label><c:out value="Metragem construção"></c:out></label>
+		  <input type="text" id="inptMetragemConst" name="inptMetragemConst" value="${inptMetragemConst}"/>
+	    </div>
+	    
+	    <div class="item-cadastro">
+		  <label><c:out value="Lucro (%)"></c:out></label>
+		  <input type="text" id="inptLucro" name="inptLucro" value="${inptLucro}"/>
 	    </div>
 	  
-	    <div class="item-cadastro">
-		  <label><c:out value="Nome completo"></c:out></label>
-		  <input type="text" id="inptNomeComp" name="inptNomeComp" value="${inptNomeComp}"/>
-	    </div>
-	  
-	    <div class="item-cadastro">
-		  <label><c:out value="Senha"></c:out></label>
-		  <input type="password" id="inptPasswd" name="inptPasswd" value="${inptPasswd}"/>
-	    </div>
 	    <!-- Action hidden -->
 	    <input type="hidden" name="action" value="${action}"/>
 	    
@@ -36,7 +42,7 @@
 	    </div>
 	  
 	    <div class="button-cadastro">
-          <a href="UsuarioController?action=listar">
+          <a href="OrcamentoController?action=listar">
 	        <input type="button" value="Cancelar">
 	      </a>
 	    </div>
