@@ -21,6 +21,7 @@ public class PessoaService {
 	public PessoaService() {
 		pessoaFisicaDao = daoFactory.getPessoaFisicaDao();
 		pessoaJuridicaDao = daoFactory.getPessoaJuridicaDao();
+		pessoaDao = daoFactory.getPessoaDao();
 	}
 	
 	public List<AbstractPessoa> getPessoas() {
@@ -42,6 +43,15 @@ public class PessoaService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public AbstractPessoa getPeloCodigo(Integer codigo) {
+		try {
+			return pessoaDao.getPeloCodigo(codigo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public void atualizarPessoa (AbstractPessoa pessoa) {

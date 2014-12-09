@@ -10,10 +10,50 @@
     <span class="title_page">
     	<c:out value="Informações Gerais"></c:out>
   	</span>
-	  	
+	
+	<div class="div-half">
+	 	<div class="item-cadastro">
+		  <label><c:out value="Nome"></c:out></label>
+		  <c:out value="${inptNome}"/>
+	    </div>
+	    
+	    <div class="item-cadastro">
+		  <label><c:out value="Descrição"></c:out></label>
+		  <c:out value="${inptDesc}"/>
+	    </div>
+	    
+	    <div class="item-cadastro">
+			<label><c:out value="Cliente"></c:out></label>
+			<c:out value="${inptCliente}"/>
+  		</div>
   	
-  	<span class="title_page">
-    	<c:out value="Informações Gráficas"></c:out>
+  		<div class="item-cadastro">
+			<label><c:out value="Terreno"></c:out></label>
+			<c:out value="${inptTerreno}"/>
+  		</div>
+	</div>
+	
+  	<div class="div-half">
+  		<div class="item-cadastro">
+			<label><c:out value="CUB"></c:out></label>
+			<c:out value="${inptCub}"/>
+  		</div>
+	    
+	    <div class="item-cadastro">
+		  <label><c:out value="Metragem construção (m2)"></c:out></label>
+		  <c:out value="${inptMetragemConst}"/>
+	    </div>
+	    
+	    <div class="item-cadastro">
+		  <label><c:out value="Lucro (%)"></c:out></label>
+		  <c:out value="${inptLucro}"/>
+	    </div>
+  	</div>	
+	<div style="clear: both;"/>	 
+	
+	<br/>
+  	<span class="title_page" style="margin-top: 10px">
+    	<c:out value="Informações Gerenciais"></c:out>
   	</span>
   	
   </jsp:body>

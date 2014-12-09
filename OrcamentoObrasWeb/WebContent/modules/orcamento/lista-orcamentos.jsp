@@ -17,7 +17,7 @@
             <th style="width: 200px">Terreno</th>
             <th style="width: 125px">Metragem</th>
             <th style="width: 125px">Lucro planejado</th>
-            <th style="width: 15px" colspan=2>Ações</th>
+            <th style="width: 15px" colspan=3>Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +37,15 @@
                 </a>
               </td>
               <td>
+                <a href="OrcamentoController?action=gerenciar&orcamentoId=<c:out value="${orcamento.id}"/>">
+                  <img 
+                    alt="Gerenciar" 
+                    src="${pageContext.request.contextPath}/resources/images/24x24/gear24.png"
+                    class="img-list"
+                    />
+                </a>
+              </td>
+              <td>
                 <a href="OrcamentoController?action=deletar&orcamentoId=<c:out value="${orcamento.id}"/>" onclick="return confirm('Deseja realmente deletar o orçamento?')">
                   <img 
                     alt="Remover" 
@@ -49,7 +58,7 @@
           </c:forEach>
           <c:if test="${orcamentosLista.isEmpty()}">
             <tr>
-              <td colspan="5">Não foram encontrados registros!</td>
+              <td colspan="6">Não foram encontrados registros!</td>
             </tr>
           </c:if>
         </tbody>

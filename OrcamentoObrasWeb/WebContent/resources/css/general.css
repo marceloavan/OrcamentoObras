@@ -69,3 +69,8 @@
 	witdh: 16px;
 	height: 16px;
 }
+
+.div-half {
+	width: 49%;
+	float: left;
+}

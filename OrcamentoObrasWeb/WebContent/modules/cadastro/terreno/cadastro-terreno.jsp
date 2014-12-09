@@ -20,7 +20,7 @@
   			
   		
   		<div class="item-cadastro">
-			<label><c:out value="Endereco"></c:out></label>
+			<label><c:out value="Endereço"></c:out></label>
 			<select name="cbEndereco">
 				<c:forEach items="${enderecoLista}" var="endereco">
 					<option value="${endereco.id}"><c:out value="${endereco.logradouro}, ${endereco.numero}, ${endereco.cep}"></c:out></option>

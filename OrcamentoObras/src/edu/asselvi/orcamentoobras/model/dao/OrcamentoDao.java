@@ -33,7 +33,7 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 		try {
 
 			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
+			
 			stmt.setInt(1, param.getCliente().getId());
 			stmt.setInt(2, param.getTerreno().getCodigo());
 			stmt.setString(3, param.getNome());
