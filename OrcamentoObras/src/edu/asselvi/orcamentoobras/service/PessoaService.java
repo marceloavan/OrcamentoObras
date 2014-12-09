@@ -45,15 +45,6 @@ public class PessoaService {
 		}
 	}
 	
-	public AbstractPessoa getPeloCodigo(Integer codigo) {
-		try {
-			return pessoaDao.getPeloCodigo(codigo);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	public void atualizarPessoa (AbstractPessoa pessoa) {
 		try {
 			pessoaDao.atualizar(pessoa);
@@ -67,4 +58,11 @@ public class PessoaService {
 		pessoaDao.remover(pessoa);
 	}
 	
+	public AbstractPessoa getPeloCodigo (Integer codigo) {
+		try {
+			return daoFactory.getPessoaDao().getPeloCodigo(codigo);
+		} catch (SQLException e) {
+		}
+		return null;
+	}
 }
