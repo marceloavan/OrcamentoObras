@@ -25,7 +25,7 @@
     
      <div id="cadastroCubBtn">
       <a href="${pageContext.request.contextPath}/CustoUnitarioBasicoController?action=listar" class="button-modules">
-	    <img alt="Cadastro de custo unitário básico" src="${pageContext.request.contextPath}/resources/images/32x32/box.png">
+	    <img alt="Cadastro de custo unitário básico" src="${pageContext.request.contextPath}/resources/images/32x32/bargraph32.png">
 	    <br/><br/>
     	<span><c:out value="Custo Unitário Básico"></c:out></span>
       </a>
@@ -33,9 +33,17 @@
     
     <div id="cadastroProdutoBtn">
       <a href="${pageContext.request.contextPath}/ProdutoController?action=listar" class="button-modules">
-	    <img alt="Cadastro de produto" src="${pageContext.request.contextPath}/resources/images/32x32/box.png">
+	    <img alt="Cadastro de produto" src="${pageContext.request.contextPath}/resources/images/32x32/shoppingcart32.png">
 	    <br/><br/>
     	<span><c:out value="Produto"></c:out></span>
+      </a>
+    </div>
+    
+    <div id="cadastroPessoaBtn">
+      <a href="${pageContext.request.contextPath}/PessoaController?action=listar" class="button-modules">
+	    <img alt="Cadastro de cliente" src="${pageContext.request.contextPath}/resources/images/32x32/usersplus32.png">
+	    <br/><br/>
+    	<span><c:out value="Cliente"></c:out></span>
       </a>
     </div>
       

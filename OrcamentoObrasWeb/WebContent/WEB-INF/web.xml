@@ -62,6 +62,17 @@
   
   <servlet>
     <description></description>
+    <display-name>PessoaController</display-name>
+    <servlet-name>PessoaController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.PessoaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PessoaController</servlet-name>
+    <url-pattern>/PessoaController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>AuthController</display-name>
     <servlet-name>AuthController</servlet-name>
     <servlet-class>edu.asselvi.orcamentoobrasw.controller.AuthController</servlet-class>

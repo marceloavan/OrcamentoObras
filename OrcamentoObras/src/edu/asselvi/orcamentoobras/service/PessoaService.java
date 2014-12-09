@@ -57,4 +57,11 @@ public class PessoaService {
 		pessoaDao.remover(pessoa);
 	}
 	
+	public AbstractPessoa getPeloCodigo (Integer codigo) {
+		try {
+			return daoFactory.getPessoaDao().getPeloCodigo(codigo);
+		} catch (SQLException e) {
+		}
+		return null;
+	}
 }
