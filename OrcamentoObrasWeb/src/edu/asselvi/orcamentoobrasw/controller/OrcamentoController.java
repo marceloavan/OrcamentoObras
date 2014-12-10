@@ -91,6 +91,7 @@ public class OrcamentoController extends HttpServlet {
 				try {
 					Orcamento orcamento = orcamentoService.getById(orcamentoId);
 					setAttrOrcamento(req, orcamento);
+					req.setAttribute("previsaoOrcamentoLista", orcamento.getPrevisaoList());
 					
 					rd = req.getRequestDispatcher(PAGE_ORCAMENTO);
 				} catch (SQLException e) {
@@ -121,6 +122,8 @@ public class OrcamentoController extends HttpServlet {
 		req.setAttribute("inptTerreno", orcamento.getTerreno());
 		req.setAttribute("inptCub", orcamento.getCub());
 		req.setAttribute("inptLucro", orcamento.getPercentualLucro());
+		req.setAttribute("inptValorVendaCub", String.format("%.2f", orcamento.getValorVendaCub()));
+		req.setAttribute("inptValorVendaPrevisao", String.format("%.2f", orcamento.getValorVendaPrevisao()));
 	}
 	
 	private void setListasCadastro(HttpServletRequest req) {

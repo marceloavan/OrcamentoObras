@@ -33,14 +33,14 @@ public class PessoaController extends HttpServlet {
 		pessoaService = new PessoaService();
 		enderecoService =  new EnderecoService();
 	}
-	
-	protected void doGet(HttpServletResponse resp, HttpServletRequest req) throws ServletException, IOException {
+		
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
 		RequestDispatcher rd = null;
 		
 		switch (action) {
-			
-			
+
 		case "listar": {
 			req.setAttribute("pessoaLista", pessoaService.getPessoas());
 			rd = req.getRequestDispatcher(LISTA_PESSOA_PG);

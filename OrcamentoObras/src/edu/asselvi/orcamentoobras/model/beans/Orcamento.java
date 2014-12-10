@@ -155,6 +155,9 @@ public class Orcamento {
 	 * @return
 	 */
 	public BigDecimal getValorVendaPrevisao() {
+		if (getTotalPrevisao().equals(BigDecimal.ZERO)) {
+			return BigDecimal.ZERO;
+		}
 		return getTotalPrevisao().multiply(new BigDecimal(getPercentualLucro() / 100));
 	}
 

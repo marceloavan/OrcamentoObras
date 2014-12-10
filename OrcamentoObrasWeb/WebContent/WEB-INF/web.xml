@@ -29,6 +29,17 @@
   
   <servlet>
     <description></description>
+    <display-name>PrevisaoOrcamentoController</display-name>
+    <servlet-name>PrevisaoOrcamentoController</servlet-name>
+    <servlet-class>edu.asselvi.orcamentoobrasw.controller.PrevisaoOrcamentoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PrevisaoOrcamentoController</servlet-name>
+    <url-pattern>/PrevisaoOrcamentoController</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
     <display-name>CustoUnitarioBasicoController</display-name>
     <servlet-name>CustoUnitarioBasicoController</servlet-name>
     <servlet-class>edu.asselvi.orcamentoobrasw.controller.CustoUnitarioBasicoController</servlet-class>

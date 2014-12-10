@@ -18,8 +18,8 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("INSERT INTO PREVISAO");
-		sb.append(" (COD_PREVISAO, DESCRICAO)");
-		sb.append(" VALUES (?, ?)");
+		sb.append(" (DESCRICAO)");
+		sb.append(" VALUES (?)");
 
 		String sql = sb.toString();
 		PreparedStatement stmt = null;
@@ -27,11 +27,9 @@ public class PrevisaoDao extends AbstractDao implements IPrevisaoDao {
 
 		try {
 
-			stmt = getConexao().prepareStatement(sql,
-					Statement.RETURN_GENERATED_KEYS);
+			stmt = getConexao().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-			stmt.setInt(1, param.getCodigo());
-			stmt.setString(2, param.getDescricao());
+			stmt.setString(1, param.getDescricao());
 
 			int linhasAfetadas = stmt.executeUpdate();
 			if (linhasAfetadas == 0) {
