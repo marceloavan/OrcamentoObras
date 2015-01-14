@@ -59,7 +59,7 @@ public class DataBaseConfig {
 	}
 	
 	public void saveProperties(Map<String, String> propMap) {
-		
+		PropertiesLocator.setPropsValues(propMap);
 	}
 	
 	/**

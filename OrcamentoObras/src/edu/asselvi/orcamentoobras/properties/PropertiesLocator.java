@@ -21,6 +21,7 @@ public class PropertiesLocator {
 	private static String basePathProp = System.getProperty("user.dir");
 	private static String pathProp = basePathProp + "/properties/" + propFileName + ".properties";
 	private static InputStream inProp;
+	private static OutputStream outProp;
 	private static Properties properties;
 	
 	private PropertiesLocator() { /* Singleton */ }
@@ -106,12 +107,21 @@ public class PropertiesLocator {
 	 * Armazena as propriedades em disco
 	 */
 	private static void storePropFile() {
-		File file = new File(pathProp);
-		try {
-			OutputStream out = new FileOutputStream(file);
-			properties.store(out, "CONFIGURAÇÕES ALTERADAS EM:");
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (outProp != null) {
+			try {
+				properties.store(outProp, "CONFIGURAÇÕES ALTERADAS EM:");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			File file = new File(pathProp);
+			try {
+				OutputStream out = new FileOutputStream(file);
+				properties.store(out, "CONFIGURAÇÕES ALTERADAS EM:");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		refreshProps();
 	}
@@ -132,5 +142,14 @@ public class PropertiesLocator {
 	 */
 	public static void setInputStreamProp(InputStream in) {
 		inProp = in;
+	}
+	
+	/**
+	 * Seta o {@link OutputStream} para o arquivo, tirando a necessidade de recarregar o arquivo
+	 * 
+	 * @param path
+	 */
+	public static void setOutputStreamProp(OutputStream out) {
+		outProp = out;
 	}
 }

@@ -43,7 +43,7 @@
 	    
 	    <div class="item-cadastro">
 		  <label><c:out value="Senha"></c:out></label>
-		  <input type="password" id="inptSenha" name="inptSenha"/>
+		  <input type="password" id="inptPasswd" name="inptPasswd"/>
 	    </div>
 	    
 	    <div class="button-cadastro">
