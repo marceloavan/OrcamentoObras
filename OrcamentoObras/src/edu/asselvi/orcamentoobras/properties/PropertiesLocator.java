@@ -1,7 +1,6 @@
 package edu.asselvi.orcamentoobras.properties;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +9,7 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Classe respons·vel pela interegaÁ„o com arquivos de propriedades 
+ * Classe responsavel pela interegacao com arquivos de propriedades 
  * 
  * @author Marcelo Avancini
  *
@@ -18,8 +17,7 @@ import java.util.Properties;
 public class PropertiesLocator {
 
 	private static String propFileName = "config";
-	private static String basePathProp = System.getProperty("user.dir");
-	private static String pathProp = basePathProp + "/properties/" + propFileName + ".properties";
+	private static String pathProp = "/properties/" + propFileName + ".properties";
 	private static InputStream inProp;
 	private static OutputStream outProp;
 	private static Properties properties;
@@ -44,7 +42,7 @@ public class PropertiesLocator {
 	
 	/**
 	 * Seta (criar ou altera) o valor de alguma propriedade considerando a chave da propriedade
-	 * e o valor que dever· ser persistido
+	 * e o valor que dever√° ser persistido
 	 * 
 	 * @param key
 	 * @param value
@@ -54,9 +52,9 @@ public class PropertiesLocator {
 	}
 	
 	/**
-	 * MÈtodo privado de persistencia que decide se o arquivo dever· ser salvo em disco
-	 * ou se apenas ficar· em memÛria. Utilizado internamente: no caso de uma lista, ir· setar
-	 * todos o itens e depois persistir em disco. Caso num envio unico, ser· persistido de imediado
+	 * M√©todo privado de persistencia que decide se o arquivo dever√° ser salvo em disco
+	 * ou se apenas ficar√° em mem√≥ria. Utilizado internamente: no caso de uma lista, ir√° setar
+	 * todos o itens e depois persistir em disco. Caso num envio unico, ser√° persistido de imediado
 	 * 
 	 * @param key
 	 * @param value
@@ -71,7 +69,7 @@ public class PropertiesLocator {
 	}
 	
 	/**
-	 * Armazena uma lista de propriedades em memÛria e em ao final armazena em disco
+	 * Armazena uma lista de propriedades em mem√≥ria e em ao final armazena em disco
 	 * 
 	 * @param props
 	 */
@@ -84,17 +82,16 @@ public class PropertiesLocator {
 	}
 	
 	/**
-	 * Carrega as propridades persistidas em disco caso ainda n„o tenham sido carregadas ainda
+	 * Carrega as propridades persistidas em disco caso ainda nao tenham sido carregadas ainda
 	 *  
 	 */
 	private static void loadPropFile() {
 		if (properties == null) {
-			File file = new File(pathProp);
 			properties = new Properties();
 			try {
 				InputStream in = inProp;
 				if (in == null) {
-					in = new FileInputStream(file);
+					in = (new PropertiesLocator()).getClass().getClassLoader().getResourceAsStream("config.properties");
 				}
 				properties.load(in);
 			} catch (IOException e) {
@@ -109,7 +106,7 @@ public class PropertiesLocator {
 	private static void storePropFile() {
 		if (outProp != null) {
 			try {
-				properties.store(outProp, "CONFIGURA«’ES ALTERADAS EM:");
+				properties.store(outProp, "CONFIGURACOES ALTERADAS EM:");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -118,7 +115,7 @@ public class PropertiesLocator {
 			File file = new File(pathProp);
 			try {
 				OutputStream out = new FileOutputStream(file);
-				properties.store(out, "CONFIGURA«’ES ALTERADAS EM:");
+				properties.store(out, "CONFIGURACOES ALTERADAS EM:");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -127,29 +124,11 @@ public class PropertiesLocator {
 	}
 	
 	/**
-	 * Possibilidade de recarregar as propriedades caso seja necess·rio
+	 * Possibilidade de recarregar as propriedades caso seja necess√°rio
 	 * 
 	 */
 	public static void refreshProps() {
 		properties = null;
 		loadPropFile();
-	}
-	
-	/**
-	 * Seta o {@link InputStream} para o arquivo, tirando a necessidade de recarregar o arquivo
-	 * 
-	 * @param path
-	 */
-	public static void setInputStreamProp(InputStream in) {
-		inProp = in;
-	}
-	
-	/**
-	 * Seta o {@link OutputStream} para o arquivo, tirando a necessidade de recarregar o arquivo
-	 * 
-	 * @param path
-	 */
-	public static void setOutputStreamProp(OutputStream out) {
-		outProp = out;
 	}
 }

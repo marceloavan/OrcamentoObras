@@ -11,8 +11,8 @@ import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
 import edu.asselvi.orcamentoobras.properties.PropertiesLocator;
 
 /**
- * Classe responsável por gerar os conectores para banco de dados
- * Caso seja necessário incluir outro DB, essa classe deverá ser
+ * Classe responsï¿½vel por gerar os conectores para banco de dados
+ * Caso seja necessï¿½rio incluir outro DB, essa classe deverï¿½ ser
  * refatorada
  * 
  * @author Marcelo Avancini
@@ -37,7 +37,7 @@ public class ConectorBancoFactory {
 	}
 	
 	/**
-	 * Retorna conexão de acordo com o configuração no <b>user.dir/properties/config.properties</b>
+	 * Retorna conexao de acordo com o configuracao
 	 * 
 	 * @return
 	 */
@@ -61,7 +61,7 @@ public class ConectorBancoFactory {
 	}
 	
 	/**
-	 * Retorna conexão de acordo com parametros enviados
+	 * Retorna conexao de acordo com parametros enviados
 	 * 
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class ConectorBancoFactory {
 	}
 	
 	/**
-	 * Carrega os parametros necessários para a conexão
+	 * Carrega os parametros necessarios para a conexao
 	 */
 	private void loadParameters() {
 		String host = PropertiesLocator.getPropValue(EPropertieKeys.DB_HOST.getPropName());

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.asselvi.orcamentoobras.installer.DataBaseConfig;
 import edu.asselvi.orcamentoobras.model.enumerator.EPropertieKeys;
-import edu.asselvi.orcamentoobrasw.helper.PropertiesHelperWeb;
 
 public class DatabaseConfigController extends HttpServlet {
 
@@ -29,8 +28,6 @@ public class DatabaseConfigController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		PropertiesHelperWeb.loadPropFile(req.getServletContext());
-
 		String host = req.getParameter("inptHost");
 		String port = req.getParameter("inptPort");
 		String database = req.getParameter("inptDatabase");
@@ -42,8 +39,6 @@ public class DatabaseConfigController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		PropertiesHelperWeb.loadPropFile(req.getServletContext());
-
 		Map<String, String> mapProps = databaseConfig.loadProperties();
 		
 		String action = req.getParameter("action");

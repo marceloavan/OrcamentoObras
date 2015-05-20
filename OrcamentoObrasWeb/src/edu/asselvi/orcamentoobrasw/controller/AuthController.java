@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import edu.asselvi.orcamentoobras.service.UsuarioService;
 import edu.asselvi.orcamentoobras.service.exception.PasswdInvalidException;
 import edu.asselvi.orcamentoobras.service.exception.UsuarioNotFoundException;
-import edu.asselvi.orcamentoobrasw.helper.PropertiesHelperWeb;
 import edu.asselvi.orcamentoobrasw.session.SessionValidator;
 
 public class AuthController  extends HttpServlet {
@@ -49,7 +48,6 @@ public class AuthController  extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		sessionValidator = SessionValidator.newInstance();
-		PropertiesHelperWeb.loadPropFile(req.getServletContext());
 		
 		String userName = req.getParameter("userNameLogin");
 		String passwd = req.getParameter("passwdLogin");

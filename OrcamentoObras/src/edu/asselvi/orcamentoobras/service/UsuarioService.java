@@ -24,15 +24,15 @@ public class UsuarioService {
 		try {
 			usuario = usuarioDao.getPeloUserName(userName);
 		} catch (SQLException e) {
-			throw new UsuarioNotFoundException("Problema ao consultar usu·rio, consulte o suporte tÈcnico");
+			throw new UsuarioNotFoundException("Problema ao consultar usu√°rio, consulte o suporte t√©cnico");
 		}
 		if (usuario == null) {
-			throw new UsuarioNotFoundException("Usu·rio informado n„o existe");
+			throw new UsuarioNotFoundException("Usu√°rio informado n√£o existe");
 		}
 		
 		String passwdCripted = Cripto.criptToMd5(passwd);
 		if (!passwdCripted.equals(usuario.getPasswd())) {
-			throw new PasswdInvalidException("Login inv·lido");
+			throw new PasswdInvalidException("Login inv√°lido");
 		}
 		return usuario;
 	}
@@ -51,7 +51,7 @@ public class UsuarioService {
 		try {
 			Usuario usuario = usuarioDao.getPeloUserName(userName);
 			if (usuario == null) {
-				throw new UsuarioNotFoundException("Usuario n„o existe");
+				throw new UsuarioNotFoundException("Usuario n√£o existe");
 			}
 			usuarioDao.remover(usuario);
 		} catch (SQLException e) {
