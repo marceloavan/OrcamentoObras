@@ -156,7 +156,10 @@ public class TerrenoDao extends AbstractDao implements ITerrenoDao {
 
 	@Override
 	public Terreno getPeloCodigo(Integer codigo) throws SQLException {
-
+		
+		if (codigo == null) {
+			return null;
+		}
 		Terreno terreno = null;
 		String sql = "SELECT * FROM TERRENO WHERE COD_TERRENO = ?";
 

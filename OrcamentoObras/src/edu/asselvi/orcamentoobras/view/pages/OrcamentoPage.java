@@ -25,6 +25,7 @@ import edu.asselvi.orcamentoobras.model.beans.Previsao;
 import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.model.exception.TerrenoNullException;
 import edu.asselvi.orcamentoobras.service.CustoUnitarioBasicoService;
 import edu.asselvi.orcamentoobras.service.OrcamentoService;
 import edu.asselvi.orcamentoobras.service.PessoaService;
@@ -108,7 +109,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		descricaoOrcamentoSp.setBorder(null);
 		getContentPane().add(descricaoOrcamentoSp);
 		
-		JLabel descricaoLb = new JLabel("Descrição");
+		JLabel descricaoLb = new JLabel("Descriï¿½ï¿½o");
 		descricaoLb.setHorizontalAlignment(SwingConstants.RIGHT);
 		descricaoLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(descricaoLb);
@@ -180,16 +181,16 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		valorVendaPrevisaoTf.setEditable(false);
 		getContentPane().add(valorVendaPrevisaoTf);
 		
-		JLabel valorVendaPrevisaoLb = new JLabel("Valor venda previsões");
+		JLabel valorVendaPrevisaoLb = new JLabel("Valor venda previsï¿½es");
 		valorVendaPrevisaoLb.setHorizontalAlignment(SwingConstants.RIGHT);
 		valorVendaPrevisaoLb.setBounds(10, yPosition+5, 145, 15);
 		getContentPane().add(valorVendaPrevisaoLb);
 		
-		JLabel previsoesLb = new JLabel("Previsões:");
+		JLabel previsoesLb = new JLabel("Previsï¿½es:");
 		previsoesLb.setBounds(503, 160, 480, 15);
 		getContentPane().add(previsoesLb);
 		
-		JLabel previsaoLb = new JLabel("Previsão:");
+		JLabel previsaoLb = new JLabel("Previsï¿½o:");
 		previsaoLb.setBounds(500, 300, getWidthTf()-50, getHeightTf());
 		getContentPane().add(previsaoLb);
 		
@@ -205,7 +206,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		valorPrevisaoTf.setBounds(500 + getWidthTf()-35, 320, getWidthTf()-50, getHeightTf());
 		getContentPane().add(valorPrevisaoTf);
 		
-		incluirPrevisaoBtn = new JButton("Incluir Previsão");
+		incluirPrevisaoBtn = new JButton("Incluir Previsï¿½o");
 		incluirPrevisaoBtn.setBounds(840, 350, 135, 25);
 		getContentPane().add(incluirPrevisaoBtn);
 	
@@ -243,7 +244,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	
 	private void generateTable() {
 		/*
-		 * ORÇAMENTO 
+		 * ORï¿½AMENTO 
 		 */
 		orcamentoModelConverter = new OrcamentoModelConverter();
 		
@@ -276,7 +277,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 		
 		tablePrevisaoOrcamento = new CustomTable();
 		tablePrevisaoOrcamento.setModel(tableModelPrevisaoOrcamento);
-		tablePrevisaoOrcamento.getColumn("Previsão").setPreferredWidth(300);
+		tablePrevisaoOrcamento.getColumn("Previsï¿½o").setPreferredWidth(300);
 		tablePrevisaoOrcamento.getColumn("Valor").setPreferredWidth(160);
 		tablePrevisaoOrcamento.setEnabled(false);
 		
@@ -329,13 +330,13 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				
 				Previsao previsao = previsaoCb.getItemAt(previsaoCb.getSelectedIndex());
 				if (previsao == null) {
-					JOptionPane.showMessageDialog(null, "Selecione uma previsão");
+					JOptionPane.showMessageDialog(null, "Selecione uma previsï¿½o");
 					return;
 				}
 				
 				String valorPrevisao = valorPrevisaoTf.getText();
 				if (valorPrevisao == null || valorPrevisao.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Informe o valor da previsão");
+					JOptionPane.showMessageDialog(null, "Informe o valor da previsï¿½o");
 					return;
 				}
 				
@@ -343,13 +344,13 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				try {
 					valorConverted = new BigDecimal(valorPrevisao);
 				} catch (Exception e) {
-					JOptionPane.showMessageDialog(null, "Valor da previsão é inválido");
+					JOptionPane.showMessageDialog(null, "Valor da previsï¿½o ï¿½ invï¿½lido");
 					return;
 				}
 				try {
 					orcamentoController.cadastrarPrevisaoOrcamento(new PrevisaoOrcamento(valorConverted, previsao, orcamentoEdited));
 				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Não foi possível incluir a previsão ao orçamento");
+					JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel incluir a previsï¿½o ao orï¿½amento");
 					return;
 				}
 				generateSecondsTables();
@@ -358,7 +359,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				
 				previsaoCb.setSelectedItem(null);
 				valorPrevisaoTf.setText("");
-				JOptionPane.showMessageDialog(null, "Previsão incluida com sucesso");
+				JOptionPane.showMessageDialog(null, "Previsï¿½o incluida com sucesso");
 			}
 		});
 		
@@ -379,13 +380,13 @@ public class OrcamentoPage extends TemplateCadastroPages {
 			public void actionPerformed(ActionEvent ae) {
 				String nome = nomeOrcamentoTf.getText();
 				if (nome == null || nome.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Informa o nome do orçamento");
+					JOptionPane.showMessageDialog(null, "Informa o nome do orï¿½amento");
 					return;
 				}
 				
 				String descricao = descricaoOrcamentoTa.getText();
 				if (descricao == null || descricao.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Informa a descrição do orçamento");
+					JOptionPane.showMessageDialog(null, "Informa a descriï¿½ï¿½o do orï¿½amento");
 					return;
 				}
 				
@@ -403,7 +404,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				
 				CustoUnitarioBasico cub = cubCb.getItemAt(cubCb.getSelectedIndex());
 				if (cub == null) {
-					JOptionPane.showMessageDialog(null, "Selecione um custo unitário básico (C.U.B.)");
+					JOptionPane.showMessageDialog(null, "Selecione um custo unitÃ¡rio bÃ¡sico (C.U.B.)");
 					return;
 				}
 				Double metragemConstrucao = new Double(metragemTf.getText());
@@ -413,8 +414,10 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				try {
 					orcamento = new Orcamento(nome, descricao, cub, terreno, metragemConstrucao);
 				} catch (MetragemConstrucaoMaiorTerrenoException e) {
-					JOptionPane.showMessageDialog(null, "A metragem da construção não pode ser maior que a do terreno.");
+					JOptionPane.showMessageDialog(null, "A metragem da construÃ§Ã£o nÃ£o pode ser maior que a do terreno.");
 					return;
+				} catch (TerrenoNullException e) {
+					e.printStackTrace();
 				}
 				orcamento.setPercentualLucro(percentualLucro);
 				orcamento.setCliente(cliente);
@@ -425,16 +428,16 @@ public class OrcamentoPage extends TemplateCadastroPages {
 					} else {
 						orcamentoController.cadastrarOrcamento(orcamento);
 					}
-					// quando o orcamentoEdited (contexto) não é nulo
-					// o mesmo deve repassar a lista da previsoes (que nao é informado em tela)
-					// antes de ser substituido pelo orcamento de edição
+					// quando o orcamentoEdited (contexto) nï¿½o ï¿½ nulo
+					// o mesmo deve repassar a lista da previsoes (que nao ï¿½ informado em tela)
+					// antes de ser substituido pelo orcamento de ediï¿½ï¿½o
 					if (orcamentoEdited != null) {
 						orcamento.setPrevisaoList(orcamentoEdited.getPrevisaoList());
 					}
 					orcamentoEdited = orcamento;
 					loadCalculatedValuesByObject(orcamentoEdited);
 				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(null, "Erro ao cadastrar orçamento");
+					JOptionPane.showMessageDialog(null, "Erro ao cadastrar orï¿½amento");
 					return;
 				}
 				generateTable();
@@ -449,7 +452,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 				try {
 					orcamentoController.removerOrcamento(orcamentoEdited);
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null, "Não foi possível remover o registro");
+					JOptionPane.showMessageDialog(null, "Nï¿½o foi possï¿½vel remover o registro");
 					return;
 				}
 				generateTable();
@@ -459,7 +462,7 @@ public class OrcamentoPage extends TemplateCadastroPages {
 	}
 	
 	/**
-	 * Método separado porque a tabela é recriada quando algum registro é criado/ removido
+	 * Mï¿½todo separado porque a tabela ï¿½ recriada quando algum registro ï¿½ criado/ removido
 	 */
 	private void addActionToTable() {
 		tableOrcamento.getSelectionModel().addListSelectionListener(new ListSelectionListener() {

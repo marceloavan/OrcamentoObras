@@ -14,6 +14,7 @@ import edu.asselvi.orcamentoobras.model.beans.PrevisaoOrcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.dao.intf.IOrcamentoDao;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.model.exception.TerrenoNullException;
 
 public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
@@ -167,6 +168,8 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 
 		} catch (MetragemConstrucaoMaiorTerrenoException e) {
 			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
+		} catch (TerrenoNullException e) {
+			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
 		} finally {
 			finalizarConexoes(stmt, rs);
 		}
@@ -211,6 +214,8 @@ public class OrcamentoDao extends AbstractDao implements IOrcamentoDao {
 				
 			}
 		} catch (MetragemConstrucaoMaiorTerrenoException e) {
+			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
+		} catch (TerrenoNullException e) {
 			throw new SQLException(e.getMessage() + " Sua base de dados inconsistente");
 		} finally {
 			finalizarConexoes(stmt, rs);

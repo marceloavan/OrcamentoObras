@@ -43,6 +43,14 @@
   		</div>
   	</form>	
   	</div>
-  		
+  	
+  	<script>
+        (function() {
+            VMasker(document.getElementById("inptMes")).maskPattern("99");
+            VMasker(document.getElementById("inptAno")).maskPattern("9999");
+            VMasker(document.getElementById("inptValor")).maskMoney();
+        })();
+    </script>	
+  	
   </jsp:body>
 </base:template>

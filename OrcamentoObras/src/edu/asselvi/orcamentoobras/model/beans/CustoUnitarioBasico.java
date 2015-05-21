@@ -3,7 +3,7 @@ package edu.asselvi.orcamentoobras.model.beans;
 import java.math.BigDecimal;
 
 /**
- * Responsável por gerenciar os custos do cub
+ * Responsavel por gerenciar os custos do cub
  * 
  * @author Marcelo
  *
@@ -58,7 +58,7 @@ public class CustoUnitarioBasico {
 	
 	@Override
 	public String toString() {
-		return String.format("Mês/ano: %d/%d - valor: %s", mes, ano, valorMetroQuadrado);
+		return String.format("MÃªs/ano: %d/%d - valor: %s", mes, ano, valorMetroQuadrado);
 	}
 
 	@Override

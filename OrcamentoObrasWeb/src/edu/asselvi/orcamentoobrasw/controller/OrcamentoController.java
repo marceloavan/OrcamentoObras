@@ -18,6 +18,7 @@ import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.model.beans.Orcamento;
 import edu.asselvi.orcamentoobras.model.beans.Terreno;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.model.exception.TerrenoNullException;
 import edu.asselvi.orcamentoobras.service.CustoUnitarioBasicoService;
 import edu.asselvi.orcamentoobras.service.OrcamentoService;
 import edu.asselvi.orcamentoobras.service.PessoaService;
@@ -172,9 +173,20 @@ public class OrcamentoController extends HttpServlet {
 		String descricao = req.getParameter("inptDesc");
 		Double metragemConstrucao = Double.valueOf(req.getParameter("inptMetragemConst"));
 		Double percentualLucro = Double.valueOf(req.getParameter("inptLucro"));
-		Integer codigoCub = Integer.valueOf(req.getParameter("cbCub"));
-		Integer codigoTerreno = Integer.valueOf(req.getParameter("cbTerreno"));
-		Integer codigoCliente = Integer.valueOf(req.getParameter("cbCliente"));
+		Integer codigoCub = null;
+		try {
+			codigoCub = Integer.valueOf(req.getParameter("cbCub"));
+		} catch (NumberFormatException ne) {}
+		
+		Integer codigoTerreno = null;
+		try {
+			codigoTerreno = Integer.valueOf(req.getParameter("cbTerreno"));
+		} catch (NumberFormatException ne) {}
+
+		Integer codigoCliente = null;
+		try {
+			codigoCliente = Integer.valueOf(req.getParameter("cbCliente"));
+		} catch (NumberFormatException ne) {}
 		
 		CustoUnitarioBasico cub = cubService.getCubPeloCodigo(codigoCub);
 		Terreno terreno = terrenoService.getPeloCodigo(codigoTerreno);
@@ -191,6 +203,8 @@ public class OrcamentoController extends HttpServlet {
 				} catch (MetragemConstrucaoMaiorTerrenoException e) {
 					e.printStackTrace();
 				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (TerrenoNullException e) {
 					e.printStackTrace();
 				}
 				break;

@@ -42,7 +42,7 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 			if (rs.next()) {
 				param.setId(rs.getInt(1));
 			} else {
-				throw new SQLException("Não foi possivel buscar a chave gerada");
+				throw new SQLException("Nï¿½o foi possivel buscar a chave gerada");
 			}
 			
 		} finally {
@@ -167,6 +167,9 @@ public class CustoUnitarioBasicoDao extends AbstractDao implements
 	@Override
 	public CustoUnitarioBasico getPeloCodigo(Integer codigo) throws SQLException {
 		
+		if (codigo == null) {
+			return null;
+		}
 		CustoUnitarioBasico cub = null;
 		String sql = "SELECT * FROM CUB WHERE COD_CUB = ?";
 		PreparedStatement stmt = null;

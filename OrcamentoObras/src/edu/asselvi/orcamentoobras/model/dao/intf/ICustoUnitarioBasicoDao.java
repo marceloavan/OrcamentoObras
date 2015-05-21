@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 
 /**
- * Comportamento padr„o de DAOs para trabalhar com {@link CustoUnitarioBasico}
+ * Comportamento padr√£o de DAOs para trabalhar com {@link CustoUnitarioBasico}
  * 
  * @author Leandro Rebelo
  *

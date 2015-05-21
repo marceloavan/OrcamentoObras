@@ -7,11 +7,12 @@ import java.util.List;
 
 import edu.asselvi.orcamentoobras.model.abst.AbstractPessoa;
 import edu.asselvi.orcamentoobras.model.exception.MetragemConstrucaoMaiorTerrenoException;
+import edu.asselvi.orcamentoobras.model.exception.TerrenoNullException;
 
 /**
- * Implementação padrão inicial de orçamentos
+ * Implementaï¿½ï¿½o padrï¿½o inicial de orï¿½amentos
  * <br><br>
- * Objetivo: Todo orçamento deverá "orçar" os custos da obra de modo gerencial, ou seja,
+ * Objetivo: Todo orï¿½amento deverï¿½ "orï¿½ar" os custos da obra de modo gerencial, ou seja,
  * armazenar os gastos e gerar valores de venda de acordo com regras definidas pela intf
  * principal.
  *
@@ -32,10 +33,13 @@ public class Orcamento {
 	private List<PrevisaoOrcamento> previsaoList;
 	private Double percentualLucro;
 	
-	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws MetragemConstrucaoMaiorTerrenoException {
+	public Orcamento(String nome, String descricao, CustoUnitarioBasico cub, Terreno terreno, Double metragemConstrucao) throws MetragemConstrucaoMaiorTerrenoException, TerrenoNullException {
 		setNome(nome);
 		setDescricao(descricao);
 		setCub(cub);
+		if (terreno == null) {
+			throw new TerrenoNullException("Ã‰ obrigatÃ³rio informar o terreno para um orÃ§amento.");
+		}
 		setTerreno(terreno);
 		setMetragemConstrucao(metragemConstrucao);
 	}
@@ -89,8 +93,8 @@ public class Orcamento {
 	}
 
 	public void setMetragemConstrucao(Double metragemConstrucao) throws MetragemConstrucaoMaiorTerrenoException {
-		if (metragemConstrucao > getTerreno().getMetragem()) {
-			throw new MetragemConstrucaoMaiorTerrenoException("A metragem da construção deve respetar o tamanho do terreno");
+		if (getTerreno() == null || metragemConstrucao > getTerreno().getMetragem()) {
+			throw new MetragemConstrucaoMaiorTerrenoException("A metragem da construÃ§Ã£o deve respetar o tamanho do terreno");
 		}
 		this.metragemConstrucao = metragemConstrucao;
 	}
@@ -107,7 +111,7 @@ public class Orcamento {
 	}
 	
 	/**
-	 * Insere previsão a lista já existente de previsões
+	 * Insere previsÃ£o a lista jÃ¡ existente de previsÃµes
 	 * 
 	 * @param previsao
 	 */
@@ -127,9 +131,9 @@ public class Orcamento {
 	}
 
 	/**
-	 * Retorna o valor total que representam as previsões de gasto
+	 * Retorna o valor total que representam as previsï¿½es de gasto
 	 * 
-	 * @return totalPrevisao - somatório do valor das previsões
+	 * @return totalPrevisao - somatï¿½rio do valor das previsï¿½es
 	 */
 	public BigDecimal getTotalPrevisao() {
 		BigDecimal totalPrevisao = new BigDecimal(0);
@@ -149,7 +153,7 @@ public class Orcamento {
 	}
 
 	/**
-	 * Valor de venda considerando o total de previsões multiplicado
+	 * Valor de venda considerando o total de previsï¿½es multiplicado
 	 * pelo percentual de lucro esperado
 	 * 
 	 * @return

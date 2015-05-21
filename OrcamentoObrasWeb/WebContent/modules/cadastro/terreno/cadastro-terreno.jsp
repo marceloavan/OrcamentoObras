@@ -74,6 +74,17 @@
   		</div>
   	</form>	
   	</div>
+  	
+  	<script>
+        (function() {
+            VMasker(document.getElementById("inptMetragem")).maskMoney();
+            VMasker(document.getElementById("inptValorVenda")).maskMoney();
+            VMasker(document.getElementById("inptValorITBI")).maskMoney();
+            VMasker(document.getElementById("inptValorFRJ")).maskMoney();
+            VMasker(document.getElementById("inptValorEscritura")).maskMoney();
+            VMasker(document.getElementById("inptValorRegistro")).maskMoney();
+        })();
+  	</script>
   		
   </jsp:body>
 </base:template>

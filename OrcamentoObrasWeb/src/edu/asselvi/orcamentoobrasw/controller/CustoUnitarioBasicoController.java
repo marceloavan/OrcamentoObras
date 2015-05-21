@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import edu.asselvi.orcamentoobras.model.beans.CustoUnitarioBasico;
 import edu.asselvi.orcamentoobras.service.CustoUnitarioBasicoService;
+import edu.asselvi.orcamentoobras.utils.NumberUtils;
 
 public class CustoUnitarioBasicoController extends HttpServlet {
 
@@ -81,7 +82,7 @@ public class CustoUnitarioBasicoController extends HttpServlet {
 	protected void doPost (HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Integer mes = Integer.parseInt(req.getParameter("inptMes"));
 		Integer ano = Integer.parseInt(req.getParameter("inptAno"));
-		BigDecimal valor = new BigDecimal(req.getParameter("inptValor"));
+		BigDecimal valor = NumberUtils.getBigDecimalPtBr(req.getParameter("inptValor"));
 		
 		String action = req.getParameter("action");
 		
